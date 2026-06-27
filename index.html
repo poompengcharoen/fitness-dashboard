@@ -4,122 +4,223 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>Poom's Cut — Dashboard</title>
+<title>Poom's Cut</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0d1117; --card:#161b22; --line:#21262d;
-    --text:#e6edf3; --dim:#8b949e; --accent:#f78166;
-    --green:#3fb950; --blue:#58a6ff; --yellow:#d29922;
+    --bg:#0a0b0d;
+    --surface:#141619;
+    --surface-2:#1b1e23;
+    --line:rgba(255,255,255,.07);
+    --line-strong:rgba(255,255,255,.12);
+    --text:#f3f5f7;
+    --dim:#9aa1ac;
+    --faint:#6b7280;
+    --lime:#c6f24e;
+    --orange:#ff7849;
+    --blue:#5eb3ff;
+    --violet:#b89cff;
+    --display:'Space Grotesk',sans-serif;
+    --body:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
   body{
-    background:var(--bg); color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.5; padding:20px; max-width:560px; margin:0 auto;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.5;
+    padding:22px 18px 40px;
+    max-width:540px;
+    margin:0 auto;
+    background-image:
+      radial-gradient(70% 45% at 80% -5%, rgba(198,242,78,.10), transparent 60%),
+      radial-gradient(55% 40% at -10% 5%, rgba(255,120,73,.10), transparent 55%);
+    background-attachment:fixed;
   }
-  h1{font-size:1.6rem; margin-bottom:4px}
-  .sub{color:var(--dim); font-size:.9rem; margin-bottom:20px}
-  .card{
-    background:var(--card); border:1px solid var(--line);
-    border-radius:14px; padding:18px; margin-bottom:14px;
+  .reveal{opacity:0; transform:translateY(12px); animation:rise .6s cubic-bezier(.2,.7,.3,1) forwards}
+  @keyframes rise{to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion:reduce){.reveal{animation:none; opacity:1; transform:none} .track > i{transition:none!important}}
+
+  /* Header */
+  header{display:flex; align-items:center; justify-content:space-between; margin-bottom:22px}
+  .brand{display:flex; align-items:center; gap:11px}
+  .mark{
+    width:42px; height:42px; border-radius:12px; flex:none;
+    background:linear-gradient(135deg,var(--lime),#8fd000);
+    display:grid; place-items:center; font-size:1.3rem;
+    box-shadow:0 6px 20px rgba(198,242,78,.25);
   }
-  .card h2{font-size:1rem; color:var(--dim); text-transform:uppercase; letter-spacing:.05em; margin-bottom:12px}
-  .goal{font-size:1.7rem; font-weight:700; text-align:center; margin-bottom:10px}
-  .goal small{display:block; font-size:.85rem; color:var(--dim); font-weight:400; margin-top:4px}
-  .bar{height:12px; background:#21262d; border-radius:6px; overflow:hidden; margin:10px 0 6px}
-  .bar > span{display:block; height:100%; width:1%; background:var(--green)}
-  .barlabel{text-align:center; color:var(--dim); font-size:.85rem}
-  .row{display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line)}
-  .row:last-child{border-bottom:none}
-  .row .k{color:var(--dim)}
-  .row .v{font-weight:600; text-align:right}
-  ol.meals{list-style:none; counter-reset:m}
-  ol.meals li{counter-increment:m; padding:8px 0 8px 34px; position:relative; border-bottom:1px solid var(--line)}
-  ol.meals li:last-child{border-bottom:none}
-  ol.meals li::before{
-    content:counter(m); position:absolute; left:0; top:8px;
-    width:24px; height:24px; background:var(--accent); color:#0d1117;
-    border-radius:50%; text-align:center; font-weight:700; font-size:.85rem; line-height:24px;
+  .brand h1{font-family:var(--display); font-size:1.32rem; font-weight:700; letter-spacing:-.01em; line-height:1.1}
+  .brand p{font-size:.78rem; color:var(--dim)}
+  .live{display:flex; align-items:center; gap:6px; font-size:.7rem; color:var(--dim); font-weight:500;
+    border:1px solid var(--line); padding:5px 9px; border-radius:20px; white-space:nowrap}
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--lime); box-shadow:0 0 0 0 rgba(198,242,78,.6); animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(198,242,78,.5)}70%{box-shadow:0 0 0 7px rgba(198,242,78,0)}100%{box-shadow:0 0 0 0 rgba(198,242,78,0)}}
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(180deg,var(--surface-2),var(--surface));
+    border:1px solid var(--line-strong); border-radius:22px; padding:24px 22px;
+    margin-bottom:14px; position:relative; overflow:hidden;
   }
-  ol.meals .tag{color:var(--blue); font-size:.8rem; font-weight:600}
-  .macros{display:flex; gap:8px; text-align:center}
-  .macros div{flex:1; background:#0d1117; border:1px solid var(--line); border-radius:10px; padding:10px 4px}
-  .macros .n{font-size:1.25rem; font-weight:700}
-  .macros .l{font-size:.72rem; color:var(--dim); text-transform:uppercase}
-  table{width:100%; border-collapse:collapse; font-size:.92rem}
-  td{padding:7px 0; border-bottom:1px solid var(--line)}
-  td:last-child{text-align:right; color:var(--dim)}
-  tr:last-child td{border-bottom:none}
-  ul.rules{list-style:none}
-  ul.rules li{padding:6px 0}
-  .foot{text-align:center; color:var(--dim); font-size:.8rem; margin-top:20px}
-  .pill{display:inline-block; background:var(--accent); color:#0d1117; font-weight:700; font-size:.75rem; padding:2px 8px; border-radius:20px}
+  .hero .label{font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); font-weight:600; margin-bottom:10px}
+  .hero .nums{font-family:var(--display); font-weight:700; letter-spacing:-.02em; line-height:1; display:flex; align-items:baseline; gap:12px}
+  .hero .from{font-size:2rem; color:var(--faint)}
+  .hero .arrow{color:var(--lime); font-size:1.4rem}
+  .hero .to{font-size:3.1rem; background:linear-gradient(120deg,#fff,var(--lime)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+  .hero .unit{font-size:1rem; color:var(--dim); font-family:var(--body); font-weight:500; -webkit-text-fill-color:var(--dim)}
+  .hero .sub{color:var(--dim); font-size:.85rem; margin-top:8px}
+
+  .track{height:10px; background:#0c0d10; border:1px solid var(--line); border-radius:8px; margin-top:20px; position:relative; overflow:hidden}
+  .track > i{display:block; height:100%; width:0; border-radius:8px;
+    background:linear-gradient(90deg,var(--orange),var(--lime)); animation:fill 1.2s .3s cubic-bezier(.2,.7,.3,1) forwards}
+  @keyframes fill{to{width:2%}}
+  .track-ends{display:flex; justify-content:space-between; margin-top:8px; font-size:.74rem; color:var(--faint)}
+  .togo{margin-top:14px; display:flex; align-items:baseline; gap:7px}
+  .togo b{font-family:var(--display); font-size:1.45rem; color:var(--lime); font-weight:700}
+  .togo span{font-size:.82rem; color:var(--dim)}
+
+  /* Section + cards */
+  section{margin-top:14px}
+  .sec-title{font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); font-weight:600; margin:0 4px 9px}
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:18px}
+
+  .stat{display:flex; align-items:center; gap:13px; padding:12px 0; border-bottom:1px solid var(--line)}
+  .stat:first-child{padding-top:2px} .stat:last-child{padding-bottom:2px; border-bottom:none}
+  .stat .ic{width:34px; height:34px; border-radius:10px; background:var(--surface-2); display:grid; place-items:center; font-size:1rem; flex:none}
+  .stat .k{color:var(--dim); font-size:.9rem}
+  .stat .v{margin-left:auto; font-weight:600; font-family:var(--display); font-size:.98rem; text-align:right}
+  .v .pos{color:var(--lime)}
+  .badge{font-family:var(--body); font-size:.72rem; font-weight:500; color:var(--orange); background:rgba(255,120,73,.12); padding:3px 8px; border-radius:6px}
+
+  /* Macros */
+  .macros{display:grid; grid-template-columns:repeat(4,1fr); gap:9px}
+  .macro{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:14px 6px; text-align:center; position:relative}
+  .macro .n{font-family:var(--display); font-size:1.5rem; font-weight:700; line-height:1}
+  .macro .u{font-size:.66rem; color:var(--faint); margin-top:2px}
+  .macro .t{font-size:.72rem; color:var(--dim); margin-top:7px; font-weight:500}
+  .macro .cap{height:3px; border-radius:3px; margin:9px auto 0; width:26px}
+  .m-cal .n{color:#fff} .m-cal .cap{background:#fff}
+  .m-pro .n{color:var(--orange)} .m-pro .cap{background:var(--orange)}
+  .m-carb .n{color:var(--lime)} .m-carb .cap{background:var(--lime)}
+  .m-fat .n{color:var(--violet)} .m-fat .cap{background:var(--violet)}
+
+  /* Meal timeline */
+  .meal{display:flex; gap:13px; padding:13px 0; border-bottom:1px solid var(--line)}
+  .meal:last-child{border-bottom:none; padding-bottom:2px}
+  .meal:first-child{padding-top:2px}
+  .meal .num{width:26px; height:26px; flex:none; border-radius:50%; background:var(--surface-2); border:1px solid var(--line-strong);
+    display:grid; place-items:center; font-family:var(--display); font-weight:600; font-size:.8rem; color:var(--lime)}
+  .meal .body{flex:1}
+  .meal .tag{font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; font-weight:600; color:var(--blue); display:block; margin-bottom:2px}
+  .meal .food{font-size:.92rem}
+  .plan-foot{margin-top:14px; padding-top:13px; border-top:1px dashed var(--line-strong); display:flex; justify-content:space-between; font-size:.8rem; color:var(--dim)}
+  .plan-foot b{font-family:var(--display); color:var(--text)}
+
+  /* Workout */
+  .ex{display:flex; align-items:center; justify-content:space-between; padding:11px 0; border-bottom:1px solid var(--line); font-size:.92rem}
+  .ex:last-child{border-bottom:none; padding-bottom:2px} .ex:first-child{padding-top:2px}
+  .ex .sr{font-family:var(--display); font-size:.78rem; color:var(--dim); background:var(--surface-2); padding:3px 9px; border-radius:7px}
+  .wk-note{font-size:.76rem; color:var(--faint); margin-top:13px; text-align:center}
+
+  /* Rules */
+  .rules{display:flex; flex-wrap:wrap; gap:8px}
+  .rule{font-size:.82rem; background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:9px 12px; color:var(--dim)}
+  .rule b{color:var(--text); font-weight:600}
+
+  footer{text-align:center; margin-top:26px; color:var(--faint); font-size:.74rem; line-height:1.7}
+  footer .sync{display:inline-flex; align-items:center; gap:6px; color:var(--dim)}
 </style>
 </head>
 <body>
 
-  <h1>🏋️ Poom's Cut</h1>
-  <div class="sub">Our live game plan · updated daily by Coach</div>
-
-  <div class="card">
-    <div class="goal">100 kg → 73 kg
-      <small>lose fat, keep muscle · ~0.9 kg / week</small>
+  <header class="reveal">
+    <div class="brand">
+      <div class="mark">🏋️</div>
+      <div>
+        <h1>Poom's Cut</h1>
+        <p>Our shared game plan</p>
+      </div>
     </div>
-    <div class="bar"><span></span></div>
-    <div class="barlabel">0 / 27 kg lost — at the starting line</div>
+    <div class="live"><span class="dot"></span> auto-updated</div>
+  </header>
+
+  <div class="hero reveal" style="animation-delay:.05s">
+    <div class="label">The Goal</div>
+    <div class="nums">
+      <span class="from">100</span>
+      <span class="arrow">→</span>
+      <span class="to">73<span class="unit"> kg</span></span>
+    </div>
+    <div class="sub">Lose fat, keep muscle · ~0.9 kg / week</div>
+
+    <div class="track"><i></i></div>
+    <div class="track-ends"><span>100 kg · start</span><span>73 kg · goal</span></div>
+    <div class="togo"><b>27.0 kg</b><span>to go — we're at the starting line 💪</span></div>
   </div>
 
-  <div class="card">
-    <h2>📅 Right Now</h2>
-    <div class="row"><span class="k">⚖️ Weight</span><span class="v">100 kg</span></div>
-    <div class="row"><span class="k">🏋️ Next workout</span><span class="v">Posterior B</span></div>
-    <div class="row"><span class="k">🔥 Clean streak</span><span class="v">0 days</span></div>
-    <div class="row"><span class="k">🍕 Weekly treat</span><span class="v">used · resets ~3 Jul</span></div>
-  </div>
+  <section class="reveal" style="animation-delay:.1s">
+    <div class="sec-title">Right Now</div>
+    <div class="card">
+      <div class="stat"><span class="ic">⚖️</span><span class="k">Current weight</span><span class="v">100 kg</span></div>
+      <div class="stat"><span class="ic">🏋️</span><span class="k">Next workout</span><span class="v">Posterior B</span></div>
+      <div class="stat"><span class="ic">🔥</span><span class="k">Clean streak</span><span class="v">0 days</span></div>
+      <div class="stat"><span class="ic">🍕</span><span class="k">Weekly treat</span><span class="v"><span class="badge">used · resets ~3 Jul</span></span></div>
+    </div>
+  </section>
 
-  <div class="card">
-    <h2>🍽️ Our Next Meal Plan <span class="pill">~2,025 cal</span></h2>
-    <ol class="meals">
-      <li>🥤 Must smoothie + Greek yogurt + berries</li>
-      <li><span class="tag">PRE-GYM</span><br>🍲 Chicken soup + rice + 2 eggs</li>
-      <li><span class="tag">POST-GYM</span><br>🥤 Must smoothie</li>
-      <li>🍲 Chicken soup + handful of nuts</li>
-    </ol>
-  </div>
-
-  <div class="card">
-    <h2>💪 Daily Targets</h2>
+  <section class="reveal" style="animation-delay:.15s">
+    <div class="sec-title">Daily Targets</div>
     <div class="macros">
-      <div><div class="n">2007</div><div class="l">cal</div></div>
-      <div><div class="n" style="color:var(--accent)">225</div><div class="l">protein</div></div>
-      <div><div class="n" style="color:var(--green)">126</div><div class="l">carbs</div></div>
-      <div><div class="n" style="color:var(--yellow)">66</div><div class="l">fat</div></div>
+      <div class="macro m-cal"><div class="n">2007</div><div class="u">kcal</div><div class="t">Calories</div><div class="cap"></div></div>
+      <div class="macro m-pro"><div class="n">225</div><div class="u">grams</div><div class="t">Protein</div><div class="cap"></div></div>
+      <div class="macro m-carb"><div class="n">126</div><div class="u">grams</div><div class="t">Carbs</div><div class="cap"></div></div>
+      <div class="macro m-fat"><div class="n">66</div><div class="u">grams</div><div class="t">Fat</div><div class="cap"></div></div>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
-    <h2>🏋️ Posterior B — next session</h2>
-    <table>
-      <tr><td>Chest Supported Row</td><td>3 × 8-10</td></tr>
-      <tr><td>Pull Up</td><td>3 × 8-10</td></tr>
-      <tr><td>Nordic Curl</td><td>3 × 8-10</td></tr>
-      <tr><td>Leg Curl</td><td>3 × 10-12</td></tr>
-      <tr><td>Rear Delt Fly</td><td>3 × 15-20</td></tr>
-      <tr><td>Barbell Curl</td><td>3 × 10-12</td></tr>
-    </table>
-  </div>
+  <section class="reveal" style="animation-delay:.2s">
+    <div class="sec-title">Our Next Meal Plan</div>
+    <div class="card">
+      <div class="meal"><span class="num">1</span><div class="body"><span class="tag">Wake-up</span><span class="food">🥤 Must smoothie + Greek yogurt + berries</span></div></div>
+      <div class="meal"><span class="num">2</span><div class="body"><span class="tag">Pre-gym</span><span class="food">🍲 Chicken soup + rice + 2 boiled eggs</span></div></div>
+      <div class="meal"><span class="num">3</span><div class="body"><span class="tag">Post-gym</span><span class="food">🥤 Must smoothie</span></div></div>
+      <div class="meal"><span class="num">4</span><div class="body"><span class="tag">Dinner</span><span class="food">🍲 Chicken soup + a handful of nuts</span></div></div>
+      <div class="plan-foot"><span>Day total</span><span><b>255g</b> protein · <b>~2,025</b> cal</span></div>
+    </div>
+  </section>
 
-  <div class="card">
-    <h2>📌 House Rules</h2>
-    <ul class="rules">
-      <li>🥩 Protein first, every meal</li>
-      <li>🥗 Keep it lean</li>
-      <li>🚦 Coach is the gatekeeper</li>
-      <li>📸 Photo every meal before eating</li>
-    </ul>
-  </div>
+  <section class="reveal" style="animation-delay:.25s">
+    <div class="sec-title">Posterior B — Next Session</div>
+    <div class="card">
+      <div class="ex"><span>Chest Supported Row</span><span class="sr">3 × 8-10</span></div>
+      <div class="ex"><span>Pull Up</span><span class="sr">3 × 8-10</span></div>
+      <div class="ex"><span>Nordic Curl</span><span class="sr">3 × 8-10</span></div>
+      <div class="ex"><span>Leg Curl</span><span class="sr">3 × 10-12</span></div>
+      <div class="ex"><span>Rear Delt Fly</span><span class="sr">3 × 15-20</span></div>
+      <div class="ex"><span>Barbell Curl</span><span class="sr">3 × 10-12</span></div>
+      <div class="wk-note">15 min cardio after · 1-2 RIR · add weight at top of range</div>
+    </div>
+  </section>
 
-  <div class="foot">Built with 💪 by Coach · private logs stay private<br>Updated 27 Jun 2026</div>
+  <section class="reveal" style="animation-delay:.3s">
+    <div class="sec-title">House Rules</div>
+    <div class="rules">
+      <span class="rule">🥩 <b>Protein first</b>, every meal</span>
+      <span class="rule">🥗 <b>Keep it lean</b></span>
+      <span class="rule">🚦 <b>Coach</b> is the gatekeeper</span>
+      <span class="rule">📸 <b>Photo</b> before eating</span>
+      <span class="rule">🚫 <b>No deadlifts</b></span>
+    </div>
+  </section>
+
+  <footer class="reveal" style="animation-delay:.35s">
+    <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
+    Updated 27 Jun 2026
+  </footer>
 
 </body>
 </html>
