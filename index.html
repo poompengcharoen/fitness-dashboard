@@ -87,6 +87,9 @@
   .togo{margin-top:14px; display:flex; align-items:baseline; gap:7px}
   .togo b{font-family:var(--display); font-size:1.45rem; color:var(--lime); font-weight:700}
   .togo span{font-size:.82rem; color:var(--dim)}
+  .eta{display:inline-flex; align-items:center; gap:6px; margin-top:15px; font-size:.74rem; color:var(--dim);
+    background:rgba(255,255,255,.04); border:1px solid var(--line); padding:6px 11px; border-radius:20px}
+  .eta b{font-family:var(--display); color:var(--text); font-weight:600}
 
   /* Section + cards */
   section{margin-top:14px}
@@ -136,6 +139,14 @@
   .ex:last-child{border-bottom:none; padding-bottom:2px} .ex:first-child{padding-top:2px}
   .ex .sr{font-family:var(--display); font-size:.78rem; color:var(--dim); background:var(--surface-2); padding:3px 9px; border-radius:7px}
   .wk-note{font-size:.76rem; color:var(--faint); margin-top:13px; text-align:center}
+  .card-h{font-family:var(--display); font-size:1rem; font-weight:600; color:var(--lime); margin-bottom:12px}
+
+  /* Training cycle strip */
+  .cycle{display:flex; gap:5px; margin-bottom:11px}
+  .cycle .slot{flex:1; text-align:center; font-size:.6rem; font-weight:600; padding:7px 1px; border-radius:8px;
+    background:var(--surface-2); border:1px solid var(--line); color:var(--faint); white-space:nowrap}
+  .cycle .slot.done{color:var(--dim)}
+  .cycle .slot.now{background:rgba(198,242,78,.14); border-color:rgba(198,242,78,.45); color:var(--lime)}
 
   /* Rules */
   .rules{display:flex; flex-wrap:wrap; gap:8px}
@@ -171,13 +182,16 @@
     <div class="track"><i></i></div>
     <div class="track-ends"><span>100 kg · start</span><span>73 kg · goal</span></div>
     <div class="togo"><b>27.0 kg</b><span>to go — we're at the starting line 💪</span></div>
+    <div class="eta">📅 <b>~30 weeks</b> at this pace · target ≈ early 2027</div>
   </div>
 
   <section class="reveal" style="animation-delay:.1s">
     <div class="sec-title">Right Now</div>
     <div class="card">
-      <div class="stat"><span class="ic">⚖️</span><span class="k">Current weight</span><span class="v">100 kg</span></div>
+      <div class="stat"><span class="ic">⚖️</span><span class="k">Weight</span><span class="v">100 kg <span style="color:var(--faint);font-weight:400">· 25-30% BF</span></span></div>
+      <div class="stat"><span class="ic">✅</span><span class="k">Last trained</span><span class="v">Anterior B · 26 Jun</span></div>
       <div class="stat"><span class="ic">🏋️</span><span class="k">Next workout</span><span class="v">Posterior B</span></div>
+      <div class="stat"><span class="ic">😴</span><span class="k">Last sleep</span><span class="v" style="color:var(--faint);font-weight:400">not logged yet</span></div>
       <div class="stat"><span class="ic">🔥</span><span class="k">Clean streak</span><span class="v">0 days</span></div>
       <div class="stat"><span class="ic">🍕</span><span class="k">Weekly treat</span><span class="v"><span class="badge">used · resets ~3 Jul</span></span></div>
     </div>
@@ -208,8 +222,18 @@
   </section>
 
   <section class="reveal" style="animation-delay:.25s">
-    <div class="sec-title">Posterior B — Next Session</div>
+    <div class="sec-title">Next Session</div>
+    <div class="cycle">
+      <span class="slot done">A·A</span>
+      <span class="slot done">P·A</span>
+      <span class="slot done">Rest</span>
+      <span class="slot done">A·B</span>
+      <span class="slot now">P·B</span>
+      <span class="slot">Rest</span>
+      <span class="slot">Rest</span>
+    </div>
     <div class="card">
+      <div class="card-h">🏋️ Posterior B</div>
       <div class="ex"><span>Chest Supported Row</span><span class="sr">3 × 8-10</span></div>
       <div class="ex"><span>Pull Up</span><span class="sr">3 × 8-10</span></div>
       <div class="ex"><span>Nordic Curl</span><span class="sr">3 × 8-10</span></div>
@@ -224,7 +248,9 @@
     <div class="sec-title">House Rules</div>
     <div class="rules">
       <span class="rule">🥩 <b>Protein first</b>, every meal</span>
+      <span class="rule">🎯 <b>225g protein</b> daily — non-negotiable</span>
       <span class="rule">🥗 <b>Keep it lean</b></span>
+      <span class="rule">🧈 <b>Fat floor</b> ~50g/day</span>
       <span class="rule">🚦 <b>Coach</b> is the gatekeeper</span>
       <span class="rule">📸 <b>Photo</b> before eating</span>
       <span class="rule">🚫 <b>No deadlifts</b></span>
