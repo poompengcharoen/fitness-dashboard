@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root{
     --bg:#0a0b0d;
@@ -211,6 +212,24 @@
     </div>
   </section>
 
+  <section class="reveal" style="animation-delay:.17s">
+    <div class="sec-title">Weight Trend</div>
+    <div class="card" style="padding:14px 14px 10px">
+      <canvas id="chart-weight" style="height:160px;max-height:160px"></canvas>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:.72rem;color:var(--faint)">
+        <span>Goal: <b style="color:var(--lime)">73 kg</b></span>
+        <span id="weight-now">— kg today</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" style="animation-delay:.19s">
+    <div class="sec-title">7-Day Macro Avg</div>
+    <div class="card" style="padding:14px 14px 10px">
+      <canvas id="chart-macros" style="height:140px;max-height:140px"></canvas>
+    </div>
+  </section>
+
   <section class="reveal" style="animation-delay:.2s">
     <div class="sec-title">Our Next Meal Plan</div>
     <div class="card">
@@ -267,6 +286,16 @@
     /* === LIVE NUTRITION — Coach edits TODAY each time a meal is logged === */
     var TARGET = { cal:2007, protein:225, fat:66, carbs:126 };
     var TODAY  = { date:'Today · 28 Jun', cal:2095, protein:205, fat:79, carbs:132 };
+
+    /* === WEIGHT LOG — Coach appends one entry per daily weigh-in === */
+    var WEIGHTS = [
+      { d:'26 Jun', kg:100.0 }
+    ];
+
+    /* === 7-DAY MACRO AVG — Coach edits each day with closed-day totals === */
+    var MACRO_AVG = {
+      cal:2095, protein:205, fat:79, carbs:132  // rolling 7-day avg (starts as today only)
+    };
     /* ==================================================================== */
     (function(){
       var rm = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -286,6 +315,82 @@
       if(rem){ var left = TARGET.cal - TODAY.cal;
         rem.textContent = left >= 0 ? left.toLocaleString()+' kcal left' : Math.abs(left).toLocaleString()+' kcal over';
         if(left < 0) rem.style.color = '#ff7849';
+      }
+
+      /* === WEIGHT TREND CHART === */
+      var wEl = document.getElementById('chart-weight');
+      var wNow = document.getElementById('weight-now');
+      if (wEl && window.Chart && WEIGHTS.length) {
+        var last = WEIGHTS[WEIGHTS.length-1];
+        if (wNow) wNow.innerHTML = '<b style="color:var(--text)">'+last.kg+' kg</b> · ' + last.d;
+        new Chart(wEl, {
+          type: 'line',
+          data: {
+            labels: WEIGHTS.map(function(w){return w.d}),
+            datasets: [{
+              data: WEIGHTS.map(function(w){return w.kg}),
+              borderColor: '#c6f24e',
+              backgroundColor: 'rgba(198,242,78,.12)',
+              borderWidth: 2,
+              fill: true,
+              tension: .3,
+              pointBackgroundColor: '#c6f24e',
+              pointRadius: 3,
+              pointHoverRadius: 5
+            }, {
+              data: WEIGHTS.map(function(){return 73}),
+              borderColor: 'rgba(94,179,255,.6)',
+              borderDash: [5,4],
+              borderWidth: 1.5,
+              pointRadius: 0,
+              fill: false
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend:{display:false}, tooltip:{enabled:true} },
+            scales: {
+              x: { ticks:{color:'#6b7280',font:{size:10}}, grid:{display:false} },
+              y: { ticks:{color:'#6b7280',font:{size:10},callback:function(v){return v+'kg'}}, grid:{color:'rgba(255,255,255,.05)'}, suggestedMin: 70, suggestedMax: 102 }
+            }
+          }
+        });
+      }
+
+      /* === 7-DAY MACRO AVG BAR CHART === */
+      var mEl = document.getElementById('chart-macros');
+      if (mEl && window.Chart && MACRO_AVG) {
+        new Chart(mEl, {
+          type: 'bar',
+          data: {
+            labels: ['Calories', 'Protein', 'Fat', 'Carbs'],
+            datasets: [
+              {
+                label: '7-day avg',
+                data: [MACRO_AVG.cal, MACRO_AVG.protein, MACRO_AVG.fat, MACRO_AVG.carbs],
+                backgroundColor: ['#7ea8ff','#f2876f','#e8c24e','#63bd82'],
+                borderRadius: 6
+              },
+              {
+                label: 'Target',
+                data: [TARGET.cal, TARGET.protein, TARGET.fat, TARGET.carbs],
+                backgroundColor: 'rgba(255,255,255,.08)',
+                borderRadius: 6
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            plugins: { legend:{display:false}, tooltip:{enabled:true} },
+            scales: {
+              x: { display:false, beginAtZero:true },
+              y: { ticks:{color:'#9aa1ac',font:{size:11}}, grid:{display:false} }
+            }
+          }
+        });
       }
     })();
   </script>
