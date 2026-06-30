@@ -26,7 +26,7 @@
     --display:'Space Grotesk',sans-serif;
     --body:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
+  *{box-sizing:border-box; margin:0; padding:0}
   html{-webkit-text-size-adjust:100%}
   body{
     background:var(--bg);
@@ -45,7 +45,7 @@
   @keyframes rise{to{opacity:1; transform:none}}
   @media (prefers-reduced-motion:reduce){
     .reveal{animation:none; opacity:1; transform:none}
-    .track > i{animation:none; width:2%}
+    .track > i{animation:none; width:5%}
     .tube > i{transition:none}
     .dot{animation:none}
   }
@@ -94,7 +94,8 @@
 
   /* Section + cards */
   section{margin-top:14px}
-  .sec-title{font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); font-weight:600; margin:0 4px 9px}
+  .sec-title{font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); font-weight:600; margin:0 4px 9px; display:flex; justify-content:space-between; align-items:center}
+  .sec-title .note{text-transform:none; letter-spacing:0; font-weight:500; color:var(--faint); font-size:.68rem}
   .card{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:18px}
 
   .stat{display:flex; align-items:center; gap:13px; padding:12px 0; border-bottom:1px solid var(--line)}
@@ -104,6 +105,7 @@
   .stat .v{margin-left:auto; font-weight:600; font-family:var(--display); font-size:.98rem; text-align:right}
   .v .pos{color:var(--lime)}
   .badge{font-family:var(--body); font-size:.72rem; font-weight:500; color:var(--orange); background:rgba(255,120,73,.12); padding:3px 8px; border-radius:6px}
+  .badge.go{color:var(--lime); background:rgba(198,242,78,.12)}
 
   /* Macros — MacroFactor-style live tubes */
   .nutri{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:18px}
@@ -122,6 +124,23 @@
   .tube.over > i{box-shadow:0 0 14px rgba(255,90,90,.65)}
   .tw .lbl{font-size:.74rem; color:var(--dim); margin-top:10px; font-weight:500}
   .c-cal{background-color:#7ea8ff} .c-pro{background-color:#f2876f} .c-fat{background-color:#e8c24e} .c-carb{background-color:#63bd82}
+
+  /* Body composition grid */
+  .bc-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
+  .bc{background:var(--surface-2); border:1px solid var(--line); border-radius:13px; padding:13px 15px}
+  .bc .bc-v{font-family:var(--display); font-size:1.4rem; font-weight:700; line-height:1}
+  .bc .bc-v small{font-size:.7rem; color:var(--faint); font-weight:500}
+  .bc .bc-k{font-size:.72rem; color:var(--dim); margin-top:5px}
+  .bc-foot{font-size:.7rem; color:var(--faint); margin-top:12px; text-align:center; line-height:1.5}
+
+  /* Supplements */
+  .supp{display:flex; align-items:center; gap:11px; padding:10px 0; border-bottom:1px solid var(--line); font-size:.9rem}
+  .supp:first-child{padding-top:2px} .supp:last-child{border-bottom:none; padding-bottom:2px}
+  .supp .si{width:30px; height:30px; border-radius:9px; background:var(--surface-2); display:grid; place-items:center; font-size:.95rem; flex:none}
+  .supp .sn{flex:1}
+  .supp .sn b{font-weight:600}
+  .supp .sn .sd{font-size:.72rem; color:var(--faint); display:block}
+  .supp .sw{font-family:var(--display); font-size:.74rem; color:var(--dim)}
 
   /* Meal timeline */
   .meal{display:flex; gap:13px; padding:13px 0; border-bottom:1px solid var(--line)}
@@ -148,6 +167,11 @@
     background:var(--surface-2); border:1px solid var(--line); color:var(--faint); white-space:nowrap}
   .cycle .slot.done{color:var(--dim)}
   .cycle .slot.now{background:rgba(198,242,78,.14); border-color:rgba(198,242,78,.45); color:var(--lime)}
+
+  /* Cookbook chips */
+  .cooks{display:flex; flex-wrap:wrap; gap:8px}
+  .cook{font-size:.8rem; background:var(--surface-2); border:1px solid var(--line); border-radius:11px; padding:8px 11px; color:var(--dim)}
+  .cook b{color:var(--text); font-weight:600}
 
   /* Rules */
   .rules{display:flex; flex-wrap:wrap; gap:8px}
@@ -189,13 +213,12 @@
   <section class="reveal" style="animation-delay:.1s">
     <div class="sec-title">Right Now</div>
     <div class="card">
-      <div class="stat"><span class="ic">⚖️</span><span class="k">Weight</span><span class="v">98.7 kg <span style="color:var(--faint);font-weight:400">· -1.3 from start (water bounce)</span></span></div>
+      <div class="stat"><span class="ic">⚖️</span><span class="k">Weight</span><span class="v">98.7 kg <span style="color:var(--faint);font-weight:400">· -1.3 (water bounce)</span></span></div>
       <div class="stat"><span class="ic">✅</span><span class="k">Last trained</span><span class="v">Anterior A · 29 Jun</span></div>
-      <div class="stat"><span class="ic">🏋️</span><span class="k">Next workout</span><span class="v">Posterior A (Wed)</span></div>
-      <div class="stat"><span class="ic">😴</span><span class="k">Last sleep</span><span class="v">~11.5h <span style="color:var(--faint);font-weight:400">· solid</span></span></div>
-      <div class="stat"><span class="ic">🔥</span><span class="k">Clean streak</span><span class="v">0 days</span></div>
-      <div class="stat"><span class="ic">💊</span><span class="k">Creatine today</span><span class="v">✅ 5g taken</span></div>
-      <div class="stat"><span class="ic">🍕</span><span class="k">Weekly treat</span><span class="v"><span class="badge">Tue 30 Jun · lunch buffet + bowling + karaoke</span></span></div>
+      <div class="stat"><span class="ic">🏋️</span><span class="k">Next workout</span><span class="v">Posterior A · Wed</span></div>
+      <div class="stat"><span class="ic">😴</span><span class="k">Last sleep</span><span class="v">8h 27m <span style="color:var(--faint);font-weight:400">· solid</span></span></div>
+      <div class="stat"><span class="ic">💊</span><span class="k">Creatine today</span><span class="v" style="color:var(--lime)">✅ 5g</span></div>
+      <div class="stat"><span class="ic">🍱</span><span class="k">Weekly treat</span><span class="v"><span class="badge">Tue 30 Jun · Wisdom buffet day</span></span></div>
     </div>
   </section>
 
@@ -212,36 +235,60 @@
     </div>
   </section>
 
-  <section class="reveal" style="animation-delay:.17s">
+  <section class="reveal" style="animation-delay:.18s">
     <div class="sec-title">Weight Trend</div>
     <div class="card" style="padding:14px 14px 10px">
       <canvas id="chart-weight" style="height:160px;max-height:160px"></canvas>
       <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:.72rem;color:var(--faint)">
-        <span>Goal: <b style="color:var(--lime)">73 kg</b></span>
+        <span>Goal line: <b style="color:var(--lime)">73 kg</b></span>
         <span id="weight-now">— kg today</span>
       </div>
     </div>
   </section>
 
-  <section class="reveal" style="animation-delay:.19s">
-    <div class="sec-title">7-Day Macro Avg</div>
+  <section class="reveal" style="animation-delay:.2s">
+    <div class="sec-title">Body Composition <span class="note">smart scale · 30 Jun</span></div>
+    <div class="card">
+      <div class="bc-grid">
+        <div class="bc"><div class="bc-v">34.9<small>%</small></div><div class="bc-k">🔥 Body fat</div></div>
+        <div class="bc"><div class="bc-v">34.2<small>%</small></div><div class="bc-k">💪 Muscle</div></div>
+        <div class="bc"><div class="bc-v">47.6<small>%</small></div><div class="bc-k">💧 Body water</div></div>
+        <div class="bc"><div class="bc-v">2029<small> kcal</small></div><div class="bc-k">⚡ BMR (rest burn)</div></div>
+      </div>
+      <div class="bc-foot">⚠️ Bioimpedance scale — noisy by ±3-5%. Watch the <b>trend over weeks</b>, not the daily number. Goal: fat % ↓, muscle % ↑.</div>
+    </div>
+  </section>
+
+  <section class="reveal" style="animation-delay:.22s">
+    <div class="sec-title">Recent Intake <span class="note">last days avg vs target</span></div>
     <div class="card" style="padding:14px 14px 10px">
       <canvas id="chart-macros" style="height:140px;max-height:140px"></canvas>
     </div>
   </section>
 
-  <section class="reveal" style="animation-delay:.2s">
-    <div class="sec-title">Our Next Meal Plan</div>
+  <section class="reveal" style="animation-delay:.24s">
+    <div class="sec-title">Daily Supplements <span class="note">food-first, supps fill gaps</span></div>
     <div class="card">
-      <div class="meal"><span class="num">1</span><div class="body"><span class="tag">Wake</span><span class="food">🥤 Must smoothie + Greek yogurt + berries</span></div></div>
-      <div class="meal"><span class="num">2</span><div class="body"><span class="tag">Lunch</span><span class="food">🍗 Chicken breast + rice + steamed veg</span></div></div>
-      <div class="meal"><span class="num">3</span><div class="body"><span class="tag">Afternoon</span><span class="food">🥗 Pan Pan tuna salad (Cookbook)</span></div></div>
-      <div class="meal"><span class="num">4</span><div class="body"><span class="tag">Dinner</span><span class="food">🍲 Chicken Veg Soup + rice + 2 eggs</span></div></div>
-      <div class="plan-foot"><span>Mon · rest · low-fat</span><span><b>242g</b> protein · <b>34g fat</b> · <b>~1,845</b> cal</span></div>
+      <div class="supp"><span class="si">💪</span><span class="sn"><b>Creatine</b> 5g<span class="sd">Daily — strength + muscle retention</span></span><span class="sw">breakfast</span></div>
+      <div class="supp"><span class="si">💊</span><span class="sn"><b>Centrum</b> multivitamin<span class="sd">With fat (Vit D, B-complex)</span></span><span class="sw">breakfast</span></div>
+      <div class="supp"><span class="si">🐟</span><span class="sn"><b>Fish oil</b> ×2<span class="sd">Omega-3 — skip on sashimi days</span></span><span class="sw">breakfast</span></div>
+      <div class="supp"><span class="si">🔥</span><span class="sn"><b>L-carnitine</b><span class="sd">With carbs — fat metabolism</span></span><span class="sw">breakfast</span></div>
+      <div class="supp"><span class="si">🍆</span><span class="sn"><b>L-arginine + Zinc</b> ×2<span class="sd">2h after Centrum</span></span><span class="sw">lunch</span></div>
     </div>
   </section>
 
-  <section class="reveal" style="animation-delay:.25s">
+  <section class="reveal" style="animation-delay:.26s">
+    <div class="sec-title">Our Next Meal Plan <span class="note">Wed · recovery + train</span></div>
+    <div class="card">
+      <div class="meal"><span class="num">1</span><div class="body"><span class="tag">Wake</span><span class="food">🥤 Must smoothie + Greek yogurt + blueberries</span></div></div>
+      <div class="meal"><span class="num">2</span><div class="body"><span class="tag">Pre-gym</span><span class="food">🍗 Chicken + purple sweet potato + broccoli</span></div></div>
+      <div class="meal"><span class="num">3</span><div class="body"><span class="tag">Post-gym</span><span class="food">🥤 Must smoothie</span></div></div>
+      <div class="meal"><span class="num">4</span><div class="body"><span class="tag">Dinner</span><span class="food">🍳 Chicken-cabbage stir-fry</span></div></div>
+      <div class="plan-foot"><span>Wed · lean recovery</span><span><b>290g</b> protein · <b>~30g</b> fat · <b>~1,850</b> cal</span></div>
+    </div>
+  </section>
+
+  <section class="reveal" style="animation-delay:.28s">
     <div class="sec-title">Next Session</div>
     <div class="cycle">
       <span class="slot done">A·A</span>
@@ -260,11 +307,24 @@
       <div class="ex"><span>Hip Thrust</span><span class="sr">3 × 8-10</span></div>
       <div class="ex"><span>Face Pull</span><span class="sr">3 × 12-15</span></div>
       <div class="ex"><span>Hammer Curl</span><span class="sr">3 × 10-12</span></div>
-      <div class="wk-note">15 min cardio after · 1-2 RIR · Tue is buffet so Wed train day</div>
+      <div class="wk-note">15 min cardio after · 1-2 RIR · ⚠️ leg press capped (L5)</div>
     </div>
   </section>
 
   <section class="reveal" style="animation-delay:.3s">
+    <div class="sec-title">📖 The Cookbook <span class="note">5 lean recipes in rotation</span></div>
+    <div class="card">
+      <div class="cooks">
+        <span class="cook">🍲 <b>Chicken Veg Soup</b></span>
+        <span class="cook">🥗 <b>Pan Pan Tuna Salad</b></span>
+        <span class="cook">🥘 <b>Healthy Okonomiyaki</b></span>
+        <span class="cook">🍫 <b>Chocolate Protein Fluff</b></span>
+        <span class="cook">🌶️ <b>Crispy Spicy Chicken</b></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" style="animation-delay:.32s">
     <div class="sec-title">House Rules</div>
     <div class="rules">
       <span class="rule">🥩 <b>Protein first</b>, every meal</span>
@@ -273,13 +333,13 @@
       <span class="rule">🧈 <b>Fat floor</b> ~50g/day</span>
       <span class="rule">🚦 <b>Coach</b> is the gatekeeper</span>
       <span class="rule">📸 <b>Photo</b> before eating</span>
-      <span class="rule">🚫 <b>No deadlifts</b></span>
+      <span class="rule">🚫 <b>No deadlifts</b> (back)</span>
     </div>
   </section>
 
   <footer class="reveal" style="animation-delay:.35s">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 28 Jun 2026
+    Updated 30 Jun 2026
   </footer>
 
   <script>
@@ -287,17 +347,15 @@
     var TARGET = { cal:2007, protein:225, fat:66, carbs:126 };
     var TODAY  = { date:'Today · 30 Jun', cal:545, protein:47, fat:16, carbs:48 };
 
-    /* === WEIGHT LOG — Coach appends one entry per daily weigh-in === */
+    /* === WEIGHT LOG — Coach appends one entry per weigh-in === */
     var WEIGHTS = [
       { d:'26 Jun', kg:100.0 },
       { d:'29 Jun', kg:97.5 },
       { d:'30 Jun', kg:98.7 }
     ];
 
-    /* === 7-DAY MACRO AVG — Coach edits each day with closed-day totals === */
-    var MACRO_AVG = {
-      cal:2095, protein:205, fat:79, carbs:132  // rolling 7-day avg (starts as today only)
-    };
+    /* === RECENT INTAKE AVG (last logged days) vs target === */
+    var MACRO_AVG = { cal:2160, protein:201, fat:78, carbs:163 };
     /* ==================================================================== */
     (function(){
       var rm = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -333,24 +391,16 @@
               data: WEIGHTS.map(function(w){return w.kg}),
               borderColor: '#c6f24e',
               backgroundColor: 'rgba(198,242,78,.12)',
-              borderWidth: 2,
-              fill: true,
-              tension: .3,
-              pointBackgroundColor: '#c6f24e',
-              pointRadius: 3,
-              pointHoverRadius: 5
+              borderWidth: 2, fill: true, tension: .3,
+              pointBackgroundColor: '#c6f24e', pointRadius: 3, pointHoverRadius: 5
             }, {
               data: WEIGHTS.map(function(){return 73}),
-              borderColor: 'rgba(94,179,255,.6)',
-              borderDash: [5,4],
-              borderWidth: 1.5,
-              pointRadius: 0,
-              fill: false
+              borderColor: 'rgba(94,179,255,.6)', borderDash: [5,4], borderWidth: 1.5,
+              pointRadius: 0, fill: false
             }]
           },
           options: {
-            responsive: true,
-            maintainAspectRatio: false,
+            responsive: true, maintainAspectRatio: false,
             plugins: { legend:{display:false}, tooltip:{enabled:true} },
             scales: {
               x: { ticks:{color:'#6b7280',font:{size:10}}, grid:{display:false} },
@@ -360,7 +410,7 @@
         });
       }
 
-      /* === 7-DAY MACRO AVG BAR CHART === */
+      /* === RECENT INTAKE BAR CHART === */
       var mEl = document.getElementById('chart-macros');
       if (mEl && window.Chart && MACRO_AVG) {
         new Chart(mEl, {
@@ -368,24 +418,14 @@
           data: {
             labels: ['Calories', 'Protein', 'Fat', 'Carbs'],
             datasets: [
-              {
-                label: '7-day avg',
-                data: [MACRO_AVG.cal, MACRO_AVG.protein, MACRO_AVG.fat, MACRO_AVG.carbs],
-                backgroundColor: ['#7ea8ff','#f2876f','#e8c24e','#63bd82'],
-                borderRadius: 6
-              },
-              {
-                label: 'Target',
-                data: [TARGET.cal, TARGET.protein, TARGET.fat, TARGET.carbs],
-                backgroundColor: 'rgba(255,255,255,.08)',
-                borderRadius: 6
-              }
+              { label:'Recent avg', data:[MACRO_AVG.cal, MACRO_AVG.protein, MACRO_AVG.fat, MACRO_AVG.carbs],
+                backgroundColor:['#7ea8ff','#f2876f','#e8c24e','#63bd82'], borderRadius:6 },
+              { label:'Target', data:[TARGET.cal, TARGET.protein, TARGET.fat, TARGET.carbs],
+                backgroundColor:'rgba(255,255,255,.08)', borderRadius:6 }
             ]
           },
           options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            indexAxis: 'y',
+            responsive: true, maintainAspectRatio: false, indexAxis: 'y',
             plugins: { legend:{display:false}, tooltip:{enabled:true} },
             scales: {
               x: { display:false, beginAtZero:true },
