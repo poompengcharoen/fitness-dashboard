@@ -143,14 +143,16 @@
   .supp .sw{font-family:var(--display); font-size:.74rem; color:var(--dim)}
 
   /* Today's plan timeline */
-  .tl{display:flex; gap:12px; align-items:center; padding:9px 0; border-bottom:1px solid var(--line)}
+  .tl{display:flex; gap:9px; align-items:flex-start; padding:9px 0; border-bottom:1px solid var(--line)}
   .tl:first-child{padding-top:2px} .tl:last-child{border-bottom:none; padding-bottom:2px}
-  .tl .tt{font-family:var(--display); font-size:.74rem; color:var(--dim); width:42px; flex:none}
-  .tl .tx{flex:1; font-size:.9rem}
-  .tl .tx .td{display:block; font-size:.7rem; color:var(--faint)}
-  .tl .ts{font-size:.82rem; flex:none; width:20px; text-align:center}
+  .tl .tid{font-family:var(--display); font-size:.64rem; font-weight:600; color:var(--lime); width:22px; flex:none; padding-top:2px}
+  .tl .tt{width:76px; flex:none; font-family:var(--display); font-size:.68rem; color:var(--dim); line-height:1.35; padding-top:1px}
+  .tl .tt small{display:block; font-size:.6rem; color:var(--faint); font-family:var(--body); font-weight:500}
+  .tl .tx{flex:1; font-size:.88rem}
+  .tl .tx .td{display:block; font-size:.68rem; color:var(--faint)}
+  .tl .ts{font-size:.8rem; flex:none; width:18px; text-align:center; padding-top:1px}
   .tl.done .tx{color:var(--dim)}
-  .tl.done .tt{color:var(--faint)}
+  .tl.done .tid{color:var(--faint)}
   .plan-top{font-size:.76rem; color:var(--dim); margin-top:13px; padding-top:12px; border-top:1px dashed var(--line-strong); line-height:1.6}
   .plan-top b{color:var(--lime); font-family:var(--display)}
 
@@ -237,21 +239,25 @@
   <section class="reveal" style="animation-delay:.13s">
     <div class="sec-title">Today's Plan <span class="note">Wed 1 Jul · recovery + Posterior A</span></div>
     <div class="card">
-      <div class="tl done"><span class="tt">05:56</span><span class="tx">⏰ Wake · 98.0 kg</span><span class="ts">✅</span></div>
-      <div class="tl done"><span class="tt">06:21</span><span class="tx">☕ Creatine + coffee</span><span class="ts">✅</span></div>
-      <div class="tl done"><span class="tt">06:32</span><span class="tx">🚶 Morning walk<span class="td">+ Ollie & Bear · 2.44km · 39m</span></span><span class="ts">✅</span></div>
-      <div class="tl done"><span class="tt">07:15</span><span class="tx">🚿 Shower</span><span class="ts">✅</span></div>
-      <div class="tl"><span class="tt">07:45</span><span class="tx">🥤 Breakfast + supps<span class="td">Smoothie + Centrum / fish oil / L-carnitine</span></span><span class="ts"></span></div>
-      <div class="tl"><span class="tt">08:30</span><span class="tx">💼 Work block</span><span class="ts"></span></div>
-      <div class="tl"><span class="tt">10:45</span><span class="tx">🔪 Batch-cook chicken</span><span class="ts"></span></div>
-      <div class="tl"><span class="tt">11:30</span><span class="tx">🍗 Lunch (pre-gym)<span class="td">Chicken + ½ pumpkin bread + cabbage</span></span><span class="ts"></span></div>
-      <div class="tl"><span class="tt">14:00</span><span class="tx">🏋️ Posterior A<span class="td">6 lifts + 15m cardio</span></span><span class="ts"></span></div>
-      <div class="tl"><span class="tt">15:30</span><span class="tx">🥤 Post-workout smoothie</span><span class="ts"></span></div>
-      <div class="tl"><span class="tt">15:45</span><span class="tx">🚿 Shower</span><span class="ts"></span></div>
-      <div class="tl"><span class="tt">16:05</span><span class="tx">😌 Work wrap + relax</span><span class="ts"></span></div>
-      <div class="tl"><span class="tt">19:00</span><span class="tx">🍳 Dinner<span class="td">Chicken-cabbage stir-fry</span></span><span class="ts"></span></div>
-      <div class="tl"><span class="tt">21:30</span><span class="tx">💊 Evening supp</span><span class="ts"></span></div>
-      <div class="tl"><span class="tt">22:00</span><span class="tx">😴 Sleep · aim ~8h</span><span class="ts"></span></div>
+      <div class="tl done"><span class="tid">T1</span><span class="tt">05:56</span><span class="tx">⏰ Wake · 98.0 kg</span><span class="ts">✅</span></div>
+      <div class="tl done"><span class="tid">T2</span><span class="tt">06:10–06:21<small>~10m</small></span><span class="tx">☕ Creatine + coffee</span><span class="ts">✅</span></div>
+      <div class="tl done"><span class="tid">T3</span><span class="tt">06:15–06:20<small>~5m</small></span><span class="tx">🧊 Thaw chicken</span><span class="ts">✅</span></div>
+      <div class="tl done"><span class="tid">T4</span><span class="tt">06:32–07:11<small>39m</small></span><span class="tx">🚶 Morning walk<span class="td">+ Ollie & Bear · 2.44km</span></span><span class="ts">✅</span></div>
+      <div class="tl done"><span class="tid">T5</span><span class="tt">07:10–07:30<small>20m</small></span><span class="tx">🚿 Shower</span><span class="ts">✅</span></div>
+      <div class="tl"><span class="tid">T6</span><span class="tt">07:45–08:15<small>30m</small></span><span class="tx">🥤 Breakfast<span class="td">Must smoothie + Centrum + fish oil</span></span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T7</span><span class="tt">08:30–10:30<small>2h</small></span><span class="tx">💼 Work block</span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T8</span><span class="tt">10:45–11:15<small>30m</small></span><span class="tx">🔪 Batch-cook chicken</span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T9</span><span class="tt">11:30–12:00<small>30m</small></span><span class="tx">🍗 Lunch (pre-gym)<span class="td">Chicken + ½ pumpkin bread + cabbage + L-carnitine</span></span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T10</span><span class="tt">12:00–14:00<small>2h</small></span><span class="tx">💼 Work / digest</span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T11</span><span class="tt">14:00–15:15<small>1h15</small></span><span class="tx">🏋️ Posterior A<span class="td">6 lifts + 15m cardio</span></span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T12</span><span class="tt">15:30–15:40<small>10m</small></span><span class="tx">🥤 Post-workout smoothie</span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T13</span><span class="tt">15:45–16:05<small>20m</small></span><span class="tx">🚿 Shower</span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T14</span><span class="tt">16:05–18:30<small>2h25</small></span><span class="tx">😌 Work wrap + relax</span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T15</span><span class="tt">17:00–17:15<small>15m</small></span><span class="tx">🥗 Optional salad<span class="td">Iceberg + tuna if hungry</span></span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T16</span><span class="tt">19:00–19:30<small>30m</small></span><span class="tx">🍳 Dinner<span class="td">Chicken-cabbage stir-fry</span></span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T17</span><span class="tt">19:30–21:30<small>2h</small></span><span class="tx">😌 Relax</span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T18</span><span class="tt">~21:30<small>~5m</small></span><span class="tx">💊 Evening supp</span><span class="ts"></span></div>
+      <div class="tl"><span class="tid">T19</span><span class="tt">~22:00<small>~8h</small></span><span class="tx">😴 Sleep</span><span class="ts"></span></div>
       <div class="plan-top">🎯 <b>Top 3:</b> ① batch-cook the chicken · ② morning walk ✅ · ③ Posterior A when fresh</div>
     </div>
   </section>
