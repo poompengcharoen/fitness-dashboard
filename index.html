@@ -193,6 +193,22 @@
 
   /* Cookbook recipes */
   .cook-intro{font-size:.82rem; color:var(--dim); margin:0 4px 12px; line-height:1.5}
+  .r-searchbox{position:relative; margin:0 0 11px}
+  .r-searchbox .r-mag{position:absolute; left:13px; top:50%; transform:translateY(-50%); font-size:.9rem; opacity:.55; pointer-events:none}
+  .r-searchbox input{width:100%; background:var(--surface-2); border:1px solid var(--line-strong); border-radius:13px;
+    padding:11px 34px 11px 36px; color:var(--text); font-family:var(--body); font-size:.9rem}
+  .r-searchbox input:focus{outline:none; border-color:rgba(198,242,78,.45)}
+  .r-searchbox input::placeholder{color:var(--faint)}
+  .r-searchbox .r-clear{position:absolute; right:10px; top:50%; transform:translateY(-50%); color:var(--faint);
+    background:none; border:none; font-size:1.05rem; cursor:pointer; display:none; padding:4px}
+  .r-searchbox.has-val .r-clear{display:block}
+  .r-tags{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:6px}
+  .r-tag{font-size:.73rem; background:var(--surface-2); border:1px solid var(--line); border-radius:20px;
+    padding:6px 12px; color:var(--dim); cursor:pointer; user-select:none; transition:all .15s}
+  .r-tag.active{background:rgba(198,242,78,.14); border-color:rgba(198,242,78,.45); color:var(--lime)}
+  .r-letter{font-family:var(--display); font-size:.92rem; font-weight:700; color:var(--lime); margin:17px 4px 9px; letter-spacing:.02em}
+  .r-group:first-child .r-letter{margin-top:8px}
+  .r-empty{text-align:center; color:var(--faint); font-size:.85rem; padding:34px 0}
   .recipe{background:var(--surface); border:1px solid var(--line); border-radius:16px; margin-bottom:10px; overflow:hidden}
   .recipe > summary{list-style:none; cursor:pointer; padding:15px 16px; display:flex; align-items:center; gap:12px}
   .recipe > summary::-webkit-details-marker{display:none}
@@ -426,167 +442,17 @@
   <!-- ==================== TAB: COOKBOOK ==================== -->
   <div class="tab" id="tab-cookbook">
 
-    <div class="sec-title" style="margin-top:2px">📖 The Cookbook <span class="note">tap a recipe to cook</span></div>
+    <div class="sec-title" style="margin-top:2px">📖 The Cookbook <span class="note" id="r-count">recipes</span></div>
     <p class="cook-intro">Lean, protein-first meals in rotation. Reaw — open this while we cook. Every recipe fits the cut: high protein, low fat, real Bangkok ingredients.</p>
 
-    <details class="recipe reveal">
-      <summary>
-        <span class="r-emoji">🍲</span>
-        <span class="r-head"><div class="r-name">Chicken Veg Soup</div><div class="r-macro">50g P <span>· 26 C · 5 F · ~360 cal</span></div></span>
-        <span class="r-chev">›</span>
-      </summary>
-      <div class="r-body">
-        <p class="r-blurb">Protein-forward, almost no added fat, batches well for two. Comforting without wrecking the cut. Makes 2 servings.</p>
-        <h4>Ingredients (2 servings)</h4>
-        <ul>
-          <li>300 g chicken breast, cubed</li>
-          <li>1 medium potato (~200 g), chopped</li>
-          <li>1 onion + 1 carrot, chopped</li>
-          <li>Garlic, salt, pepper, herbs to taste</li>
-          <li>~750 ml water or low-sodium chicken broth</li>
-          <li>Optional: celery / cabbage to bulk it up</li>
-        </ul>
-        <h4>Steps</h4>
-        <ol>
-          <li>Sweat onion + garlic in a non-stick pot (minimal/no oil).</li>
-          <li>Add chicken, brown 2–3 min.</li>
-          <li>Add potato, carrot, broth. Bring to a boil.</li>
-          <li>Simmer 20–25 min until chicken + potato cooked through.</li>
-          <li>Season, serve hot.</li>
-        </ol>
-        <div class="r-tip"><b>Coach tip:</b> add 2 boiled eggs on the side (+12g P) for the pre-gym version. Swap potato for extra veg to cut carbs. Batch it — fridge the 2nd serving for a fast clean meal.</div>
-      </div>
-    </details>
+    <div class="r-searchbox" id="r-searchbox">
+      <span class="r-mag">🔍</span>
+      <input id="r-search" type="search" placeholder="Search recipes, ingredients, tags…" autocomplete="off">
+      <button class="r-clear" id="r-clear" aria-label="Clear">✕</button>
+    </div>
+    <div class="r-tags" id="r-tags"></div>
 
-    <details class="recipe reveal">
-      <summary>
-        <span class="r-emoji">🥗</span>
-        <span class="r-head"><div class="r-name">Skinny Pan Pan Tuna Salad</div><div class="r-macro">47g P <span>· 9 C · 12 F · ~340 cal</span></div></span>
-        <span class="r-chev">›</span>
-      </summary>
-      <div class="r-body">
-        <p class="r-blurb">Copycat of Pan Pan's tuna salad, rebuilt for the cut. The magic is the sharp anchovy-dijon-lemon kick, not the oil. 5-min, no cook.</p>
-        <h4>Salad base (1 serving)</h4>
-        <ul>
-          <li>1 can tuna <b>in water</b>, fully drained</li>
-          <li>1 boiled egg + 4 egg whites (or all 6 whites for zero-fat)</li>
-          <li>~80 g iceberg lettuce, torn</li>
-          <li>½ tomato + ¼ cucumber, sliced</li>
-          <li>2 olives (optional — skip for zero-fat)</li>
-        </ul>
-        <h4>Skinny dressing</h4>
-        <ul>
-          <li>1 tsp Dijon mustard (the binder)</li>
-          <li>2 tbsp fresh lemon juice + zest</li>
-          <li>1 tbsp white wine / apple cider vinegar</li>
-          <li>1 anchovy fillet, mashed (⚠️ the umami secret)</li>
-          <li>1 tsp olive oil (skip on fat-ceiling days)</li>
-          <li>Pinch salt + sweetener + black pepper</li>
-        </ul>
-        <h4>Steps</h4>
-        <ol>
-          <li>Whisk dressing until slightly cloudy.</li>
-          <li>Build salad: lettuce + tomato + cucumber + olives.</li>
-          <li>Add drained tuna, pour dressing, toss gently.</li>
-          <li>Top with eggs, crack pepper. Eat cold.</li>
-        </ol>
-        <div class="r-tip"><b>Zero-fat version:</b> all 6 egg whites, skip olives + oil → ~48g P for just ~2g fat. <b>Don't skip the anchovy</b> — one fillet won't taste fishy, just umami.</div>
-      </div>
-    </details>
-
-    <details class="recipe reveal">
-      <summary>
-        <span class="r-emoji">🥘</span>
-        <span class="r-head"><div class="r-name">Healthy Okonomiyaki</div><div class="r-macro">43g P <span>· 35 C · 10 F · ~400 cal</span></div></span>
-        <span class="r-chev">›</span>
-      </summary>
-      <div class="r-body">
-        <p class="r-blurb">Rebuilt okonomiyaki — keeps the flavor, ditches the flour batter, pork belly + Kewpie mayo. High-protein, high-fiber, ~half the calories.</p>
-        <h4>Batter / base (1 serving)</h4>
-        <ul>
-          <li>150 g cabbage, finely shredded (fiber + bulk)</li>
-          <li>30 g chickpea flour (besan)</li>
-          <li>1 whole egg + 3 egg whites</li>
-          <li>2 tbsp water + pinch dashi powder</li>
-          <li>Spring onion, chopped</li>
-          <li>50 g shrimp or shredded chicken breast</li>
-        </ul>
-        <h4>Lean toppings</h4>
-        <ul>
-          <li>Sauce: 1 tbsp low-sugar ketchup + 1 tsp Worcestershire + 1 tsp soy + sweetener</li>
-          <li>"Mayo": 2 tbsp nonfat Greek yogurt + rice vinegar + mustard</li>
-          <li>Bonito flakes, aonori, pickled ginger + cooking spray</li>
-        </ul>
-        <h4>Steps</h4>
-        <ol>
-          <li>Whisk chickpea flour + water + dashi into thick batter. Mix in eggs.</li>
-          <li>Fold in cabbage, spring onion, protein.</li>
-          <li>Heat non-stick pan, spray lightly.</li>
-          <li>Spoon in, shape a thick round, ~4–5 min per side until golden.</li>
-          <li>Plate, drizzle sauce + yogurt-mayo, top with bonito/aonori/ginger.</li>
-        </ol>
-        <div class="r-tip"><b>Protein-max version:</b> blend 150g raw chicken + 1 egg into a paste instead of chickpea flour, fold in 250g cabbage → ~68g P. Cook medium-low, longer, ensure no pink center.</div>
-      </div>
-    </details>
-
-    <details class="recipe reveal">
-      <summary>
-        <span class="r-emoji">🍫</span>
-        <span class="r-head"><div class="r-name">Chocolate Protein Fluff</div><div class="r-macro">53g P <span>· 4 C · 1 F · ~240 cal</span></div></span>
-        <span class="r-chev">›</span>
-      </summary>
-      <div class="r-body">
-        <p class="r-blurb">A baked egg-white + protein "soufflé" that whips into a sweet chocolaty cloud. Elite protein-to-calorie ratio — the treat substitute for fat-ceiling days.</p>
-        <h4>Ingredients (1 serving)</h4>
-        <ul>
-          <li>300 ml (1¼ cups) egg whites</li>
-          <li>34 g (~1 scoop) chocolate whey (isolate ideal)</li>
-          <li>Sweetener / flavor drops (or vanilla)</li>
-        </ul>
-        <h4>Steps</h4>
-        <ol>
-          <li>Egg whites + sweetener in a clean dry bowl.</li>
-          <li><b>Electric mixer on high ~8 min</b> until stiff peaks. (Don't hand-whisk.)</li>
-          <li>Sift protein over whites, fold gently — don't deflate.</li>
-          <li>Pour into a lined oven-safe dish.</li>
-          <li>Bake 180°C / 350°F for 10-12 min until set + risen.</li>
-          <li>Eat immediately while fluffy — it deflates as it cools.</li>
-        </ol>
-        <div class="r-tip"><b>Coach tip:</b> 53g protein in 240 cal, 1g fat. Top with berries (+30 cal) for natural sweetness. Needs an electric hand mixer — worth the ~300 THB.</div>
-      </div>
-    </details>
-
-    <details class="recipe reveal">
-      <summary>
-        <span class="r-emoji">🌶️</span>
-        <span class="r-head"><div class="r-name">Crispy Spicy Chicken (ไก่กรอบผงลาบ)</div><div class="r-macro">63g P <span>· 15 C · 9 F · ~420 cal</span></div></span>
-        <span class="r-chev">›</span>
-      </summary>
-      <div class="r-body">
-        <p class="r-blurb">A healthy take on Madaew's น้ำพริกหมูกระจก — swaps pork fat for crispy air-fried chicken, lets ผงลาบ + ผงมะนาว carry the flavor. ~⅕ the fat, ~3× the protein.</p>
-        <h4>Base (1 serving)</h4>
-        <ul>
-          <li>200 g chicken breast, sliced <b>paper-thin</b> or 8mm dice</li>
-          <li>1 tbsp cornstarch + ½ tbsp rice flour</li>
-          <li>Salt + white pepper + cooking spray</li>
-        </ul>
-        <h4>Seasoning</h4>
-        <ul>
-          <li>2-3 tsp ผงลาบ (laab powder)</li>
-          <li>1 tsp ผงมะนาว (lime powder)</li>
-          <li>Optional: kaffir lime leaves, chili, mint, shallot</li>
-        </ul>
-        <h4>Steps</h4>
-        <ol>
-          <li>Cut chicken thin. <b>Pat dry thoroughly</b> (moisture = soggy).</li>
-          <li>Season, toss in cornstarch + rice flour, shake off excess.</li>
-          <li>Air fry 200°C / 400°F, 12-15 min, spray + shake halfway — cook until VERY dry + golden.</li>
-          <li>Hot-toss in a bowl with ผงลาบ + ผงมะนาว (sticks better hot).</li>
-          <li>Garnish with lime leaves / mint / chili.</li>
-        </ol>
-        <div class="r-tip"><b>Crispiness rules:</b> cut thin · pat dry · cornstarch shell · air fryer &gt; oven · don't crowd · season AFTER cooking. Great in lettuce wraps or as a protein snack.</div>
-      </div>
-    </details>
+    <div id="r-list"></div>
 
   </div>
 
@@ -697,6 +563,140 @@
           });
         }
       }
+
+      /* ============================================================
+         COOKBOOK — data-driven. To add a recipe: append an object
+         below. Search / tag-filter / alphabetical grouping are automatic.
+         sections = [{h:'Heading', items:[...]}]; steps = [...]; tip = '...'
+         ============================================================ */
+      var RECIPES = [
+        {
+          name:'Chicken Veg Soup', emoji:'🍲', p:50, c:26, f:5, cal:360,
+          tags:['high-protein','lean','one-pot','meal-prep','chicken'],
+          blurb:'Protein-forward, almost no added fat, batches well for two. Comforting without wrecking the cut. Makes 2 servings.',
+          sections:[
+            {h:'Ingredients (2 servings)', items:['300 g chicken breast, cubed','1 medium potato (~200 g), chopped','1 onion + 1 carrot, chopped','Garlic, salt, pepper, herbs to taste','~750 ml water or low-sodium chicken broth','Optional: celery / cabbage to bulk it up']}
+          ],
+          steps:['Sweat onion + garlic in a non-stick pot (minimal/no oil).','Add chicken, brown 2–3 min.','Add potato, carrot, broth. Bring to a boil.','Simmer 20–25 min until chicken + potato cooked through.','Season, serve hot.'],
+          tip:'<b>Coach tip:</b> add 2 boiled eggs on the side (+12g P) for the pre-gym version. Swap potato for extra veg to cut carbs. Batch it — fridge the 2nd serving for a fast clean meal.'
+        },
+        {
+          name:'Skinny Pan Pan Tuna Salad', emoji:'🥗', p:47, c:9, f:12, cal:340,
+          tags:['high-protein','low-fat','no-cook','5-min','summer','tuna'],
+          blurb:"Copycat of Pan Pan's tuna salad, rebuilt for the cut. The magic is the sharp anchovy-dijon-lemon kick, not the oil. 5-min, no cook.",
+          sections:[
+            {h:'Salad base (1 serving)', items:['1 can tuna <b>in water</b>, fully drained','1 boiled egg + 4 egg whites (or all 6 whites for zero-fat)','~80 g iceberg lettuce, torn','½ tomato + ¼ cucumber, sliced','2 olives (optional — skip for zero-fat)']},
+            {h:'Skinny dressing', items:['1 tsp Dijon mustard (the binder)','2 tbsp fresh lemon juice + zest','1 tbsp white wine / apple cider vinegar','1 anchovy fillet, mashed (⚠️ the umami secret)','1 tsp olive oil (skip on fat-ceiling days)','Pinch salt + sweetener + black pepper']}
+          ],
+          steps:['Whisk dressing until slightly cloudy.','Build salad: lettuce + tomato + cucumber + olives.','Add drained tuna, pour dressing, toss gently.','Top with eggs, crack pepper. Eat cold.'],
+          tip:'<b>Zero-fat version:</b> all 6 egg whites, skip olives + oil → ~48g P for just ~2g fat. <b>Don\'t skip the anchovy</b> — one fillet won\'t taste fishy, just umami.'
+        },
+        {
+          name:'Healthy Okonomiyaki', emoji:'🥘', p:43, c:35, f:10, cal:400,
+          tags:['high-protein','high-fiber','veg-heavy','pan','japanese'],
+          blurb:'Rebuilt okonomiyaki — keeps the flavor, ditches the flour batter, pork belly + Kewpie mayo. High-protein, high-fiber, ~half the calories.',
+          sections:[
+            {h:'Batter / base (1 serving)', items:['150 g cabbage, finely shredded (fiber + bulk)','30 g chickpea flour (besan)','1 whole egg + 3 egg whites','2 tbsp water + pinch dashi powder','Spring onion, chopped','50 g shrimp or shredded chicken breast']},
+            {h:'Lean toppings', items:['Sauce: 1 tbsp low-sugar ketchup + 1 tsp Worcestershire + 1 tsp soy + sweetener','"Mayo": 2 tbsp nonfat Greek yogurt + rice vinegar + mustard','Bonito flakes, aonori, pickled ginger + cooking spray']}
+          ],
+          steps:['Whisk chickpea flour + water + dashi into thick batter. Mix in eggs.','Fold in cabbage, spring onion, protein.','Heat non-stick pan, spray lightly.','Spoon in, shape a thick round, ~4–5 min per side until golden.','Plate, drizzle sauce + yogurt-mayo, top with bonito/aonori/ginger.'],
+          tip:'<b>Protein-max version:</b> blend 150g raw chicken + 1 egg into a paste instead of chickpea flour, fold in 250g cabbage → ~68g P. Cook medium-low, longer, ensure no pink center.'
+        },
+        {
+          name:'Chocolate Protein Fluff', emoji:'🍫', p:53, c:4, f:1, cal:240,
+          tags:['high-protein','low-fat','low-carb','dessert','sweet','cut-friendly'],
+          blurb:'A baked egg-white + protein "soufflé" that whips into a sweet chocolaty cloud. Elite protein-to-calorie ratio — the treat substitute for fat-ceiling days.',
+          sections:[
+            {h:'Ingredients (1 serving)', items:['300 ml (1¼ cups) egg whites','34 g (~1 scoop) chocolate whey (isolate ideal)','Sweetener / flavor drops (or vanilla)']}
+          ],
+          steps:['Egg whites + sweetener in a clean dry bowl.','<b>Electric mixer on high ~8 min</b> until stiff peaks. (Don\'t hand-whisk.)','Sift protein over whites, fold gently — don\'t deflate.','Pour into a lined oven-safe dish.','Bake 180°C / 350°F for 10-12 min until set + risen.','Eat immediately while fluffy — it deflates as it cools.'],
+          tip:'<b>Coach tip:</b> 53g protein in 240 cal, 1g fat. Top with berries (+30 cal) for natural sweetness. Needs an electric hand mixer — worth the ~300 THB.'
+        },
+        {
+          name:'Crispy Spicy Chicken (ไก่กรอบผงลาบ)', emoji:'🌶️', p:63, c:15, f:9, cal:420,
+          tags:['high-protein','low-fat','spicy','thai','air-fryer','snack','chicken'],
+          blurb:'A healthy take on Madaew\'s น้ำพริกหมูกระจก — swaps pork fat for crispy air-fried chicken, lets ผงลาบ + ผงมะนาว carry the flavor. ~⅕ the fat, ~3× the protein.',
+          sections:[
+            {h:'Base (1 serving)', items:['200 g chicken breast, sliced <b>paper-thin</b> or 8mm dice','1 tbsp cornstarch + ½ tbsp rice flour','Salt + white pepper + cooking spray']},
+            {h:'Seasoning', items:['2-3 tsp ผงลาบ (laab powder)','1 tsp ผงมะนาว (lime powder)','Optional: kaffir lime leaves, chili, mint, shallot']}
+          ],
+          steps:['Cut chicken thin. <b>Pat dry thoroughly</b> (moisture = soggy).','Season, toss in cornstarch + rice flour, shake off excess.','Air fry 200°C / 400°F, 12-15 min, spray + shake halfway — cook until VERY dry + golden.','Hot-toss in a bowl with ผงลาบ + ผงมะนาว (sticks better hot).','Garnish with lime leaves / mint / chili.'],
+          tip:'<b>Crispiness rules:</b> cut thin · pat dry · cornstarch shell · air fryer &gt; oven · don\'t crowd · season AFTER cooking. Great in lettuce wraps or as a protein snack.'
+        }
+      ];
+
+      (function cookbook(){
+        var listEl = document.getElementById('r-list');
+        var searchEl = document.getElementById('r-search');
+        var boxEl = document.getElementById('r-searchbox');
+        var clearEl = document.getElementById('r-clear');
+        var tagsEl = document.getElementById('r-tags');
+        var countEl = document.getElementById('r-count');
+        if(!listEl) return;
+        var activeTag = 'all';
+
+        function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+        function haystack(r){ return (r.name+' '+r.tags.join(' ')+' '+r.blurb+' '+r.sections.map(function(s){return s.items.join(' ')}).join(' ')).toLowerCase(); }
+
+        // sortName strips a leading "Skinny "/"Healthy " so grouping feels natural
+        function sortKey(r){ return r.name.replace(/^(Skinny|Healthy|The)\s+/i,'').toUpperCase(); }
+
+        // build tag chip set
+        var allTags = {};
+        RECIPES.forEach(function(r){ r.tags.forEach(function(t){ allTags[t]=(allTags[t]||0)+1; }); });
+        var tagList = Object.keys(allTags).sort(function(a,b){ return allTags[b]-allTags[a] || a.localeCompare(b); }).slice(0,8);
+        var chips = ['all'].concat(tagList);
+        tagsEl.innerHTML = chips.map(function(t){
+          return '<span class="r-tag'+(t==='all'?' active':'')+'" data-tag="'+t+'">'+(t==='all'?'All':t)+'</span>';
+        }).join('');
+
+        function recipeHTML(r){
+          var secs = r.sections.map(function(s){
+            return '<h4>'+esc(s.h)+'</h4><ul>'+s.items.map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul>';
+          }).join('');
+          var steps = '<h4>Steps</h4><ol>'+r.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>';
+          var tip = r.tip ? '<div class="r-tip">'+r.tip+'</div>' : '';
+          return '<details class="recipe">'
+            + '<summary><span class="r-emoji">'+r.emoji+'</span>'
+            + '<span class="r-head"><div class="r-name">'+esc(r.name)+'</div>'
+            + '<div class="r-macro">'+r.p+'g P <span>· '+r.c+' C · '+r.f+' F · ~'+r.cal+' cal</span></div></span>'
+            + '<span class="r-chev">›</span></summary>'
+            + '<div class="r-body"><p class="r-blurb">'+esc(r.blurb)+'</p>'+secs+steps+tip+'</div></details>';
+        }
+
+        function render(){
+          var q = (searchEl.value||'').trim().toLowerCase();
+          boxEl.classList.toggle('has-val', q.length>0);
+          var matches = RECIPES.filter(function(r){
+            var tagOk = activeTag==='all' || r.tags.indexOf(activeTag)>-1;
+            var qOk = !q || haystack(r).indexOf(q)>-1;
+            return tagOk && qOk;
+          });
+          countEl.textContent = matches.length + (matches.length===1?' recipe':' recipes');
+
+          if(!matches.length){ listEl.innerHTML = '<div class="r-empty">No recipes match — try another word or tag.</div>'; return; }
+
+          matches.sort(function(a,b){ return sortKey(a).localeCompare(sortKey(b)); });
+          var html = '', curLetter = '';
+          matches.forEach(function(r){
+            var L = sortKey(r).charAt(0);
+            if(L !== curLetter){ if(curLetter) html+='</div>'; curLetter=L; html+='<div class="r-group"><div class="r-letter">'+L+'</div>'; }
+            html += recipeHTML(r);
+          });
+          html += '</div>';
+          listEl.innerHTML = html;
+        }
+
+        searchEl.addEventListener('input', render);
+        clearEl.addEventListener('click', function(){ searchEl.value=''; render(); searchEl.focus(); });
+        tagsEl.addEventListener('click', function(e){
+          var chip = e.target.closest('.r-tag'); if(!chip) return;
+          activeTag = chip.getAttribute('data-tag');
+          tagsEl.querySelectorAll('.r-tag').forEach(function(c){ c.classList.toggle('active', c===chip); });
+          render();
+        });
+        render();
+      })();
 
       /* === TAB NAVIGATION === */
       var tabs = document.querySelectorAll('.tab');
