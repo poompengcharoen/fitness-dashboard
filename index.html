@@ -221,7 +221,7 @@
 
   /* Floating bottom dock */
   .dock{
-    position:fixed; left:50%; transform:translateX(-50%); bottom:14px; z-index:50;
+    position:fixed; left:0; right:0; bottom:14px; margin:0 auto; z-index:50;
     width:calc(100% - 28px); max-width:512px;
     display:flex; justify-content:space-around; gap:4px;
     background:rgba(20,22,25,.82); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
@@ -596,7 +596,7 @@
   </footer>
 
   <!-- Floating bottom dock -->
-  <nav class="dock reveal" style="animation-delay:.1s">
+  <nav class="dock">
     <button data-tab="today" class="active"><span class="di">🏠</span><span class="dl">Today</span></button>
     <button data-tab="progress"><span class="di">📈</span><span class="dl">Progress</span></button>
     <button data-tab="plan"><span class="di">🍽️</span><span class="dl">Plan</span></button>
