@@ -142,6 +142,18 @@
   .supp .sn .sd{font-size:.72rem; color:var(--faint); display:block}
   .supp .sw{font-family:var(--display); font-size:.74rem; color:var(--dim)}
 
+  /* Today's plan timeline */
+  .tl{display:flex; gap:12px; align-items:center; padding:9px 0; border-bottom:1px solid var(--line)}
+  .tl:first-child{padding-top:2px} .tl:last-child{border-bottom:none; padding-bottom:2px}
+  .tl .tt{font-family:var(--display); font-size:.74rem; color:var(--dim); width:42px; flex:none}
+  .tl .tx{flex:1; font-size:.9rem}
+  .tl .tx .td{display:block; font-size:.7rem; color:var(--faint)}
+  .tl .ts{font-size:.82rem; flex:none; width:20px; text-align:center}
+  .tl.done .tx{color:var(--dim)}
+  .tl.done .tt{color:var(--faint)}
+  .plan-top{font-size:.76rem; color:var(--dim); margin-top:13px; padding-top:12px; border-top:1px dashed var(--line-strong); line-height:1.6}
+  .plan-top b{color:var(--lime); font-family:var(--display)}
+
   /* Meal timeline */
   .meal{display:flex; gap:13px; padding:13px 0; border-bottom:1px solid var(--line)}
   .meal:last-child{border-bottom:none; padding-bottom:2px}
@@ -219,6 +231,28 @@
       <div class="stat"><span class="ic">😴</span><span class="k">Last sleep</span><span class="v">8h 27m <span style="color:var(--faint);font-weight:400">· solid</span></span></div>
       <div class="stat"><span class="ic">💊</span><span class="k">Creatine today</span><span class="v" style="color:var(--lime)">✅ 5g</span></div>
       <div class="stat"><span class="ic">🍱</span><span class="k">Weekly treat</span><span class="v"><span class="badge">Tue 30 Jun · Wisdom buffet day</span></span></div>
+    </div>
+  </section>
+
+  <section class="reveal" style="animation-delay:.13s">
+    <div class="sec-title">Today's Plan <span class="note">Wed 1 Jul · recovery + Posterior A</span></div>
+    <div class="card">
+      <div class="tl done"><span class="tt">05:56</span><span class="tx">⏰ Wake · 98.0 kg</span><span class="ts">✅</span></div>
+      <div class="tl done"><span class="tt">06:21</span><span class="tx">☕ Creatine + coffee</span><span class="ts">✅</span></div>
+      <div class="tl done"><span class="tt">06:32</span><span class="tx">🚶 Morning walk<span class="td">+ Ollie & Bear · 2.44km · 39m</span></span><span class="ts">✅</span></div>
+      <div class="tl"><span class="tt">07:15</span><span class="tx">🚿 Shower</span><span class="ts"></span></div>
+      <div class="tl"><span class="tt">07:45</span><span class="tx">🥤 Breakfast + supps<span class="td">Smoothie + Centrum / fish oil / L-carnitine</span></span><span class="ts"></span></div>
+      <div class="tl"><span class="tt">08:30</span><span class="tx">💼 Work block</span><span class="ts"></span></div>
+      <div class="tl"><span class="tt">10:45</span><span class="tx">🔪 Batch-cook chicken</span><span class="ts"></span></div>
+      <div class="tl"><span class="tt">11:30</span><span class="tx">🍗 Lunch<span class="td">Chicken + purple sweet potato + cabbage</span></span><span class="ts"></span></div>
+      <div class="tl"><span class="tt">14:00</span><span class="tx">🏋️ Posterior A<span class="td">6 lifts + 15m cardio</span></span><span class="ts"></span></div>
+      <div class="tl"><span class="tt">15:30</span><span class="tx">🥤 Post-workout smoothie</span><span class="ts"></span></div>
+      <div class="tl"><span class="tt">15:45</span><span class="tx">🚿 Shower</span><span class="ts"></span></div>
+      <div class="tl"><span class="tt">16:05</span><span class="tx">😌 Work wrap + relax</span><span class="ts"></span></div>
+      <div class="tl"><span class="tt">19:00</span><span class="tx">🍳 Dinner<span class="td">Chicken-cabbage stir-fry</span></span><span class="ts"></span></div>
+      <div class="tl"><span class="tt">21:30</span><span class="tx">💊 Evening supp</span><span class="ts"></span></div>
+      <div class="tl"><span class="tt">22:00</span><span class="tx">😴 Sleep · aim ~8h</span><span class="ts"></span></div>
+      <div class="plan-top">🎯 <b>Top 3:</b> ① batch-cook the chicken · ② morning walk ✅ · ③ Posterior A when fresh</div>
     </div>
   </section>
 
@@ -339,13 +373,13 @@
 
   <footer class="reveal" style="animation-delay:.35s">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 30 Jun 2026
+    Updated 1 Jul 2026
   </footer>
 
   <script>
     /* === LIVE NUTRITION — Coach edits TODAY each time a meal is logged === */
     var TARGET = { cal:2007, protein:225, fat:66, carbs:126 };
-    var TODAY  = { date:'Today · 30 Jun', cal:3011, protein:262, fat:155, carbs:142 };
+    var TODAY  = { date:'Today · 1 Jul', cal:0, protein:0, fat:0, carbs:0 };
 
     /* === WEIGHT LOG — Coach appends one entry per weigh-in === */
     var WEIGHTS = [
