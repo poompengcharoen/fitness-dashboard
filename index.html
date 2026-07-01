@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <title>Poom's Cut</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,7 @@
     color:var(--text);
     font-family:var(--body);
     line-height:1.5;
-    padding:22px 18px 40px;
+    padding:22px 18px calc(96px + env(safe-area-inset-bottom));
     max-width:540px;
     margin:0 auto;
     background-image:
@@ -51,7 +51,7 @@
   }
 
   /* Header */
-  header{display:flex; align-items:center; justify-content:space-between; margin-bottom:22px}
+  header{display:flex; align-items:center; justify-content:space-between; margin-bottom:20px}
   .brand{display:flex; align-items:center; gap:11px}
   .mark{
     width:42px; height:42px; border-radius:12px; flex:none;
@@ -65,6 +65,10 @@
     border:1px solid var(--line); padding:5px 9px; border-radius:20px; white-space:nowrap}
   .dot{width:7px; height:7px; border-radius:50%; background:var(--lime); box-shadow:0 0 0 0 rgba(198,242,78,.6); animation:pulse 2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(198,242,78,.5)}70%{box-shadow:0 0 0 7px rgba(198,242,78,0)}100%{box-shadow:0 0 0 0 rgba(198,242,78,0)}}
+
+  /* Tabs */
+  .tab{display:none}
+  .tab.active{display:block}
 
   /* Hero */
   .hero{
@@ -107,6 +111,20 @@
   .badge{font-family:var(--body); font-size:.72rem; font-weight:500; color:var(--orange); background:rgba(255,120,73,.12); padding:3px 8px; border-radius:6px}
   .badge.go{color:var(--lime); background:rgba(198,242,78,.12)}
 
+  /* Today's plan timeline */
+  .tl{display:flex; gap:9px; align-items:flex-start; padding:9px 0; border-bottom:1px solid var(--line)}
+  .tl:first-child{padding-top:2px} .tl:last-child{border-bottom:none; padding-bottom:2px}
+  .tl .tid{font-family:var(--display); font-size:.64rem; font-weight:600; color:var(--lime); width:22px; flex:none; padding-top:2px}
+  .tl .tt{width:76px; flex:none; font-family:var(--display); font-size:.68rem; color:var(--dim); line-height:1.35; padding-top:1px}
+  .tl .tt small{display:block; font-size:.6rem; color:var(--faint); font-family:var(--body); font-weight:500}
+  .tl .tx{flex:1; font-size:.88rem}
+  .tl .tx .td{display:block; font-size:.68rem; color:var(--faint)}
+  .tl .ts{font-size:.8rem; flex:none; width:18px; text-align:center; padding-top:1px}
+  .tl.done .tx{color:var(--dim)}
+  .tl.done .tid{color:var(--faint)}
+  .plan-top{font-size:.76rem; color:var(--dim); margin-top:13px; padding-top:12px; border-top:1px dashed var(--line-strong); line-height:1.6}
+  .plan-top b{color:var(--lime); font-family:var(--display)}
+
   /* Macros — MacroFactor-style live tubes */
   .nutri{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:18px}
   .nutri-head{display:flex; align-items:baseline; gap:9px}
@@ -142,20 +160,6 @@
   .supp .sn .sd{font-size:.72rem; color:var(--faint); display:block}
   .supp .sw{font-family:var(--display); font-size:.74rem; color:var(--dim)}
 
-  /* Today's plan timeline */
-  .tl{display:flex; gap:9px; align-items:flex-start; padding:9px 0; border-bottom:1px solid var(--line)}
-  .tl:first-child{padding-top:2px} .tl:last-child{border-bottom:none; padding-bottom:2px}
-  .tl .tid{font-family:var(--display); font-size:.64rem; font-weight:600; color:var(--lime); width:22px; flex:none; padding-top:2px}
-  .tl .tt{width:76px; flex:none; font-family:var(--display); font-size:.68rem; color:var(--dim); line-height:1.35; padding-top:1px}
-  .tl .tt small{display:block; font-size:.6rem; color:var(--faint); font-family:var(--body); font-weight:500}
-  .tl .tx{flex:1; font-size:.88rem}
-  .tl .tx .td{display:block; font-size:.68rem; color:var(--faint)}
-  .tl .ts{font-size:.8rem; flex:none; width:18px; text-align:center; padding-top:1px}
-  .tl.done .tx{color:var(--dim)}
-  .tl.done .tid{color:var(--faint)}
-  .plan-top{font-size:.76rem; color:var(--dim); margin-top:13px; padding-top:12px; border-top:1px dashed var(--line-strong); line-height:1.6}
-  .plan-top b{color:var(--lime); font-family:var(--display)}
-
   /* Meal timeline */
   .meal{display:flex; gap:13px; padding:13px 0; border-bottom:1px solid var(--line)}
   .meal:last-child{border-bottom:none; padding-bottom:2px}
@@ -182,18 +186,58 @@
   .cycle .slot.done{color:var(--dim)}
   .cycle .slot.now{background:rgba(198,242,78,.14); border-color:rgba(198,242,78,.45); color:var(--lime)}
 
-  /* Cookbook chips */
-  .cooks{display:flex; flex-wrap:wrap; gap:8px}
-  .cook{font-size:.8rem; background:var(--surface-2); border:1px solid var(--line); border-radius:11px; padding:8px 11px; color:var(--dim)}
-  .cook b{color:var(--text); font-weight:600}
-
   /* Rules */
   .rules{display:flex; flex-wrap:wrap; gap:8px}
   .rule{font-size:.82rem; background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:9px 12px; color:var(--dim)}
   .rule b{color:var(--text); font-weight:600}
 
+  /* Cookbook recipes */
+  .cook-intro{font-size:.82rem; color:var(--dim); margin:0 4px 12px; line-height:1.5}
+  .recipe{background:var(--surface); border:1px solid var(--line); border-radius:16px; margin-bottom:10px; overflow:hidden}
+  .recipe > summary{list-style:none; cursor:pointer; padding:15px 16px; display:flex; align-items:center; gap:12px}
+  .recipe > summary::-webkit-details-marker{display:none}
+  .recipe .r-emoji{font-size:1.5rem; flex:none}
+  .recipe .r-head{flex:1; min-width:0}
+  .recipe .r-name{font-family:var(--display); font-weight:600; font-size:.98rem; line-height:1.2}
+  .recipe .r-macro{font-size:.68rem; color:var(--lime); font-family:var(--display); margin-top:3px}
+  .recipe .r-macro span{color:var(--faint)}
+  .recipe .r-chev{color:var(--faint); flex:none; transition:transform .25s; font-size:1.1rem}
+  .recipe[open] .r-chev{transform:rotate(90deg)}
+  .recipe[open] > summary{border-bottom:1px solid var(--line)}
+  .r-body{padding:14px 16px 17px; font-size:.86rem; color:var(--dim)}
+  .r-body .r-blurb{font-size:.8rem; color:var(--faint); line-height:1.55; margin-bottom:6px}
+  .r-body h4{color:var(--text); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; margin:15px 0 7px; font-weight:600}
+  .r-body ul{list-style:none; padding:0}
+  .r-body ul li{padding:4px 0 4px 15px; position:relative; line-height:1.45}
+  .r-body ul li::before{content:""; position:absolute; left:3px; top:12px; width:4px; height:4px; border-radius:50%; background:var(--lime)}
+  .r-body ol{padding-left:19px; margin-top:4px}
+  .r-body ol li{padding:4px 0 4px 3px; line-height:1.45}
+  .r-body ol li::marker{color:var(--lime); font-family:var(--display); font-weight:600; font-size:.85rem}
+  .r-tip{background:var(--surface-2); border:1px solid var(--line); border-radius:11px; padding:11px 13px; margin-top:14px; font-size:.79rem; color:var(--dim); line-height:1.5}
+  .r-tip b{color:var(--text)}
+
   footer{text-align:center; margin-top:26px; color:var(--faint); font-size:.74rem; line-height:1.7}
   footer .sync{display:inline-flex; align-items:center; gap:6px; color:var(--dim)}
+
+  /* Floating bottom dock */
+  .dock{
+    position:fixed; left:50%; transform:translateX(-50%); bottom:14px; z-index:50;
+    width:calc(100% - 28px); max-width:512px;
+    display:flex; justify-content:space-around; gap:4px;
+    background:rgba(20,22,25,.82); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border:1px solid var(--line-strong); border-radius:22px;
+    padding:8px 8px calc(8px + env(safe-area-inset-bottom));
+    box-shadow:0 10px 34px rgba(0,0,0,.55);
+  }
+  .dock button{
+    flex:1; background:none; border:none; color:var(--faint); font-family:var(--body); cursor:pointer;
+    display:flex; flex-direction:column; align-items:center; gap:3px; padding:6px 2px; border-radius:14px;
+    transition:color .2s, background .2s;
+  }
+  .dock button .di{font-size:1.28rem; line-height:1; transition:transform .2s}
+  .dock button .dl{font-size:.62rem; font-weight:600; letter-spacing:.01em}
+  .dock button.active{color:var(--lime); background:rgba(198,242,78,.1)}
+  .dock button.active .di{transform:translateY(-1px)}
 </style>
 </head>
 <body>
@@ -209,178 +253,355 @@
     <div class="live"><span class="dot"></span> auto-updated</div>
   </header>
 
-  <div class="hero reveal" style="animation-delay:.05s">
-    <div class="label">The Goal</div>
-    <div class="nums">
-      <span class="from">100</span>
-      <span class="arrow">→</span>
-      <span class="to">73<span class="unit"> kg</span></span>
-    </div>
-    <div class="sub">Lose fat, keep muscle · ~0.9 kg / week</div>
+  <!-- ==================== TAB: TODAY ==================== -->
+  <div class="tab active" id="tab-today">
 
-    <div class="track"><i></i></div>
-    <div class="track-ends"><span>100 kg · start</span><span>73 kg · goal</span></div>
-    <div class="togo"><b>25.0 kg</b><span>to go — 2.0 down · buffet didn't bloat us 💪</span></div>
-    <div class="eta">📅 <b>~30 weeks</b> at this pace · target ≈ early 2027</div>
+    <div class="hero reveal" style="animation-delay:.05s">
+      <div class="label">The Goal</div>
+      <div class="nums">
+        <span class="from">100</span>
+        <span class="arrow">→</span>
+        <span class="to">73<span class="unit"> kg</span></span>
+      </div>
+      <div class="sub">Lose fat, keep muscle · ~0.9 kg / week</div>
+
+      <div class="track"><i></i></div>
+      <div class="track-ends"><span>100 kg · start</span><span>73 kg · goal</span></div>
+      <div class="togo"><b>25.0 kg</b><span>to go — 2.0 down · buffet didn't bloat us 💪</span></div>
+      <div class="eta">📅 <b>~30 weeks</b> at this pace · target ≈ early 2027</div>
+    </div>
+
+    <section class="reveal" style="animation-delay:.1s">
+      <div class="sec-title">Right Now</div>
+      <div class="card">
+        <div class="stat"><span class="ic">⚖️</span><span class="k">Weight</span><span class="v">98.0 kg <span style="color:var(--faint);font-weight:400">· -2.0 from start</span></span></div>
+        <div class="stat"><span class="ic">✅</span><span class="k">Last trained</span><span class="v">Anterior A · 29 Jun</span></div>
+        <div class="stat"><span class="ic">🏋️</span><span class="k">Next workout</span><span class="v">Posterior A · Wed</span></div>
+        <div class="stat"><span class="ic">😴</span><span class="k">Last sleep</span><span class="v">8h 27m <span style="color:var(--faint);font-weight:400">· solid</span></span></div>
+        <div class="stat"><span class="ic">💊</span><span class="k">Creatine today</span><span class="v" style="color:var(--lime)">✅ 5g</span></div>
+        <div class="stat"><span class="ic">🍱</span><span class="k">Weekly treat</span><span class="v"><span class="badge">Tue 30 Jun · Wisdom buffet day</span></span></div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.13s">
+      <div class="sec-title">Today's Plan <span class="note">Wed 1 Jul · recovery + Posterior A</span></div>
+      <div class="card">
+        <div class="tl done"><span class="tid">T1</span><span class="tt">05:56</span><span class="tx">⏰ Wake · 98.0 kg</span><span class="ts">✅</span></div>
+        <div class="tl done"><span class="tid">T2</span><span class="tt">06:10–06:21<small>~10m</small></span><span class="tx">☕ Creatine + coffee</span><span class="ts">✅</span></div>
+        <div class="tl done"><span class="tid">T3</span><span class="tt">06:15–06:20<small>~5m</small></span><span class="tx">🧊 Thaw chicken</span><span class="ts">✅</span></div>
+        <div class="tl done"><span class="tid">T4</span><span class="tt">06:32–07:11<small>39m</small></span><span class="tx">🚶 Morning walk<span class="td">+ Ollie & Bear · 2.44km</span></span><span class="ts">✅</span></div>
+        <div class="tl done"><span class="tid">T5</span><span class="tt">07:10–07:30<small>20m</small></span><span class="tx">🚿 Shower</span><span class="ts">✅</span></div>
+        <div class="tl done"><span class="tid">T6</span><span class="tt">07:45–08:19<small>30m</small></span><span class="tx">🥤 Breakfast<span class="td">Must smoothie + Centrum + fish oil</span></span><span class="ts">✅</span></div>
+        <div class="tl"><span class="tid">T7</span><span class="tt">08:30–10:30<small>2h</small></span><span class="tx">💼 Work block</span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T8</span><span class="tt">10:45–11:15<small>30m</small></span><span class="tx">🔪 Batch-cook chicken</span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T9</span><span class="tt">11:30–12:00<small>30m</small></span><span class="tx">🥪 Lunch (pre-gym)<span class="td">Grilled chicken sandwich on ½ pumpkin bread + veg + L-carnitine</span></span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T10</span><span class="tt">12:00–14:00<small>2h</small></span><span class="tx">💼 Work / digest</span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T11</span><span class="tt">14:00–15:15<small>1h15</small></span><span class="tx">🏋️ Posterior A<span class="td">6 lifts + 15m cardio</span></span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T12</span><span class="tt">15:30–15:40<small>10m</small></span><span class="tx">🥤 Post-workout smoothie</span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T13</span><span class="tt">15:45–16:05<small>20m</small></span><span class="tx">🚿 Shower</span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T14</span><span class="tt">16:05–18:30<small>2h25</small></span><span class="tx">😌 Work wrap + relax</span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T15</span><span class="tt">17:00–17:15<small>15m</small></span><span class="tx">🥗 Optional salad<span class="td">Iceberg + tuna if hungry</span></span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T16</span><span class="tt">19:00–19:30<small>30m</small></span><span class="tx">🍳 Dinner<span class="td">Chicken-cabbage stir-fry</span></span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T17</span><span class="tt">19:30–21:30<small>2h</small></span><span class="tx">😌 Relax</span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T18</span><span class="tt">~21:30<small>~5m</small></span><span class="tx">💊 Evening supp</span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T19</span><span class="tt">~22:00<small>~8h</small></span><span class="tx">😴 Sleep</span><span class="ts"></span></div>
+        <div class="plan-top">🎯 <b>Top 3:</b> ① batch-cook the chicken · ② morning walk ✅ · ③ Posterior A when fresh</div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.16s">
+      <div class="sec-title">Today's Macros</div>
+      <div class="nutri">
+        <div class="nutri-head"><b id="nutri-date">Today</b><span class="of" id="nutri-rem"></span></div>
+        <div class="tubes">
+          <div class="tw"><div class="val" id="v-cal">0</div><div class="tube"><i class="c-cal" data-macro="cal"></i></div><div class="lbl">Calories</div></div>
+          <div class="tw"><div class="val" id="v-protein">0</div><div class="tube"><i class="c-pro" data-macro="protein"></i></div><div class="lbl">Protein</div></div>
+          <div class="tw"><div class="val" id="v-fat">0</div><div class="tube"><i class="c-fat" data-macro="fat"></i></div><div class="lbl">Fat</div></div>
+          <div class="tw"><div class="val" id="v-carbs">0</div><div class="tube"><i class="c-carb" data-macro="carbs"></i></div><div class="lbl">Carbs</div></div>
+        </div>
+      </div>
+    </section>
+
   </div>
 
-  <section class="reveal" style="animation-delay:.1s">
-    <div class="sec-title">Right Now</div>
-    <div class="card">
-      <div class="stat"><span class="ic">⚖️</span><span class="k">Weight</span><span class="v">98.0 kg <span style="color:var(--faint);font-weight:400">· -2.0 from start</span></span></div>
-      <div class="stat"><span class="ic">✅</span><span class="k">Last trained</span><span class="v">Anterior A · 29 Jun</span></div>
-      <div class="stat"><span class="ic">🏋️</span><span class="k">Next workout</span><span class="v">Posterior A · Wed</span></div>
-      <div class="stat"><span class="ic">😴</span><span class="k">Last sleep</span><span class="v">8h 27m <span style="color:var(--faint);font-weight:400">· solid</span></span></div>
-      <div class="stat"><span class="ic">💊</span><span class="k">Creatine today</span><span class="v" style="color:var(--lime)">✅ 5g</span></div>
-      <div class="stat"><span class="ic">🍱</span><span class="k">Weekly treat</span><span class="v"><span class="badge">Tue 30 Jun · Wisdom buffet day</span></span></div>
-    </div>
-  </section>
+  <!-- ==================== TAB: PROGRESS ==================== -->
+  <div class="tab" id="tab-progress">
 
-  <section class="reveal" style="animation-delay:.13s">
-    <div class="sec-title">Today's Plan <span class="note">Wed 1 Jul · recovery + Posterior A</span></div>
-    <div class="card">
-      <div class="tl done"><span class="tid">T1</span><span class="tt">05:56</span><span class="tx">⏰ Wake · 98.0 kg</span><span class="ts">✅</span></div>
-      <div class="tl done"><span class="tid">T2</span><span class="tt">06:10–06:21<small>~10m</small></span><span class="tx">☕ Creatine + coffee</span><span class="ts">✅</span></div>
-      <div class="tl done"><span class="tid">T3</span><span class="tt">06:15–06:20<small>~5m</small></span><span class="tx">🧊 Thaw chicken</span><span class="ts">✅</span></div>
-      <div class="tl done"><span class="tid">T4</span><span class="tt">06:32–07:11<small>39m</small></span><span class="tx">🚶 Morning walk<span class="td">+ Ollie & Bear · 2.44km</span></span><span class="ts">✅</span></div>
-      <div class="tl done"><span class="tid">T5</span><span class="tt">07:10–07:30<small>20m</small></span><span class="tx">🚿 Shower</span><span class="ts">✅</span></div>
-      <div class="tl done"><span class="tid">T6</span><span class="tt">07:45–08:19<small>30m</small></span><span class="tx">🥤 Breakfast<span class="td">Must smoothie + Centrum + fish oil</span></span><span class="ts">✅</span></div>
-      <div class="tl"><span class="tid">T7</span><span class="tt">08:30–10:30<small>2h</small></span><span class="tx">💼 Work block</span><span class="ts"></span></div>
-      <div class="tl"><span class="tid">T8</span><span class="tt">10:45–11:15<small>30m</small></span><span class="tx">🔪 Batch-cook chicken</span><span class="ts"></span></div>
-      <div class="tl"><span class="tid">T9</span><span class="tt">11:30–12:00<small>30m</small></span><span class="tx">🥪 Lunch (pre-gym)<span class="td">Grilled chicken sandwich on ½ pumpkin bread + veg + L-carnitine</span></span><span class="ts"></span></div>
-      <div class="tl"><span class="tid">T10</span><span class="tt">12:00–14:00<small>2h</small></span><span class="tx">💼 Work / digest</span><span class="ts"></span></div>
-      <div class="tl"><span class="tid">T11</span><span class="tt">14:00–15:15<small>1h15</small></span><span class="tx">🏋️ Posterior A<span class="td">6 lifts + 15m cardio</span></span><span class="ts"></span></div>
-      <div class="tl"><span class="tid">T12</span><span class="tt">15:30–15:40<small>10m</small></span><span class="tx">🥤 Post-workout smoothie</span><span class="ts"></span></div>
-      <div class="tl"><span class="tid">T13</span><span class="tt">15:45–16:05<small>20m</small></span><span class="tx">🚿 Shower</span><span class="ts"></span></div>
-      <div class="tl"><span class="tid">T14</span><span class="tt">16:05–18:30<small>2h25</small></span><span class="tx">😌 Work wrap + relax</span><span class="ts"></span></div>
-      <div class="tl"><span class="tid">T15</span><span class="tt">17:00–17:15<small>15m</small></span><span class="tx">🥗 Optional salad<span class="td">Iceberg + tuna if hungry</span></span><span class="ts"></span></div>
-      <div class="tl"><span class="tid">T16</span><span class="tt">19:00–19:30<small>30m</small></span><span class="tx">🍳 Dinner<span class="td">Chicken-cabbage stir-fry</span></span><span class="ts"></span></div>
-      <div class="tl"><span class="tid">T17</span><span class="tt">19:30–21:30<small>2h</small></span><span class="tx">😌 Relax</span><span class="ts"></span></div>
-      <div class="tl"><span class="tid">T18</span><span class="tt">~21:30<small>~5m</small></span><span class="tx">💊 Evening supp</span><span class="ts"></span></div>
-      <div class="tl"><span class="tid">T19</span><span class="tt">~22:00<small>~8h</small></span><span class="tx">😴 Sleep</span><span class="ts"></span></div>
-      <div class="plan-top">🎯 <b>Top 3:</b> ① batch-cook the chicken · ② morning walk ✅ · ③ Posterior A when fresh</div>
-    </div>
-  </section>
-
-  <section class="reveal" style="animation-delay:.15s">
-    <div class="sec-title">Today's Macros</div>
-    <div class="nutri">
-      <div class="nutri-head"><b id="nutri-date">Today</b><span class="of" id="nutri-rem"></span></div>
-      <div class="tubes">
-        <div class="tw"><div class="val" id="v-cal">0</div><div class="tube"><i class="c-cal" data-macro="cal"></i></div><div class="lbl">Calories</div></div>
-        <div class="tw"><div class="val" id="v-protein">0</div><div class="tube"><i class="c-pro" data-macro="protein"></i></div><div class="lbl">Protein</div></div>
-        <div class="tw"><div class="val" id="v-fat">0</div><div class="tube"><i class="c-fat" data-macro="fat"></i></div><div class="lbl">Fat</div></div>
-        <div class="tw"><div class="val" id="v-carbs">0</div><div class="tube"><i class="c-carb" data-macro="carbs"></i></div><div class="lbl">Carbs</div></div>
+    <section class="reveal">
+      <div class="sec-title">Weight Trend</div>
+      <div class="card" style="padding:14px 14px 10px">
+        <canvas id="chart-weight" style="height:180px;max-height:180px"></canvas>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:.72rem;color:var(--faint)">
+          <span>Goal line: <b style="color:var(--lime)">73 kg</b></span>
+          <span id="weight-now">— kg today</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="reveal" style="animation-delay:.18s">
-    <div class="sec-title">Weight Trend</div>
-    <div class="card" style="padding:14px 14px 10px">
-      <canvas id="chart-weight" style="height:160px;max-height:160px"></canvas>
-      <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:.72rem;color:var(--faint)">
-        <span>Goal line: <b style="color:var(--lime)">73 kg</b></span>
-        <span id="weight-now">— kg today</span>
+    <section class="reveal" style="animation-delay:.06s">
+      <div class="sec-title">Body Composition <span class="note">smart scale · 30 Jun</span></div>
+      <div class="card">
+        <div class="bc-grid">
+          <div class="bc"><div class="bc-v">34.9<small>%</small></div><div class="bc-k">🔥 Body fat</div></div>
+          <div class="bc"><div class="bc-v">34.2<small>%</small></div><div class="bc-k">💪 Muscle</div></div>
+          <div class="bc"><div class="bc-v">47.6<small>%</small></div><div class="bc-k">💧 Body water</div></div>
+          <div class="bc"><div class="bc-v">2029<small> kcal</small></div><div class="bc-k">⚡ BMR (rest burn)</div></div>
+        </div>
+        <div class="bc-foot">⚠️ Bioimpedance scale — noisy by ±3-5%. Watch the <b>trend over weeks</b>, not the daily number. Goal: fat % ↓, muscle % ↑.</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="reveal" style="animation-delay:.2s">
-    <div class="sec-title">Body Composition <span class="note">smart scale · 30 Jun</span></div>
-    <div class="card">
-      <div class="bc-grid">
-        <div class="bc"><div class="bc-v">34.9<small>%</small></div><div class="bc-k">🔥 Body fat</div></div>
-        <div class="bc"><div class="bc-v">34.2<small>%</small></div><div class="bc-k">💪 Muscle</div></div>
-        <div class="bc"><div class="bc-v">47.6<small>%</small></div><div class="bc-k">💧 Body water</div></div>
-        <div class="bc"><div class="bc-v">2029<small> kcal</small></div><div class="bc-k">⚡ BMR (rest burn)</div></div>
+    <section class="reveal" style="animation-delay:.12s">
+      <div class="sec-title">Recent Intake <span class="note">last days avg vs target</span></div>
+      <div class="card" style="padding:14px 14px 10px">
+        <canvas id="chart-macros" style="height:140px;max-height:140px"></canvas>
       </div>
-      <div class="bc-foot">⚠️ Bioimpedance scale — noisy by ±3-5%. Watch the <b>trend over weeks</b>, not the daily number. Goal: fat % ↓, muscle % ↑.</div>
-    </div>
-  </section>
+    </section>
 
-  <section class="reveal" style="animation-delay:.22s">
-    <div class="sec-title">Recent Intake <span class="note">last days avg vs target</span></div>
-    <div class="card" style="padding:14px 14px 10px">
-      <canvas id="chart-macros" style="height:140px;max-height:140px"></canvas>
-    </div>
-  </section>
+  </div>
 
-  <section class="reveal" style="animation-delay:.24s">
-    <div class="sec-title">Daily Supplements <span class="note">food-first, supps fill gaps</span></div>
-    <div class="card">
-      <div class="supp"><span class="si">💪</span><span class="sn"><b>Creatine</b> 5g<span class="sd">Daily — strength + muscle retention</span></span><span class="sw">breakfast</span></div>
-      <div class="supp"><span class="si">💊</span><span class="sn"><b>Centrum</b> multivitamin<span class="sd">With fat (Vit D, B-complex)</span></span><span class="sw">breakfast</span></div>
-      <div class="supp"><span class="si">🐟</span><span class="sn"><b>Fish oil</b> ×2<span class="sd">Omega-3 — skip on sashimi days</span></span><span class="sw">breakfast</span></div>
-      <div class="supp"><span class="si">🔥</span><span class="sn"><b>L-carnitine</b><span class="sd">With carbs — fat metabolism</span></span><span class="sw">breakfast</span></div>
-      <div class="supp"><span class="si">🍆</span><span class="sn"><b>L-arginine + Zinc</b> ×2<span class="sd">2h after Centrum</span></span><span class="sw">lunch</span></div>
-    </div>
-  </section>
+  <!-- ==================== TAB: PLAN ==================== -->
+  <div class="tab" id="tab-plan">
 
-  <section class="reveal" style="animation-delay:.26s">
-    <div class="sec-title">Our Next Meal Plan <span class="note">Wed · recovery + train</span></div>
-    <div class="card">
-      <div class="meal"><span class="num">1</span><div class="body"><span class="tag">Wake</span><span class="food">🥤 Must smoothie + Greek yogurt + blueberries</span></div></div>
-      <div class="meal"><span class="num">2</span><div class="body"><span class="tag">Pre-gym</span><span class="food">🥪 Grilled chicken sandwich on 🎃 ½ pumpkin bread + veg</span></div></div>
-      <div class="meal"><span class="num">3</span><div class="body"><span class="tag">Afternoon</span><span class="food">🥗 Iceberg + tuna salad</span></div></div>
-      <div class="meal"><span class="num">4</span><div class="body"><span class="tag">Dinner</span><span class="food">🍳 Chicken-cabbage stir-fry</span></div></div>
-      <div class="plan-foot"><span>Wed · lean recovery</span><span><b>~286g</b> protein · <b>~38g</b> fat · <b>~1,890</b> cal</span></div>
-    </div>
-  </section>
-
-  <section class="reveal" style="animation-delay:.28s">
-    <div class="sec-title">Next Session</div>
-    <div class="cycle">
-      <span class="slot done">A·A</span>
-      <span class="slot now">P·A</span>
-      <span class="slot">Rest</span>
-      <span class="slot">A·B</span>
-      <span class="slot done">P·B</span>
-      <span class="slot">Rest</span>
-      <span class="slot">Rest</span>
-    </div>
-    <div class="card">
-      <div class="card-h">🏋️ Posterior A · next (Wed)</div>
-      <div class="ex"><span>Chest Supported Row</span><span class="sr">3 × 6-8</span></div>
-      <div class="ex"><span>Lat Pulldown</span><span class="sr">3 × 8-10</span></div>
-      <div class="ex"><span>Seated Leg Curl</span><span class="sr">4 × 8-10</span></div>
-      <div class="ex"><span>Hip Thrust</span><span class="sr">3 × 8-10</span></div>
-      <div class="ex"><span>Face Pull</span><span class="sr">3 × 12-15</span></div>
-      <div class="ex"><span>Hammer Curl</span><span class="sr">3 × 10-12</span></div>
-      <div class="wk-note">15 min cardio after · 1-2 RIR · ⚠️ leg press capped (L5)</div>
-    </div>
-  </section>
-
-  <section class="reveal" style="animation-delay:.3s">
-    <div class="sec-title">📖 The Cookbook <span class="note">5 lean recipes in rotation</span></div>
-    <div class="card">
-      <div class="cooks">
-        <span class="cook">🍲 <b>Chicken Veg Soup</b></span>
-        <span class="cook">🥗 <b>Pan Pan Tuna Salad</b></span>
-        <span class="cook">🥘 <b>Healthy Okonomiyaki</b></span>
-        <span class="cook">🍫 <b>Chocolate Protein Fluff</b></span>
-        <span class="cook">🌶️ <b>Crispy Spicy Chicken</b></span>
+    <section class="reveal">
+      <div class="sec-title">Our Next Meal Plan <span class="note">Wed · recovery + train</span></div>
+      <div class="card">
+        <div class="meal"><span class="num">1</span><div class="body"><span class="tag">Wake</span><span class="food">🥤 Must smoothie + Greek yogurt + blueberries</span></div></div>
+        <div class="meal"><span class="num">2</span><div class="body"><span class="tag">Pre-gym</span><span class="food">🥪 Grilled chicken sandwich on 🎃 ½ pumpkin bread + veg</span></div></div>
+        <div class="meal"><span class="num">3</span><div class="body"><span class="tag">Afternoon</span><span class="food">🥗 Iceberg + tuna salad</span></div></div>
+        <div class="meal"><span class="num">4</span><div class="body"><span class="tag">Dinner</span><span class="food">🍳 Chicken-cabbage stir-fry</span></div></div>
+        <div class="plan-foot"><span>Wed · lean recovery</span><span><b>~286g</b> protein · <b>~38g</b> fat · <b>~1,890</b> cal</span></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="reveal" style="animation-delay:.32s">
-    <div class="sec-title">House Rules</div>
-    <div class="rules">
-      <span class="rule">🥩 <b>Protein first</b>, every meal</span>
-      <span class="rule">🎯 <b>225g protein</b> daily — non-negotiable</span>
-      <span class="rule">🥗 <b>Keep it lean</b></span>
-      <span class="rule">🧈 <b>Fat floor</b> ~50g/day</span>
-      <span class="rule">🚦 <b>Coach</b> is the gatekeeper</span>
-      <span class="rule">📸 <b>Photo</b> before eating</span>
-      <span class="rule">🚫 <b>No deadlifts</b> (back)</span>
-    </div>
-  </section>
+    <section class="reveal" style="animation-delay:.06s">
+      <div class="sec-title">Daily Supplements <span class="note">food-first, supps fill gaps</span></div>
+      <div class="card">
+        <div class="supp"><span class="si">💪</span><span class="sn"><b>Creatine</b> 5g<span class="sd">Daily — strength + muscle retention</span></span><span class="sw">breakfast</span></div>
+        <div class="supp"><span class="si">💊</span><span class="sn"><b>Centrum</b> multivitamin<span class="sd">With fat (Vit D, B-complex)</span></span><span class="sw">breakfast</span></div>
+        <div class="supp"><span class="si">🐟</span><span class="sn"><b>Fish oil</b> ×2<span class="sd">Omega-3 — skip on sashimi days</span></span><span class="sw">breakfast</span></div>
+        <div class="supp"><span class="si">🔥</span><span class="sn"><b>L-carnitine</b><span class="sd">With carbs — fat metabolism</span></span><span class="sw">lunch</span></div>
+        <div class="supp"><span class="si">💊</span><span class="sn"><b>L-arginine + Zinc</b> ×2<span class="sd">2h after Centrum</span></span><span class="sw">evening</span></div>
+      </div>
+    </section>
 
-  <footer class="reveal" style="animation-delay:.35s">
+    <section class="reveal" style="animation-delay:.12s">
+      <div class="sec-title">Next Session</div>
+      <div class="cycle">
+        <span class="slot done">A·A</span>
+        <span class="slot now">P·A</span>
+        <span class="slot">Rest</span>
+        <span class="slot">A·B</span>
+        <span class="slot done">P·B</span>
+        <span class="slot">Rest</span>
+        <span class="slot">Rest</span>
+      </div>
+      <div class="card">
+        <div class="card-h">🏋️ Posterior A · next (Wed)</div>
+        <div class="ex"><span>Chest Supported Row</span><span class="sr">3 × 6-8</span></div>
+        <div class="ex"><span>Lat Pulldown</span><span class="sr">3 × 8-10</span></div>
+        <div class="ex"><span>Seated Leg Curl</span><span class="sr">4 × 8-10</span></div>
+        <div class="ex"><span>Hip Thrust</span><span class="sr">3 × 8-10</span></div>
+        <div class="ex"><span>Face Pull</span><span class="sr">3 × 12-15</span></div>
+        <div class="ex"><span>Hammer Curl</span><span class="sr">3 × 10-12</span></div>
+        <div class="wk-note">15 min cardio after · 1-2 RIR · ⚠️ leg press capped (L5)</div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.18s">
+      <div class="sec-title">House Rules</div>
+      <div class="rules">
+        <span class="rule">🥩 <b>Protein first</b>, every meal</span>
+        <span class="rule">🎯 <b>225g protein</b> daily — non-negotiable</span>
+        <span class="rule">🥗 <b>Keep it lean</b></span>
+        <span class="rule">🧈 <b>Fat floor</b> ~50g/day</span>
+        <span class="rule">🚦 <b>Coach</b> is the gatekeeper</span>
+        <span class="rule">📸 <b>Photo</b> before eating</span>
+        <span class="rule">🚫 <b>No deadlifts</b> (back)</span>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==================== TAB: COOKBOOK ==================== -->
+  <div class="tab" id="tab-cookbook">
+
+    <div class="sec-title" style="margin-top:2px">📖 The Cookbook <span class="note">tap a recipe to cook</span></div>
+    <p class="cook-intro">Lean, protein-first meals in rotation. Reaw — open this while we cook. Every recipe fits the cut: high protein, low fat, real Bangkok ingredients.</p>
+
+    <details class="recipe reveal">
+      <summary>
+        <span class="r-emoji">🍲</span>
+        <span class="r-head"><div class="r-name">Chicken Veg Soup</div><div class="r-macro">50g P <span>· 26 C · 5 F · ~360 cal</span></div></span>
+        <span class="r-chev">›</span>
+      </summary>
+      <div class="r-body">
+        <p class="r-blurb">Protein-forward, almost no added fat, batches well for two. Comforting without wrecking the cut. Makes 2 servings.</p>
+        <h4>Ingredients (2 servings)</h4>
+        <ul>
+          <li>300 g chicken breast, cubed</li>
+          <li>1 medium potato (~200 g), chopped</li>
+          <li>1 onion + 1 carrot, chopped</li>
+          <li>Garlic, salt, pepper, herbs to taste</li>
+          <li>~750 ml water or low-sodium chicken broth</li>
+          <li>Optional: celery / cabbage to bulk it up</li>
+        </ul>
+        <h4>Steps</h4>
+        <ol>
+          <li>Sweat onion + garlic in a non-stick pot (minimal/no oil).</li>
+          <li>Add chicken, brown 2–3 min.</li>
+          <li>Add potato, carrot, broth. Bring to a boil.</li>
+          <li>Simmer 20–25 min until chicken + potato cooked through.</li>
+          <li>Season, serve hot.</li>
+        </ol>
+        <div class="r-tip"><b>Coach tip:</b> add 2 boiled eggs on the side (+12g P) for the pre-gym version. Swap potato for extra veg to cut carbs. Batch it — fridge the 2nd serving for a fast clean meal.</div>
+      </div>
+    </details>
+
+    <details class="recipe reveal">
+      <summary>
+        <span class="r-emoji">🥗</span>
+        <span class="r-head"><div class="r-name">Skinny Pan Pan Tuna Salad</div><div class="r-macro">47g P <span>· 9 C · 12 F · ~340 cal</span></div></span>
+        <span class="r-chev">›</span>
+      </summary>
+      <div class="r-body">
+        <p class="r-blurb">Copycat of Pan Pan's tuna salad, rebuilt for the cut. The magic is the sharp anchovy-dijon-lemon kick, not the oil. 5-min, no cook.</p>
+        <h4>Salad base (1 serving)</h4>
+        <ul>
+          <li>1 can tuna <b>in water</b>, fully drained</li>
+          <li>1 boiled egg + 4 egg whites (or all 6 whites for zero-fat)</li>
+          <li>~80 g iceberg lettuce, torn</li>
+          <li>½ tomato + ¼ cucumber, sliced</li>
+          <li>2 olives (optional — skip for zero-fat)</li>
+        </ul>
+        <h4>Skinny dressing</h4>
+        <ul>
+          <li>1 tsp Dijon mustard (the binder)</li>
+          <li>2 tbsp fresh lemon juice + zest</li>
+          <li>1 tbsp white wine / apple cider vinegar</li>
+          <li>1 anchovy fillet, mashed (⚠️ the umami secret)</li>
+          <li>1 tsp olive oil (skip on fat-ceiling days)</li>
+          <li>Pinch salt + sweetener + black pepper</li>
+        </ul>
+        <h4>Steps</h4>
+        <ol>
+          <li>Whisk dressing until slightly cloudy.</li>
+          <li>Build salad: lettuce + tomato + cucumber + olives.</li>
+          <li>Add drained tuna, pour dressing, toss gently.</li>
+          <li>Top with eggs, crack pepper. Eat cold.</li>
+        </ol>
+        <div class="r-tip"><b>Zero-fat version:</b> all 6 egg whites, skip olives + oil → ~48g P for just ~2g fat. <b>Don't skip the anchovy</b> — one fillet won't taste fishy, just umami.</div>
+      </div>
+    </details>
+
+    <details class="recipe reveal">
+      <summary>
+        <span class="r-emoji">🥘</span>
+        <span class="r-head"><div class="r-name">Healthy Okonomiyaki</div><div class="r-macro">43g P <span>· 35 C · 10 F · ~400 cal</span></div></span>
+        <span class="r-chev">›</span>
+      </summary>
+      <div class="r-body">
+        <p class="r-blurb">Rebuilt okonomiyaki — keeps the flavor, ditches the flour batter, pork belly + Kewpie mayo. High-protein, high-fiber, ~half the calories.</p>
+        <h4>Batter / base (1 serving)</h4>
+        <ul>
+          <li>150 g cabbage, finely shredded (fiber + bulk)</li>
+          <li>30 g chickpea flour (besan)</li>
+          <li>1 whole egg + 3 egg whites</li>
+          <li>2 tbsp water + pinch dashi powder</li>
+          <li>Spring onion, chopped</li>
+          <li>50 g shrimp or shredded chicken breast</li>
+        </ul>
+        <h4>Lean toppings</h4>
+        <ul>
+          <li>Sauce: 1 tbsp low-sugar ketchup + 1 tsp Worcestershire + 1 tsp soy + sweetener</li>
+          <li>"Mayo": 2 tbsp nonfat Greek yogurt + rice vinegar + mustard</li>
+          <li>Bonito flakes, aonori, pickled ginger + cooking spray</li>
+        </ul>
+        <h4>Steps</h4>
+        <ol>
+          <li>Whisk chickpea flour + water + dashi into thick batter. Mix in eggs.</li>
+          <li>Fold in cabbage, spring onion, protein.</li>
+          <li>Heat non-stick pan, spray lightly.</li>
+          <li>Spoon in, shape a thick round, ~4–5 min per side until golden.</li>
+          <li>Plate, drizzle sauce + yogurt-mayo, top with bonito/aonori/ginger.</li>
+        </ol>
+        <div class="r-tip"><b>Protein-max version:</b> blend 150g raw chicken + 1 egg into a paste instead of chickpea flour, fold in 250g cabbage → ~68g P. Cook medium-low, longer, ensure no pink center.</div>
+      </div>
+    </details>
+
+    <details class="recipe reveal">
+      <summary>
+        <span class="r-emoji">🍫</span>
+        <span class="r-head"><div class="r-name">Chocolate Protein Fluff</div><div class="r-macro">53g P <span>· 4 C · 1 F · ~240 cal</span></div></span>
+        <span class="r-chev">›</span>
+      </summary>
+      <div class="r-body">
+        <p class="r-blurb">A baked egg-white + protein "soufflé" that whips into a sweet chocolaty cloud. Elite protein-to-calorie ratio — the treat substitute for fat-ceiling days.</p>
+        <h4>Ingredients (1 serving)</h4>
+        <ul>
+          <li>300 ml (1¼ cups) egg whites</li>
+          <li>34 g (~1 scoop) chocolate whey (isolate ideal)</li>
+          <li>Sweetener / flavor drops (or vanilla)</li>
+        </ul>
+        <h4>Steps</h4>
+        <ol>
+          <li>Egg whites + sweetener in a clean dry bowl.</li>
+          <li><b>Electric mixer on high ~8 min</b> until stiff peaks. (Don't hand-whisk.)</li>
+          <li>Sift protein over whites, fold gently — don't deflate.</li>
+          <li>Pour into a lined oven-safe dish.</li>
+          <li>Bake 180°C / 350°F for 10-12 min until set + risen.</li>
+          <li>Eat immediately while fluffy — it deflates as it cools.</li>
+        </ol>
+        <div class="r-tip"><b>Coach tip:</b> 53g protein in 240 cal, 1g fat. Top with berries (+30 cal) for natural sweetness. Needs an electric hand mixer — worth the ~300 THB.</div>
+      </div>
+    </details>
+
+    <details class="recipe reveal">
+      <summary>
+        <span class="r-emoji">🌶️</span>
+        <span class="r-head"><div class="r-name">Crispy Spicy Chicken (ไก่กรอบผงลาบ)</div><div class="r-macro">63g P <span>· 15 C · 9 F · ~420 cal</span></div></span>
+        <span class="r-chev">›</span>
+      </summary>
+      <div class="r-body">
+        <p class="r-blurb">A healthy take on Madaew's น้ำพริกหมูกระจก — swaps pork fat for crispy air-fried chicken, lets ผงลาบ + ผงมะนาว carry the flavor. ~⅕ the fat, ~3× the protein.</p>
+        <h4>Base (1 serving)</h4>
+        <ul>
+          <li>200 g chicken breast, sliced <b>paper-thin</b> or 8mm dice</li>
+          <li>1 tbsp cornstarch + ½ tbsp rice flour</li>
+          <li>Salt + white pepper + cooking spray</li>
+        </ul>
+        <h4>Seasoning</h4>
+        <ul>
+          <li>2-3 tsp ผงลาบ (laab powder)</li>
+          <li>1 tsp ผงมะนาว (lime powder)</li>
+          <li>Optional: kaffir lime leaves, chili, mint, shallot</li>
+        </ul>
+        <h4>Steps</h4>
+        <ol>
+          <li>Cut chicken thin. <b>Pat dry thoroughly</b> (moisture = soggy).</li>
+          <li>Season, toss in cornstarch + rice flour, shake off excess.</li>
+          <li>Air fry 200°C / 400°F, 12-15 min, spray + shake halfway — cook until VERY dry + golden.</li>
+          <li>Hot-toss in a bowl with ผงลาบ + ผงมะนาว (sticks better hot).</li>
+          <li>Garnish with lime leaves / mint / chili.</li>
+        </ol>
+        <div class="r-tip"><b>Crispiness rules:</b> cut thin · pat dry · cornstarch shell · air fryer &gt; oven · don't crowd · season AFTER cooking. Great in lettuce wraps or as a protein snack.</div>
+      </div>
+    </details>
+
+  </div>
+
+  <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
     Updated 1 Jul 2026
   </footer>
+
+  <!-- Floating bottom dock -->
+  <nav class="dock reveal" style="animation-delay:.1s">
+    <button data-tab="today" class="active"><span class="di">🏠</span><span class="dl">Today</span></button>
+    <button data-tab="progress"><span class="di">📈</span><span class="dl">Progress</span></button>
+    <button data-tab="plan"><span class="di">🍽️</span><span class="dl">Plan</span></button>
+    <button data-tab="cookbook"><span class="di">📖</span><span class="dl">Cookbook</span></button>
+  </nav>
 
   <script>
     /* === LIVE NUTRITION — Coach edits TODAY each time a meal is logged === */
@@ -418,63 +639,77 @@
         if(left < 0) rem.style.color = '#ff7849';
       }
 
-      /* === WEIGHT TREND CHART === */
-      var wEl = document.getElementById('chart-weight');
-      var wNow = document.getElementById('weight-now');
-      if (wEl && window.Chart && WEIGHTS.length) {
-        var last = WEIGHTS[WEIGHTS.length-1];
-        if (wNow) wNow.innerHTML = '<b style="color:var(--text)">'+last.kg+' kg</b> · ' + last.d;
-        new Chart(wEl, {
-          type: 'line',
-          data: {
-            labels: WEIGHTS.map(function(w){return w.d}),
-            datasets: [{
-              data: WEIGHTS.map(function(w){return w.kg}),
-              borderColor: '#c6f24e',
-              backgroundColor: 'rgba(198,242,78,.12)',
-              borderWidth: 2, fill: true, tension: .3,
-              pointBackgroundColor: '#c6f24e', pointRadius: 3, pointHoverRadius: 5
-            }, {
-              data: WEIGHTS.map(function(){return 73}),
-              borderColor: 'rgba(94,179,255,.6)', borderDash: [5,4], borderWidth: 1.5,
-              pointRadius: 0, fill: false
-            }]
-          },
-          options: {
-            responsive: true, maintainAspectRatio: false,
-            plugins: { legend:{display:false}, tooltip:{enabled:true} },
-            scales: {
-              x: { ticks:{color:'#6b7280',font:{size:10}}, grid:{display:false} },
-              y: { ticks:{color:'#6b7280',font:{size:10},callback:function(v){return v+'kg'}}, grid:{color:'rgba(255,255,255,.05)'}, suggestedMin: 70, suggestedMax: 102 }
+      /* === CHARTS (lazy-init when Progress tab first opens — avoids 0-height in hidden tab) === */
+      var chartsDone = false;
+      function initCharts(){
+        if(chartsDone) return; chartsDone = true;
+        var wEl = document.getElementById('chart-weight');
+        var wNow = document.getElementById('weight-now');
+        if (wEl && window.Chart && WEIGHTS.length) {
+          var last = WEIGHTS[WEIGHTS.length-1];
+          if (wNow) wNow.innerHTML = '<b style="color:var(--text)">'+last.kg+' kg</b> · ' + last.d;
+          new Chart(wEl, {
+            type: 'line',
+            data: {
+              labels: WEIGHTS.map(function(w){return w.d}),
+              datasets: [{
+                data: WEIGHTS.map(function(w){return w.kg}),
+                borderColor: '#c6f24e', backgroundColor: 'rgba(198,242,78,.12)',
+                borderWidth: 2, fill: true, tension: .3,
+                pointBackgroundColor: '#c6f24e', pointRadius: 3, pointHoverRadius: 5
+              }, {
+                data: WEIGHTS.map(function(){return 73}),
+                borderColor: 'rgba(94,179,255,.6)', borderDash: [5,4], borderWidth: 1.5,
+                pointRadius: 0, fill: false
+              }]
+            },
+            options: {
+              responsive: true, maintainAspectRatio: false,
+              plugins: { legend:{display:false}, tooltip:{enabled:true} },
+              scales: {
+                x: { ticks:{color:'#6b7280',font:{size:10}}, grid:{display:false} },
+                y: { ticks:{color:'#6b7280',font:{size:10},callback:function(v){return v+'kg'}}, grid:{color:'rgba(255,255,255,.05)'}, suggestedMin: 70, suggestedMax: 102 }
+              }
             }
-          }
-        });
+          });
+        }
+        var mEl = document.getElementById('chart-macros');
+        if (mEl && window.Chart && MACRO_AVG) {
+          new Chart(mEl, {
+            type: 'bar',
+            data: {
+              labels: ['Calories', 'Protein', 'Fat', 'Carbs'],
+              datasets: [
+                { label:'Recent avg', data:[MACRO_AVG.cal, MACRO_AVG.protein, MACRO_AVG.fat, MACRO_AVG.carbs],
+                  backgroundColor:['#7ea8ff','#f2876f','#e8c24e','#63bd82'], borderRadius:6 },
+                { label:'Target', data:[TARGET.cal, TARGET.protein, TARGET.fat, TARGET.carbs],
+                  backgroundColor:'rgba(255,255,255,.08)', borderRadius:6 }
+              ]
+            },
+            options: {
+              responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+              plugins: { legend:{display:false}, tooltip:{enabled:true} },
+              scales: {
+                x: { display:false, beginAtZero:true },
+                y: { ticks:{color:'#9aa1ac',font:{size:11}}, grid:{display:false} }
+              }
+            }
+          });
+        }
       }
 
-      /* === RECENT INTAKE BAR CHART === */
-      var mEl = document.getElementById('chart-macros');
-      if (mEl && window.Chart && MACRO_AVG) {
-        new Chart(mEl, {
-          type: 'bar',
-          data: {
-            labels: ['Calories', 'Protein', 'Fat', 'Carbs'],
-            datasets: [
-              { label:'Recent avg', data:[MACRO_AVG.cal, MACRO_AVG.protein, MACRO_AVG.fat, MACRO_AVG.carbs],
-                backgroundColor:['#7ea8ff','#f2876f','#e8c24e','#63bd82'], borderRadius:6 },
-              { label:'Target', data:[TARGET.cal, TARGET.protein, TARGET.fat, TARGET.carbs],
-                backgroundColor:'rgba(255,255,255,.08)', borderRadius:6 }
-            ]
-          },
-          options: {
-            responsive: true, maintainAspectRatio: false, indexAxis: 'y',
-            plugins: { legend:{display:false}, tooltip:{enabled:true} },
-            scales: {
-              x: { display:false, beginAtZero:true },
-              y: { ticks:{color:'#9aa1ac',font:{size:11}}, grid:{display:false} }
-            }
-          }
+      /* === TAB NAVIGATION === */
+      var tabs = document.querySelectorAll('.tab');
+      var btns = document.querySelectorAll('.dock button');
+      btns.forEach(function(b){
+        b.addEventListener('click', function(){
+          var t = b.getAttribute('data-tab');
+          tabs.forEach(function(s){ s.classList.toggle('active', s.id === 'tab-'+t); });
+          btns.forEach(function(x){ x.classList.toggle('active', x === b); });
+          if(t === 'progress') initCharts();
+          window.scrollTo({ top:0, behavior:'smooth' });
         });
-      }
+      });
     })();
   </script>
 
