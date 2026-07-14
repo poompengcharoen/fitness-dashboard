@@ -346,6 +346,19 @@
     </section>
 
     <section class="reveal" style="animation-delay:.06s">
+      <div class="sec-title">Strength Progress <span class="note">est. 1-rep max · top set</span></div>
+      <div class="card" style="padding:14px 14px 10px">
+        <select id="lift-select" style="width:100%;margin-bottom:10px;padding:8px 10px;border-radius:9px;background:#12161c;color:var(--text);border:1px solid rgba(255,255,255,.1);font-size:.85rem;font-weight:600"></select>
+        <canvas id="chart-lift" style="height:180px;max-height:180px"></canvas>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:.72rem;color:var(--faint)">
+          <span id="lift-detail">—</span>
+          <span id="lift-change">—</span>
+        </div>
+        <div style="margin-top:8px;font-size:.66rem;color:var(--faint);line-height:1.4">📈 Estimated 1-rep max from your top working set (weight × reps). Rising line = getting stronger — proof you're keeping muscle on the cut. Capped lifts (leg press) + machine-swap lifts left off.</div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.12s">
       <div class="sec-title">Body Composition <span class="note">smart scale · 30 Jun</span></div>
       <div class="card">
         <div class="bc-grid">
@@ -358,7 +371,7 @@
       </div>
     </section>
 
-    <section class="reveal" style="animation-delay:.12s">
+    <section class="reveal" style="animation-delay:.18s">
       <div class="sec-title">Recent Intake <span class="note">last days avg vs target</span></div>
       <div class="card" style="padding:14px 14px 10px">
         <canvas id="chart-macros" style="height:140px;max-height:140px"></canvas>
@@ -450,7 +463,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 14 Jul 2026, 19:16 (Bangkok)
+    Updated 14 Jul 2026, 22:17 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -489,6 +502,49 @@
 
     /* === RECENT INTAKE AVG (last logged days) vs target === */
     var MACRO_AVG = { cal:2160, protein:201, fat:78, carbs:163 };
+
+    /* === STRENGTH PROGRESS — Coach appends the top working set per session.
+       e = estimated 1RM (Epley: weight×(1+reps/30)), rounded. s = the actual top set.
+       Only progressable lifts on a consistent machine/implement — capped lifts
+       (leg press) + machine-non-transfer lifts left off so the line means something. === */
+    var LIFTS = [
+      { name:'Barbell Bench', grp:'Anterior', pts:[
+        { d:'29 Jun', e:95,   s:'75×8' },
+        { d:'7 Jul',  e:101,  s:'80×8' },
+        { d:'14 Jul', e:113,  s:'85×10' } ]},
+      { name:'Incline DB Press', grp:'Anterior', pts:[
+        { d:'29 Jun', e:30,   s:'22.5×10' },
+        { d:'7 Jul',  e:34,   s:'25×10.5' },
+        { d:'14 Jul', e:37,   s:'30×6.5' } ]},
+      { name:'DB Shoulder Press', grp:'Anterior', pts:[
+        { d:'7 Jul',  e:23,   s:'17.5×9' },
+        { d:'14 Jul', e:23,   s:'17.5×10' } ]},
+      { name:'Leg Extension', grp:'Anterior', pts:[
+        { d:'7 Jul',  e:92,   s:'63×14' },
+        { d:'14 Jul', e:104,  s:'70×14.5' } ]},
+      { name:'Lat Pulldown', grp:'Posterior', pts:[
+        { d:'28 Jun', e:66,   s:'52×8' },
+        { d:'1 Jul',  e:72,   s:'54.3×10' },
+        { d:'4 Jul',  e:69,   s:'52×10' },
+        { d:'8 Jul',  e:75,   s:'56.6×10' },
+        { d:'11 Jul', e:74,   s:'57×9' } ]},
+      { name:'Chest-Supported Row', grp:'Posterior', pts:[
+        { d:'28 Jun', e:72,   s:'54.3×10' },
+        { d:'1 Jul',  e:81,   s:'63.6×8' },
+        { d:'4 Jul',  e:75,   s:'56.6×10' },
+        { d:'8 Jul',  e:89,   s:'70.6×8' } ]},
+      { name:'Hip Thrust', grp:'Posterior', pts:[
+        { d:'28 Jun', e:42,   s:'30×12' },
+        { d:'1 Jul',  e:47,   s:'35×10' },
+        { d:'4 Jul',  e:53,   s:'40×10' },
+        { d:'8 Jul',  e:53,   s:'40×10' } ]},
+      { name:'Seated Leg Curl', grp:'Posterior', pts:[
+        { d:'28 Jun', e:98,   s:'70×12' },
+        { d:'1 Jul',  e:93,   s:'70×10' },
+        { d:'4 Jul',  e:98,   s:'70×12' },
+        { d:'8 Jul',  e:96,   s:'72.3×10' },
+        { d:'11 Jul', e:103,  s:'77×10' } ]}
+    ];
     /* ==================================================================== */
     (function(){
       var rm = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -566,6 +622,66 @@
               }
             }
           });
+        }
+
+        /* === STRENGTH PROGRESS chart (dropdown-driven) === */
+        var liftChart = null;
+        function drawLift(idx){
+          var L = LIFTS[idx]; if(!L) return;
+          var lc = document.getElementById('chart-lift');
+          if(!lc || !window.Chart) return;
+          if(liftChart) liftChart.destroy();
+          liftChart = new Chart(lc, {
+            type: 'line',
+            data: {
+              labels: L.pts.map(function(p){return p.d}),
+              datasets: [{
+                data: L.pts.map(function(p){return p.e}),
+                borderColor: '#5eb3ff', backgroundColor: 'rgba(94,179,255,.12)',
+                borderWidth: 2, fill: true, tension: .3,
+                pointBackgroundColor: '#5eb3ff', pointRadius: 3, pointHoverRadius: 5
+              }]
+            },
+            options: {
+              responsive: true, maintainAspectRatio: false,
+              plugins: {
+                legend: { display:false },
+                tooltip: { callbacks: {
+                  label: function(ctx){ return 'est 1RM: ' + ctx.parsed.y + ' kg'; },
+                  afterLabel: function(ctx){ return 'top set: ' + L.pts[ctx.dataIndex].s; }
+                } }
+              },
+              scales: {
+                x: { ticks:{color:'#6b7280',font:{size:10}}, grid:{display:false} },
+                y: { ticks:{color:'#6b7280',font:{size:10},callback:function(v){return v+'kg'}}, grid:{color:'rgba(255,255,255,.05)'} }
+              }
+            }
+          });
+          var first = L.pts[0].e, lastP = L.pts[L.pts.length-1];
+          var dEl = document.getElementById('lift-detail');
+          if(dEl) dEl.innerHTML = 'Latest: <b style="color:var(--text)">'+lastP.e+'kg</b> ('+lastP.s+')';
+          var cEl = document.getElementById('lift-change');
+          if(cEl){
+            var diff = Math.round((lastP.e-first)*10)/10;
+            var pct = first ? Math.round((lastP.e-first)/first*100) : 0;
+            cEl.innerHTML = (diff>=0?'▲ +':'▼ ')+diff+'kg ('+(pct>=0?'+':'')+pct+'%)';
+            cEl.style.color = diff>=0 ? 'var(--lime)' : '#ff7849';
+          }
+        }
+        var sel = document.getElementById('lift-select');
+        if(sel && window.Chart && LIFTS.length){
+          var groups = {};
+          LIFTS.forEach(function(L,i){ (groups[L.grp]=groups[L.grp]||[]).push(i); });
+          Object.keys(groups).forEach(function(g){
+            var og = document.createElement('optgroup'); og.label = g;
+            groups[g].forEach(function(i){
+              var o = document.createElement('option'); o.value = i; o.textContent = LIFTS[i].name;
+              og.appendChild(o);
+            });
+            sel.appendChild(og);
+          });
+          sel.addEventListener('change', function(){ drawLift(+this.value); });
+          drawLift(0);
         }
       }
 
