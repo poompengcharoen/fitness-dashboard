@@ -143,6 +143,19 @@
   .tw .lbl{font-size:.74rem; color:var(--dim); margin-top:10px; font-weight:500}
   .c-cal{background-color:#7ea8ff} .c-pro{background-color:#f2876f} .c-fat{background-color:#e8c24e} .c-carb{background-color:#63bd82}
 
+  /* Creatine streak calendar */
+  .cal-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:2px}
+  .cal-dow{font-size:.6rem; color:var(--faint); text-align:center; padding-bottom:6px; font-family:var(--display)}
+  .cal-cell{display:flex; flex-direction:column; align-items:center; gap:4px; padding:3px 0 7px}
+  .cal-cell .cal-d{font-size:.68rem; color:var(--dim); font-family:var(--display)}
+  .cal-cell .cal-dot{width:9px; height:9px; border-radius:50%; border:1.5px solid var(--line); background:transparent}
+  .cal-cell.done .cal-dot{background:var(--lime); border-color:var(--lime); box-shadow:0 0 6px rgba(198,242,78,.5)}
+  .cal-cell.today .cal-d{color:var(--lime); font-weight:700}
+  .cal-cell.today .cal-dot{border-color:var(--lime)}
+  .cal-cell.future{opacity:.3}
+  .cal-streak-line{display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid var(--line)}
+  .cal-streak-n{font-family:var(--display); font-size:1.3rem; font-weight:700; color:var(--lime)}
+
   /* Daily consistency checklist (AM/PM) */
   .dc-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px}
   .dc-col-h{font-family:var(--display); font-size:.8rem; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:6px}
@@ -307,6 +320,51 @@
         <div class="stat"><span class="ic">🚶</span><span class="k">Steps today</span><span class="v">— <span style="color:var(--faint);font-weight:400">· target 8k floor / 10k stretch</span></span></div>
         <div class="stat"><span class="ic">💊</span><span class="k">Creatine today</span><span class="v" style="color:#e8c24e">⏳ not yet <span style="color:var(--faint);font-weight:400">· 🔥 21-day streak on the line</span></span></div>
         <div class="stat"><span class="ic">🍱</span><span class="k">Weekly treat</span><span class="v"><span class="badge">Fri 17 Jul · wagyu buffet (used)</span></span></div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.11s">
+      <div class="sec-title">💊 Creatine Streak <span class="note">July 2026</span></div>
+      <div class="card">
+        <div class="cal-grid">
+          <div class="cal-dow">S</div><div class="cal-dow">M</div><div class="cal-dow">T</div><div class="cal-dow">W</div><div class="cal-dow">T</div><div class="cal-dow">F</div><div class="cal-dow">S</div>
+          <div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+          <div class="cal-cell done"><span class="cal-d">1</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">2</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">3</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">4</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">5</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">6</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">7</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">8</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">9</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">10</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">11</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">12</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">13</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">14</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">15</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">16</span><span class="cal-dot"></span></div>
+          <div class="cal-cell done"><span class="cal-d">17</span><span class="cal-dot"></span></div>
+          <div class="cal-cell today"><span class="cal-d">18</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">19</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">20</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">21</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">22</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">23</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">24</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">25</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">26</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">27</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">28</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">29</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">30</span><span class="cal-dot"></span></div>
+          <div class="cal-cell future"><span class="cal-d">31</span><span class="cal-dot"></span></div>
+        </div>
+        <div class="cal-streak-line">
+          <span style="font-size:.78rem;color:var(--dim)">🔥 Current streak (since 27 Jun)</span>
+          <span class="cal-streak-n">21 days</span>
+        </div>
       </div>
     </section>
 
@@ -497,7 +555,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 18 Jul 2026, 01:32 (Bangkok)
+    Updated 18 Jul 2026, 01:35 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
