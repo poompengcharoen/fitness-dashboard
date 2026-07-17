@@ -143,6 +143,16 @@
   .tw .lbl{font-size:.74rem; color:var(--dim); margin-top:10px; font-weight:500}
   .c-cal{background-color:#7ea8ff} .c-pro{background-color:#f2876f} .c-fat{background-color:#e8c24e} .c-carb{background-color:#63bd82}
 
+  /* Daily consistency checklist (AM/PM) */
+  .dc-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  .dc-col-h{font-family:var(--display); font-size:.8rem; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:6px}
+  .dc-item{display:flex; align-items:center; gap:8px; padding:7px 0; border-bottom:1px solid var(--line); font-size:.82rem; color:var(--dim)}
+  .dc-item:last-child{border-bottom:none}
+  .dc-item .dc-s{font-size:.85rem; flex:none; width:16px; text-align:center}
+  .dc-item.done{color:var(--text)}
+  .dc-item.done .dc-s{color:var(--lime)}
+  @media (max-width:420px){ .dc-grid{grid-template-columns:1fr} }
+
   /* Body composition grid */
   .bc-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
   .bc{background:var(--surface-2); border:1px solid var(--line); border-radius:13px; padding:13px 15px}
@@ -295,8 +305,31 @@
         <div class="stat"><span class="ic">🏋️</span><span class="k">Next workout</span><span class="v">Posterior B</span></div>
         <div class="stat"><span class="ic">😴</span><span class="k">Last sleep</span><span class="v">~4h30m <span style="color:var(--lime);font-weight:400">· bed 21:30, woke 2am — 🎉 RESET moved (short but early!)</span></span></div>
         <div class="stat"><span class="ic">🚶</span><span class="k">Steps today</span><span class="v">— <span style="color:var(--faint);font-weight:400">· target 8k floor / 10k stretch</span></span></div>
-        <div class="stat"><span class="ic">💊</span><span class="k">Creatine today</span><span class="v" style="color:var(--lime)">✅ 5g (pre-gym)</span></div>
-        <div class="stat"><span class="ic">🍱</span><span class="k">Weekly treat</span><span class="v"><span class="badge">Tue 7 Jul · Momo wagyu (used)</span></span></div>
+        <div class="stat"><span class="ic">💊</span><span class="k">Creatine today</span><span class="v" style="color:var(--lime)">✅ 5g <span style="color:var(--faint);font-weight:400">· 🔥 21-day streak</span></span></div>
+        <div class="stat"><span class="ic">🍱</span><span class="k">Weekly treat</span><span class="v"><span class="badge">Fri 17 Jul · wagyu buffet (used)</span></span></div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.12s">
+      <div class="sec-title">🎯 Daily Consistency <span class="note">start-of-day / end-of-day check</span></div>
+      <div class="card">
+        <div class="dc-grid">
+          <div>
+            <div class="dc-col-h">🌅 Morning</div>
+            <div class="dc-item done"><span class="dc-s">✅</span><span>Weigh-in</span></div>
+            <div class="dc-item done"><span class="dc-s">✅</span><span>Creatine</span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>Sunscreen + lotion</span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>Meal 1</span></div>
+          </div>
+          <div>
+            <div class="dc-col-h">🌙 Evening</div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>PM skincare</span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>L-arg + Zinc</span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>Mood + gratitude</span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>Reflection</span></div>
+          </div>
+        </div>
+        <div class="bc-foot" style="margin-top:14px">Resets each morning. Coach ticks these as the day's items get reported — a quick glance at whether today's core habits are on track.</div>
       </div>
     </section>
 
@@ -464,7 +497,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 18 Jul 2026, 00:11 (Bangkok)
+    Updated 18 Jul 2026, 01:28 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
