@@ -102,12 +102,17 @@
   .sec-title .note{text-transform:none; letter-spacing:0; font-weight:500; color:var(--faint); font-size:.68rem}
   .card{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:18px}
 
-  .stat{display:flex; align-items:center; gap:13px; padding:12px 0; border-bottom:1px solid var(--line)}
-  .stat:first-child{padding-top:2px} .stat:last-child{padding-bottom:2px; border-bottom:none}
-  .stat .ic{width:34px; height:34px; border-radius:10px; background:var(--surface-2); display:grid; place-items:center; font-size:1rem; flex:none}
-  .stat .k{color:var(--dim); font-size:.9rem}
-  .stat .v{margin-left:auto; font-weight:600; font-family:var(--display); font-size:.98rem; text-align:right}
-  .v .pos{color:var(--lime)}
+  /* Right Now — compact glanceable stat grid (replaced the old paragraph rows) */
+  .now-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  .now{background:var(--surface-2); border:1px solid var(--line); border-radius:13px; padding:13px 14px; min-width:0}
+  .now-k{font-size:.7rem; color:var(--dim); display:flex; align-items:center; gap:6px; margin-bottom:7px; font-weight:500}
+  .now-v{font-family:var(--display); font-size:1.12rem; font-weight:700; line-height:1.12}
+  .now-v .u{font-size:.72rem; color:var(--dim); font-weight:500}
+  .now-s{font-size:.67rem; color:var(--faint); margin-top:5px; line-height:1.4}
+  .now-s.go{color:var(--lime)}
+  .now-treat{margin-top:10px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:.78rem; font-weight:600;
+    background:rgba(198,242,78,.1); border:1px solid rgba(198,242,78,.32); border-radius:12px; padding:10px; color:var(--lime)}
+  .now-treat.used{background:rgba(255,120,73,.1); border-color:rgba(255,120,73,.3); color:var(--orange)}
   .badge{font-family:var(--body); font-size:.72rem; font-weight:500; color:var(--orange); background:rgba(255,120,73,.12); padding:3px 8px; border-radius:6px}
   .badge.go{color:var(--lime); background:rgba(198,242,78,.12)}
 
@@ -306,24 +311,121 @@
 
       <div class="track"><i></i></div>
       <div class="track-ends"><span>100 kg · start</span><span>73 kg · goal</span></div>
-      <div class="togo"><b>25.5 kg</b><span>to go — 1.5 down · parked ~98, TDEE recalc Sun</span></div>
+      <div class="togo"><b>25.1 kg</b><span>to go — 1.9 down · trend nearing sub-98 · next recalc Fri 24 Jul</span></div>
       <div class="eta">📅 <b>~30 weeks</b> at this pace · target ≈ early 2027</div>
     </div>
 
-    <section class="reveal" style="animation-delay:.1s">
-      <div class="sec-title">Right Now</div>
-      <div class="card">
-        <div class="stat"><span class="ic">⚖️</span><span class="k">Weight</span><span class="v">98.1 kg <span style="color:var(--lime);font-weight:400">· −1.0 overnight = water flushed after solid sleep 🎯 trend re-approaching sub-98</span></span></div>
-        <div class="stat"><span class="ic">✅</span><span class="k">Last trained</span><span class="v">Posterior B · 18 Jul <span style="color:var(--lime);font-weight:400">· full lift on a recovery day · leg-curl form fix (felt the hams!) · hip-abd bump 63 · ~692 active cal</span></span></div>
-        <div class="stat"><span class="ic">🏋️</span><span class="k">Next workout</span><span class="v" style="color:var(--lime)">TODAY · Anterior A · 🔄 DELOAD <span style="color:var(--faint);font-weight:400">(−40% weight · 2 sets · 4-5 RIR)</span></span></div>
-        <div class="stat"><span class="ic">😴</span><span class="k">Last sleep</span><span class="v">~7h25m <span style="color:var(--lime);font-weight:400">· bed 11pm, woke 6:25am 🎉 THE RESET FULLY LANDED (7h earlier bed in 2 nights)</span></span></div>
-        <div class="stat"><span class="ic">🚶</span><span class="k">Steps today</span><span class="v">— <span style="color:var(--faint);font-weight:400">· target 8k floor / 10k stretch</span></span></div>
-        <div class="stat"><span class="ic">💊</span><span class="k">Creatine today</span><span class="v" style="color:var(--lime)">✅ 5g <span style="color:var(--faint);font-weight:400">· 🔥 25-day streak</span></span></div>
-        <div class="stat"><span class="ic">🍱</span><span class="k">Weekly treat</span><span class="v"><span class="badge" style="background:var(--lime);color:var(--bg)">Available this week (Mon 21-Sun 27 Jul)</span></span></div>
+    <section class="reveal" style="animation-delay:.09s">
+      <div class="sec-title">Today's Macros</div>
+      <div class="nutri">
+        <div class="nutri-head"><b id="nutri-date">Today</b><span class="of" id="nutri-rem"></span></div>
+        <div class="tubes">
+          <div class="tw"><div class="val" id="v-cal">0</div><div class="tube"><i class="c-cal" data-macro="cal"></i></div><div class="lbl">Calories</div></div>
+          <div class="tw"><div class="val" id="v-protein">0</div><div class="tube"><i class="c-pro" data-macro="protein"></i></div><div class="lbl">Protein</div></div>
+          <div class="tw"><div class="val" id="v-fat">0</div><div class="tube"><i class="c-fat" data-macro="fat"></i></div><div class="lbl">Fat</div></div>
+          <div class="tw"><div class="val" id="v-carbs">0</div><div class="tube"><i class="c-carb" data-macro="carbs"></i></div><div class="lbl">Carbs</div></div>
+        </div>
       </div>
     </section>
 
-    <section class="reveal" style="animation-delay:.11s">
+    <section class="reveal" style="animation-delay:.12s">
+      <div class="sec-title">Right Now</div>
+      <div class="now-grid">
+        <div class="now">
+          <div class="now-k">⚖️ Weight</div>
+          <div class="now-v">98.1 <span class="u">kg</span></div>
+          <div class="now-s go">−1.0 overnight (water) · nearing sub-98</div>
+        </div>
+        <div class="now">
+          <div class="now-k">😴 Last sleep</div>
+          <div class="now-v">7h 25m</div>
+          <div class="now-s go">bed 11pm ✅ reset landed</div>
+        </div>
+        <div class="now">
+          <div class="now-k">🏋️ Next up</div>
+          <div class="now-v">Anterior A</div>
+          <div class="now-s go">🔄 DELOAD today · −40% · 2 sets</div>
+        </div>
+        <div class="now">
+          <div class="now-k">🚶 Steps today</div>
+          <div class="now-v">—</div>
+          <div class="now-s">8k floor / 10k stretch</div>
+        </div>
+      </div>
+      <div class="now-treat">🍱 Weekly treat available · 21–27 Jul</div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.15s">
+      <div class="sec-title">🎯 Daily Consistency <span class="note">resets each morning</span></div>
+      <div class="card">
+        <div class="dc-grid">
+          <div>
+            <div class="dc-col-h">🌅 Morning</div>
+            <div class="dc-item done"><span class="dc-s">✅</span><span>Weigh-in (98.1)</span></div>
+            <div class="dc-item done"><span class="dc-s">✅</span><span>Creatine · 🔥 25</span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>Sunscreen + lotion</span></div>
+            <div class="dc-item done"><span class="dc-s">✅</span><span>Meal 1 (coffee-soaked cake)</span></div>
+            <div class="dc-item"><span class="dc-s">💧</span><span>Water ~950 ml / 3L</span></div>
+          </div>
+          <div>
+            <div class="dc-col-h">🌙 Evening</div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>PM skincare (M/W/F actives)</span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>L-arg + Zinc</span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>Mood + gratitude</span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>Reflection</span></div>
+            <div class="dc-item"><span class="dc-s">🦷</span><span>Invisalign — swap tray tonight</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.18s">
+      <div class="sec-title">Today's Plan <span class="note">Tue 21 Jul · 🏠 WFH · 🏋️ Anterior A DELOAD · 🎯 hit 50g fat floor</span></div>
+      <div class="card">
+        <div class="tl done"><span class="tid">T1</span><span class="tt">on wake</span><span class="tx">⏰ Wake + weigh-in<span class="td">98.1 kg logged · 7h25m sleep</span></span><span class="ts">✅</span></div>
+        <div class="tl done"><span class="tid">T3</span><span class="tt">~09:30<small>25m</small></span><span class="tx">☕ Meal 1 (pre-gym) + AM supps<span class="td">coffee + 2 protein cake slices · 🐢 slow</span></span><span class="ts">✅</span></div>
+        <div class="tl"><span class="tid">T4b</span><span class="tt">~10:25<small>~20m</small></span><span class="tx">🚿🧴 Shower + AM skincare<span class="td">sunscreen + body lotion before gym</span></span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T5</span><span class="tt">~11:00<small>~55m</small></span><span class="tx">🏋️ Anterior A — DELOAD<span class="td">−40% weight · 2 sets · 4-5 RIR · confirm brief first</span></span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T7</span><span class="tt">~12:35<small>40m</small></span><span class="tx">🍗 Meal 2 (post-workout)<span class="td">chicken 300g + rice + 3 eggs + salad — fat-floor lock</span></span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T9</span><span class="tt">~4-5pm<small>~10m</small></span><span class="tx">🥤 Snack 1<span class="td">1 Iso-Pro whey scoop · 27P</span></span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T11</span><span class="tt">~8-9pm<small>~10m</small></span><span class="tx">🥛 Snack 2<span class="td">Greek yogurt + berries · 20P close-out</span></span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T13</span><span class="tt">~evening<small>~1m</small></span><span class="tx">🦷 Invisalign tray change<span class="td">swap to next tray — fresh overnight = easiest</span></span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T14</span><span class="tt">~10pm<small>10m</small></span><span class="tx">🧠 Mind check-in + reflection<span class="td">mood + 3 gratitudes · L-arg+Zinc · PM skincare</span></span><span class="ts"></span></div>
+        <div class="tl"><span class="tid">T15</span><span class="tt">~10:30-11pm<small>~8h</small></span><span class="tx">😴 Sleep<span class="td">protect the reset — real early bed, full 8h</span></span><span class="ts"></span></div>
+        <div class="plan-top">🎯 <b>Top 3:</b> ① hit 50g fat floor (3 eggs + olive oil in Meal 2) · ② Anterior A deload −40%/2 sets · ③ real ~10:30-11pm bed</div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==================== TAB: PROGRESS ==================== -->
+  <div class="tab" id="tab-progress">
+
+    <section class="reveal">
+      <div class="sec-title">Weight Trend</div>
+      <div class="card" style="padding:14px 14px 10px">
+        <canvas id="chart-weight" style="height:180px;max-height:180px"></canvas>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:.72rem;color:var(--faint)">
+          <span>Goal line: <b style="color:var(--lime)">73 kg</b></span>
+          <span id="weight-now">— kg today</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.06s">
+      <div class="sec-title">Strength Progress <span class="note">est. 1-rep max · top set</span></div>
+      <div class="card" style="padding:14px 14px 10px">
+        <select id="lift-select" style="width:100%;margin-bottom:10px;padding:8px 10px;border-radius:9px;background:#12161c;color:var(--text);border:1px solid rgba(255,255,255,.1);font-size:.85rem;font-weight:600"></select>
+        <canvas id="chart-lift" style="height:180px;max-height:180px"></canvas>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:.72rem;color:var(--faint)">
+          <span id="lift-detail">—</span>
+          <span id="lift-change">—</span>
+        </div>
+        <div style="margin-top:8px;font-size:.66rem;color:var(--faint);line-height:1.4">📈 Estimated 1-rep max from your top working set (weight × reps). Rising line = getting stronger — proof you're keeping muscle on the cut. Capped lifts (leg press) + machine-swap lifts left off.</div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.1s">
       <div class="sec-title">💊 Creatine Streak <span class="note">July 2026</span></div>
       <div class="card">
         <div class="cal-grid">
@@ -368,87 +470,7 @@
       </div>
     </section>
 
-    <section class="reveal" style="animation-delay:.12s">
-      <div class="sec-title">🎯 Daily Consistency <span class="note">start-of-day / end-of-day check</span></div>
-      <div class="card">
-        <div class="dc-grid">
-          <div>
-            <div class="dc-col-h">🌅 Morning</div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>Weigh-in (98.1)</span></div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>Creatine</span></div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>Sunscreen + lotion</span></div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>Meal 1 (2 cake slices, coffee-soaked)</span></div>
-            <div class="dc-item"><span class="dc-s">💧</span><span>Water ~950 ml / 3L (½ bottle) — floor 2L 🔜</span></div>
-          </div>
-          <div>
-            <div class="dc-col-h">🌙 Evening</div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>PM skincare (Some By Mi Wed/Fri)</span></div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>L-arg + Zinc</span></div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>Mood + gratitude</span></div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>Reflection</span></div>
-            <div class="dc-item"><span class="dc-s">🦷</span><span>Invisalign tray change (due today)</span></div>
-          </div>
-        </div>
-        <div class="bc-foot" style="margin-top:14px">Resets each morning. Coach ticks these as the day's items get reported — a quick glance at whether today's core habits are on track.</div>
-      </div>
-    </section>
-
-    <section class="reveal" style="animation-delay:.13s">
-      <div class="sec-title">Today's Plan <span class="note">Sat 18 Jul · 😴 rest/recovery · 🛌 sleep in · 🥗 lean (fat spent)</span></div>
-      <div class="card">
-        <div class="tl"><span class="tid">T1</span><span class="tt">on wake</span><span class="tx">⏰ Wake + weigh-in<span class="td">Sleep in — no alarm. Note how he's feeling, incl. mentally</span></span><span class="ts"></span></div>
-        <div class="tl"><span class="tid">T2</span><span class="tt">+15m<small>~5m</small></span><span class="tx">☕ Creatine + water + coffee<span class="td">Streak day 22</span></span><span class="ts"></span></div>
-        <div class="tl"><span class="tid">T3</span><span class="tt">~+1h<small>30m</small></span><span class="tx">🍳 Meal 1 + AM supps<span class="td">~70P/20C/0F — zero added fat (spent on the buffet)</span></span><span class="ts"></span></div>
-        <div class="tl"><span class="tid">T5</span><span class="tt">~14:00<small>30m</small></span><span class="tx">🍗 Lunch<span class="td">~74P/40C/0F — lean protein + veg + a starch</span></span><span class="ts"></span></div>
-        <div class="tl"><span class="tid">T7c</span><span class="tt">~evening<small>~10m</small></span><span class="tx">🧠 Mind check-in<span class="td">Mood + 3 gratitudes + how last night is sitting with him</span></span><span class="ts"></span></div>
-        <div class="tl"><span class="tid">T8</span><span class="tt">~19-20:00<small>~8h</small></span><span class="tx">😴 Sleep (real, full night)<span class="td">Protect tonight — no repeat of the fragmented pattern</span></span><span class="ts"></span></div>
-        <div class="plan-top">🎯 <b>Top 3:</b> ① actual rest/recovery, no guilt · ② lean protein day (fat's spent) · ③ a real full night's sleep</div>
-      </div>
-    </section>
-
-    <section class="reveal" style="animation-delay:.16s">
-      <div class="sec-title">Today's Macros</div>
-      <div class="nutri">
-        <div class="nutri-head"><b id="nutri-date">Today</b><span class="of" id="nutri-rem"></span></div>
-        <div class="tubes">
-          <div class="tw"><div class="val" id="v-cal">0</div><div class="tube"><i class="c-cal" data-macro="cal"></i></div><div class="lbl">Calories</div></div>
-          <div class="tw"><div class="val" id="v-protein">0</div><div class="tube"><i class="c-pro" data-macro="protein"></i></div><div class="lbl">Protein</div></div>
-          <div class="tw"><div class="val" id="v-fat">0</div><div class="tube"><i class="c-fat" data-macro="fat"></i></div><div class="lbl">Fat</div></div>
-          <div class="tw"><div class="val" id="v-carbs">0</div><div class="tube"><i class="c-carb" data-macro="carbs"></i></div><div class="lbl">Carbs</div></div>
-        </div>
-      </div>
-    </section>
-
-  </div>
-
-  <!-- ==================== TAB: PROGRESS ==================== -->
-  <div class="tab" id="tab-progress">
-
-    <section class="reveal">
-      <div class="sec-title">Weight Trend</div>
-      <div class="card" style="padding:14px 14px 10px">
-        <canvas id="chart-weight" style="height:180px;max-height:180px"></canvas>
-        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:.72rem;color:var(--faint)">
-          <span>Goal line: <b style="color:var(--lime)">73 kg</b></span>
-          <span id="weight-now">— kg today</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="reveal" style="animation-delay:.06s">
-      <div class="sec-title">Strength Progress <span class="note">est. 1-rep max · top set</span></div>
-      <div class="card" style="padding:14px 14px 10px">
-        <select id="lift-select" style="width:100%;margin-bottom:10px;padding:8px 10px;border-radius:9px;background:#12161c;color:var(--text);border:1px solid rgba(255,255,255,.1);font-size:.85rem;font-weight:600"></select>
-        <canvas id="chart-lift" style="height:180px;max-height:180px"></canvas>
-        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:.72rem;color:var(--faint)">
-          <span id="lift-detail">—</span>
-          <span id="lift-change">—</span>
-        </div>
-        <div style="margin-top:8px;font-size:.66rem;color:var(--faint);line-height:1.4">📈 Estimated 1-rep max from your top working set (weight × reps). Rising line = getting stronger — proof you're keeping muscle on the cut. Capped lifts (leg press) + machine-swap lifts left off.</div>
-      </div>
-    </section>
-
-    <section class="reveal" style="animation-delay:.12s">
+    <section class="reveal" style="animation-delay:.15s">
       <div class="sec-title">Body Composition <span class="note">smart scale · 30 Jun</span></div>
       <div class="card">
         <div class="bc-grid">
@@ -496,26 +518,26 @@
     </section>
 
     <section class="reveal" style="animation-delay:.12s">
-      <div class="sec-title">Next Session</div>
+      <div class="sec-title">Next Session <span class="note">🔄 deload cycle — one full A/P at −40%</span></div>
       <div class="cycle">
-        <span class="slot done">P·A</span>
+        <span class="slot done">P·B</span>
         <span class="slot done">Rest</span>
-        <span class="slot done">A·B</span>
-        <span class="slot now">P·B</span>
+        <span class="slot done">Rest</span>
+        <span class="slot now">A·A 🔄</span>
+        <span class="slot">P·A</span>
         <span class="slot">Rest</span>
-        <span class="slot">Rest</span>
-        <span class="slot">A·A</span>
+        <span class="slot">A·B</span>
       </div>
       <div class="card">
-        <div class="card-h">🏋️ Anterior A · <span style="color:var(--lime);font-weight:600">NEXT</span> <span style="color:var(--faint);font-weight:400">(after 2 rest days — Posterior B done 18 Jul)</span></div>
-        <div class="ex"><span>Barbell Bench</span><span class="sr">3 × 6-8 · <b>85kg</b> (last 85×10 🔥)</span></div>
-        <div class="ex"><span>Incline DB Press</span><span class="sr">3 × 8-10 · ~30kg/hand</span></div>
-        <div class="ex"><span>DB Shoulder Press</span><span class="sr">3 × 8-10 · ~17.5kg/hand</span></div>
-        <div class="ex"><span>Cable Lateral Raise</span><span class="sr">3 × 15-20 · ~7.5kg</span></div>
-        <div class="ex"><span>Leg Press <span style="color:var(--faint)">(L5-capped)</span></span><span class="sr">3 × 8-10 · ≤50/side</span></div>
-        <div class="ex"><span>Leg Extension</span><span class="sr">3 × 10-15 · <b>~80kg</b> (last 77×11)</span></div>
-        <div class="ex"><span>Overhead Cable Tricep Ext</span><span class="sr">3 × 10-12 · ~21.6kg</span></div>
-        <div class="wk-note">15 min cardio after · 1-2 RIR · leg press ≤50/side (back-safe)</div>
+        <div class="card-h">🏋️ Anterior A · <span style="color:var(--lime);font-weight:600">TODAY · 🔄 DELOAD</span> <span style="color:var(--faint);font-weight:400">(Posterior B done 18 Jul + 2 rest)</span></div>
+        <div class="ex"><span>Barbell Bench</span><span class="sr">2 × 6-8 · <b>~51kg</b> <span style="color:var(--faint)">(was 85)</span></span></div>
+        <div class="ex"><span>Incline DB Press</span><span class="sr">2 × 8-10 · ~18kg/hand</span></div>
+        <div class="ex"><span>DB Shoulder Press</span><span class="sr">2 × 8-10 · ~10kg/hand</span></div>
+        <div class="ex"><span>Cable Lateral Raise</span><span class="sr">2 × 15-20 · ~4.5kg</span></div>
+        <div class="ex"><span>Leg Press <span style="color:var(--faint)">(L5-capped)</span></span><span class="sr">2 × 8-10 · ~30/side</span></div>
+        <div class="ex"><span>Leg Extension</span><span class="sr">2 × 10-15 · ~48kg</span></div>
+        <div class="ex"><span>Overhead Cable Tricep Ext</span><span class="sr">2 × 10-12 · ~13kg</span></div>
+        <div class="wk-note">🔄 Deload — should feel EASY (4-5 RIR, not 1-2) · light Zone 2 cardio only, no sprints · back-safe</div>
       </div>
     </section>
 
@@ -555,7 +577,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 21 Jul 2026, 09:37 (Bangkok)
+    Updated 21 Jul 2026, 10:08 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
