@@ -87,7 +87,7 @@
   .track{height:10px; background:#0c0d10; border:1px solid var(--line); border-radius:8px; margin-top:20px; position:relative; overflow:hidden}
   .track > i{display:block; height:100%; width:0; border-radius:8px;
     background:linear-gradient(90deg,var(--orange),var(--lime)); animation:fill 1.2s .3s cubic-bezier(.2,.7,.3,1) forwards}
-  @keyframes fill{to{width:7%}}
+  @keyframes fill{to{width:10%}}
   .track-ends{display:flex; justify-content:space-between; margin-top:8px; font-size:.74rem; color:var(--faint)}
   .togo{margin-top:14px; display:flex; align-items:baseline; gap:7px}
   .togo b{font-family:var(--display); font-size:1.45rem; color:var(--lime); font-weight:700}
@@ -311,7 +311,7 @@
 
       <div class="track"><i></i></div>
       <div class="track-ends"><span>100 kg · start</span><span>73 kg · goal</span></div>
-      <div class="togo"><b>25.1 kg</b><span>to go — 1.9 down · trend nearing sub-98 · next recalc Fri 24 Jul</span></div>
+      <div class="togo"><b>24.2 kg</b><span>to go — 2.8 down · 🎯 new low 97.2, floor breaking · recalc Fri 24 Jul</span></div>
       <div class="eta">📅 <b>~30 weeks</b> at this pace · target ≈ early 2027</div>
     </div>
 
@@ -333,8 +333,8 @@
       <div class="now-grid">
         <div class="now">
           <div class="now-k">⚖️ Weight</div>
-          <div class="now-v">— <span class="u">kg</span></div>
-          <div class="now-s">awaiting AM weigh-in · Fri recalc</div>
+          <div class="now-v">97.2 <span class="u">kg</span></div>
+          <div class="now-s go">🎯 new low! floor breaking · Fri recalc</div>
         </div>
         <div class="now">
           <div class="now-k">😴 Last sleep</div>
@@ -361,7 +361,7 @@
         <div class="dc-grid">
           <div>
             <div class="dc-col-h">🌅 Morning</div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>Weigh-in</span></div>
+            <div class="dc-item done"><span class="dc-s">✅</span><span>Weigh-in (97.2 🎯)</span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>Creatine</span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>☀️ Sunscreen (AM!) + lotion</span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>Meal 1</span></div>
@@ -580,7 +580,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 22 Jul 2026, 11:47 (Bangkok)
+    Updated 22 Jul 2026, 12:01 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -621,7 +621,8 @@
       { d:'18 Jul', kg:98.4 },
       { d:'19 Jul', kg:98.8 },
       { d:'20 Jul', kg:99.1 },
-      { d:'21 Jul', kg:98.1 }
+      { d:'21 Jul', kg:98.1 },
+      { d:'22 Jul', kg:97.2 }
     ];
 
     /* === RECENT INTAKE AVG (last logged days) vs target === */
