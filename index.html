@@ -617,7 +617,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 31 Jul 2026, 14:03 (Bangkok)
+    Updated 31 Jul 2026, 14:46 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -631,7 +631,7 @@
   <script>
     /* === LIVE NUTRITION — Coach edits TODAY each time a meal is logged === */
     var TARGET = { cal:1937, protein:222, fat:60, carbs:127 };
-    var TODAY  = { date:'Today · 31 Jul', cal:494, protein:55, fat:5, carbs:56 };
+    var TODAY  = { date:'Today · 31 Jul', cal:608, protein:65, fat:7, carbs:71 };
 
     /* === WEIGHT LOG — Coach appends one entry per weigh-in === */
     var WEIGHTS = [
@@ -872,6 +872,16 @@
          sections = [{h:'Heading', items:[...]}]; steps = [...]; tip = '...'
          ============================================================ */
       var RECIPES = [
+        {
+          name:'Baked Stuffed Protein Donuts', emoji:'\ud83c\udf69', p:13, c:16, f:2, cal:135,
+          tags:['dessert','baked-not-fried','yeast-dough','batch-of-8','treat-replacement'],
+          blurb:'Reverse-engineered from a shop selling baked stuffed protein donuts at 140-150 cal. Frying is the biggest lever and it is not close \u2014 a donut absorbs 10-14 g of oil, which is ~110 cal before the recipe is touched. \u26a0\ufe0f Yeast dough, not cake batter. \ud83d\udd34 Needs vital wheat gluten, which Thai supermarkets often do not stock.',
+          sections:[
+            {h:'Where a normal donut\u2019s calories go', items:['\ud83d\udee2\ufe0f Absorbed frying oil ~90-125 cal \u2014 baking removes all of it','\ud83c\udf6c Sugar in the dough ~40-60 cal \u2192 allulose, zero','\ud83e\uddc8 Butter in the batter ~45-70 cal \u2192 nonfat Greek yogurt','\u2744\ufe0f Glaze ~50-80 cal \u2192 sweetener coating']},
+            {h:'The six rules', items:['Casein, NOT whey isolate \u2014 isolate is why homemade protein baking goes rubbery','Knead 8-10 min; under-kneading is the top failure','Two rises \u2014 the second proof is where fluffiness comes from','Fill AFTER baking and cooling, or it leaks and goes soggy','Baked donuts do not brown \u2014 brush with milk/butter and bake hot at 190\u00b0C','Butter trace + roll in sweetener: that coat is what the brain reads as \u201cdonut\u201d']},
+            {h:'Honest notes', items:['A Krispy Kreme glazed is 190 cal \u2014 so 140-150 is not magic on calories alone','\u2b50 The number that matters is PROTEIN: 15-20 g per donut is a real product, 5-8 g is a small cake','\u23f1\ufe0f ~3 hours with two proofs \u2014 buying the shop version is a legitimate answer','vs the 30 Jul snack round: 755 cal for 15 g protein. This is 135 cal for 13 g.']}
+          ]
+        },
         {
           name:'Carnivore Protein Bread', emoji:'\ud83c\udf5e', p:21, c:3, f:6, cal:150,
           tags:['bread','high-protein','low-carb','sliceable','sandwich-base','cut-adapted'],
