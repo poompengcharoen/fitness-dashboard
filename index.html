@@ -622,7 +622,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 3 Aug 2026, 20:03 (Bangkok)
+    Updated 4 Aug 2026, 00:03 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -888,7 +888,8 @@
             {h:'Where a normal donut\u2019s calories go', items:['\ud83d\udee2\ufe0f Absorbed frying oil ~90-125 cal \u2014 baking removes all of it','\ud83c\udf6c Sugar in the dough ~40-60 cal \u2192 allulose, zero','\ud83e\uddc8 Butter in the batter ~45-70 cal \u2192 nonfat Greek yogurt','\u2744\ufe0f Glaze ~50-80 cal \u2192 sweetener coating']},
             {h:'The six rules', items:['Casein, NOT whey isolate \u2014 isolate is why homemade protein baking goes rubbery','Knead 8-10 min; under-kneading is the top failure','Two rises \u2014 the second proof is where fluffiness comes from','Fill AFTER baking and cooling, or it leaks and goes soggy','Baked donuts do not brown \u2014 brush with milk/butter and bake hot at 190\u00b0C','Butter trace + roll in sweetener: that coat is what the brain reads as \u201cdonut\u201d']},
             {h:'Honest notes', items:['A Krispy Kreme glazed is 190 cal \u2014 so 140-150 is not magic on calories alone','\u2b50 The number that matters is PROTEIN: 15-20 g per donut is a real product, 5-8 g is a small cake','\u23f1\ufe0f ~3 hours with two proofs \u2014 buying the shop version is a legitimate answer','vs the 30 Jul snack round: 755 cal for 15 g protein. This is 135 cal for 13 g.']}
-          ]
+          ],
+          steps:['Warm the milk to lukewarm, stir in the yeast + a pinch of the allulose, rest 5 min until foamy.','Mix flour, vital wheat gluten, remaining allulose and salt. Add yogurt, egg whites, yeast milk.','<b>Knead 8-10 minutes</b> until smooth and elastic. Work the softened butter in near the end.','<b>First rise</b> ~1h until doubled.','Divide into 8 balls on a lined tray, <b>second proof ~45 min.</b>','Brush with milk or a little melted butter. <b>Bake 190\u00b0C, 10-12 min.</b>','Filling: heat milk + cornstarch + allulose, whisking, until thickened.','<b>Off the heat</b>, whisk in the casein \u2014 boiling protein powder turns it grainy. Chill, then pipe into the cooled donuts.']
         },
         {
           name:'Carnivore Protein Bread', emoji:'\ud83c\udf5e', p:21, c:3, f:6, cal:150,
@@ -1332,10 +1333,15 @@
         }).join('');
 
         function recipeHTML(r){
-          var secs = r.sections.map(function(s){
-            return '<h4>'+esc(s.h)+'</h4><ul>'+s.items.map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul>';
+          /* Defensive: a single recipe missing a field must never throw. A TypeError here
+             kills the whole <script>, which silently breaks the dock/tab navigation below.
+             (That is exactly what happened 3 Aug 2026 — the donuts entry had no `steps`.) */
+          var secs = (r.sections || []).map(function(s){
+            return '<h4>'+esc(s.h)+'</h4><ul>'+(s.items || []).map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul>';
           }).join('');
-          var steps = '<h4>Steps</h4><ol>'+r.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>';
+          var steps = (r.steps && r.steps.length)
+            ? '<h4>Steps</h4><ol>'+r.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ol>'
+            : '';
           var tip = r.tip ? '<div class="r-tip">'+r.tip+'</div>' : '';
           return '<details class="recipe">'
             + '<summary><span class="r-emoji">'+r.emoji+'</span>'
