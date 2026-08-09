@@ -316,15 +316,26 @@
     </div>
 
     <section class="reveal" style="animation-delay:.09s">
-      <div class="sec-title">Today's Macros</div>
+      <div class="sec-title">Today's Macros <span class="note">daily floors — calories are budgeted weekly, see below</span></div>
       <div class="nutri">
         <div class="nutri-head"><b id="nutri-date">Today</b><span class="of" id="nutri-rem"></span></div>
         <div class="tubes">
-          <div class="tw"><div class="val" id="v-cal">0</div><div class="tube"><i class="c-cal" data-macro="cal"></i></div><div class="lbl">Calories</div></div>
-          <div class="tw"><div class="val" id="v-protein">0</div><div class="tube"><i class="c-pro" data-macro="protein"></i></div><div class="lbl">Protein</div></div>
-          <div class="tw"><div class="val" id="v-fat">0</div><div class="tube"><i class="c-fat" data-macro="fat"></i></div><div class="lbl">Fat</div></div>
-          <div class="tw"><div class="val" id="v-carbs">0</div><div class="tube"><i class="c-carb" data-macro="carbs"></i></div><div class="lbl">Carbs</div></div>
+          <div class="tw"><div class="val" id="v-cal">0</div><div class="tube"><i class="c-cal" data-macro="cal"></i></div><div class="lbl">Calories <small style="opacity:.6">guide</small></div></div>
+          <div class="tw"><div class="val" id="v-protein">0</div><div class="tube"><i class="c-pro" data-macro="protein"></i></div><div class="lbl">Protein <small style="opacity:.6">floor</small></div></div>
+          <div class="tw"><div class="val" id="v-fat">0</div><div class="tube"><i class="c-fat" data-macro="fat"></i></div><div class="lbl">Fat <small style="opacity:.6">floor</small></div></div>
+          <div class="tw"><div class="val" id="v-carbs">0</div><div class="tube"><i class="c-carb" data-macro="carbs"></i></div><div class="lbl">Carbs <small style="opacity:.6">untracked</small></div></div>
         </div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.10s">
+      <div class="sec-title">📆 Weekly Calorie Budget <span class="note" id="wk-label">—</span></div>
+      <div class="card">
+        <div class="nutri-head"><b id="wk-used">—</b><span class="of" id="wk-left"></span></div>
+        <div class="tube" style="height:22px;width:100%;border-radius:11px;margin:10px 0 6px">
+          <i id="wk-fill" class="c-cal" style="display:block;height:100%;width:0;border-radius:11px;transition:width .8s ease"></i>
+        </div>
+        <div class="wk-note" id="wk-pace">—</div>
       </div>
     </section>
 
@@ -373,7 +384,7 @@
             <div class="dc-item"><span class="dc-s">⬜</span><span>🍱 Meal 2 · Meal 3</span></div>
             <div class="dc-item done"><span class="dc-s">✅</span><span>🏋️ Anterior B <span style="color:var(--faint)">(880 active cal · 🎉 incline PR 75)</span></span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>PM skincare</span></div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>L-arg + Zinc</span></div>
+            <div class="dc-item done"><span class="dc-s">✅</span><span>L-arg + Zinc <span style="color:var(--faint)">(07:32 — 9h45m clear)</span></span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>Mood + reflection</span></div>
           </div>
         </div>
@@ -648,7 +659,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 9 Aug 2026, 07:11 (Bangkok)
+    Updated 9 Aug 2026, 07:32 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -660,9 +671,19 @@
   </nav>
 
   <script>
-    /* === LIVE NUTRITION — Coach edits TODAY each time a meal is logged === */
+    /* === LIVE NUTRITION — Coach edits TODAY each time a meal is logged ===
+       MODEL (adopted 9 Aug 2026): calories are a WEEKLY budget; protein + fat are DAILY floors;
+       carbs are not tracked. TARGET.cal below is just the weekly budget / 7 — a guide, not a limit. */
     var TARGET = { cal:1937, protein:222, fat:60, carbs:127 };
     var TODAY  = { date:'Today · 9 Aug', cal:811, protein:88, fat:21, carbs:69 };
+
+    /* === WEEKLY CALORIE BUDGET — the real accounting layer. Week runs Fri -> Thu, never rolls over. === */
+    var WEEK = {
+      label: 'Fri 7 → Thu 13 Aug',
+      budget: 13559,          /* 1,937 x 7 */
+      used: 5346,             /* 7 Aug 2,511 + 8 Aug 2,024 + 9 Aug so far 811 */
+      daysElapsed: 2.5        /* fractional: today counts as a part-day */
+    };
 
     /* === WEIGHT LOG — Coach appends one entry per weigh-in === */
     var WEIGHTS = [
@@ -785,8 +806,34 @@
       var d = document.getElementById('nutri-date'); if(d) d.textContent = TODAY.date;
       var rem = document.getElementById('nutri-rem');
       if(rem){ var left = TARGET.cal - TODAY.cal;
-        rem.textContent = left >= 0 ? left.toLocaleString()+' kcal left' : Math.abs(left).toLocaleString()+' kcal over';
+        rem.textContent = left >= 0 ? left.toLocaleString()+' kcal left today' : Math.abs(left).toLocaleString()+' kcal over guide';
         if(left < 0) rem.style.color = '#ff7849';
+      }
+
+      /* --- Weekly calorie budget: the pace signal is what matters, not the absolute --- */
+      if(typeof WEEK !== 'undefined'){
+        var usedPct = Math.round(WEEK.used / WEEK.budget * 100);
+        var elapsedPct = Math.round(WEEK.daysElapsed / 7 * 100);
+        var wl = document.getElementById('wk-label'); if(wl) wl.textContent = WEEK.label;
+        var wu = document.getElementById('wk-used');
+        if(wu) wu.innerHTML = WEEK.used.toLocaleString() + '<small style="opacity:.6">/' + WEEK.budget.toLocaleString() + ' kcal</small>';
+        var wleft = document.getElementById('wk-left');
+        if(wleft){ var wl2 = WEEK.budget - WEEK.used;
+          wleft.textContent = wl2 >= 0 ? wl2.toLocaleString()+' left this week' : Math.abs(wl2).toLocaleString()+' over';
+          if(wl2 < 0) wleft.style.color = '#ff7849';
+        }
+        var wf = document.getElementById('wk-fill');
+        if(wf){ if(rm){ wf.style.width = Math.min(100,usedPct)+'%'; }
+                else { setTimeout(function(){ wf.style.width = Math.min(100,usedPct)+'%'; }, 500); } }
+        var wp = document.getElementById('wk-pace');
+        if(wp){
+          var diff = usedPct - elapsedPct;
+          var verdict = diff <= 5 ? '✅ on pace' : (diff <= 12 ? '⚠️ running hot' : '🔴 over pace');
+          wp.innerHTML = '<b>' + usedPct + '% of budget used · ' + elapsedPct + '% of the week elapsed — ' + verdict + '</b>'
+            + '<br><br>Calories are budgeted <b>weekly</b>, not daily — one heavy meal is ' + Math.round(2700/WEEK.budget*100) + '% of the week, not a ruined day. '
+            + 'Protein (222g) and fat (50g) stay <b>daily floors</b>; carbs are not tracked. '
+            + 'Week runs Fri → Thu and <b>never rolls over</b>.';
+        }
       }
 
       /* === CHARTS (lazy-init when Progress tab first opens — avoids 0-height in hidden tab) === */
