@@ -323,7 +323,7 @@
           <div class="tw"><div class="val" id="v-cal">0</div><div class="tube"><i class="c-cal" data-macro="cal"></i></div><div class="lbl">Calories <small style="opacity:.6">guide</small></div></div>
           <div class="tw"><div class="val" id="v-protein">0</div><div class="tube"><i class="c-pro" data-macro="protein"></i></div><div class="lbl">Protein <small style="opacity:.6">floor</small></div></div>
           <div class="tw"><div class="val" id="v-fat">0</div><div class="tube"><i class="c-fat" data-macro="fat"></i></div><div class="lbl">Fat <small style="opacity:.6">floor</small></div></div>
-          <div class="tw"><div class="val" id="v-carbs">0</div><div class="tube"><i class="c-carb" data-macro="carbs"></i></div><div class="lbl">Carbs <small style="opacity:.6">untracked</small></div></div>
+          <div class="tw"><div class="val" id="v-carbs">0</div><div class="tube"><i class="c-carb" data-macro="carbs"></i></div><div class="lbl">Carbs <small style="opacity:.6">~150 soft</small></div></div>
         </div>
       </div>
     </section>
@@ -659,7 +659,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 9 Aug 2026, 11:50 (Bangkok)
+    Updated 9 Aug 2026, 12:07 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -674,7 +674,7 @@
     /* === LIVE NUTRITION — Coach edits TODAY each time a meal is logged ===
        MODEL (adopted 9 Aug 2026): calories are a WEEKLY budget; protein + fat are DAILY floors;
        carbs are not tracked. TARGET.cal below is just the weekly budget / 7 — a guide, not a limit. */
-    var TARGET = { cal:1937, protein:222, fat:60, carbs:127 };
+    var TARGET = { cal:1937, protein:222, fat:60, carbs:150 };  /* carbs = soft ceiling, diagnostic only */
     var TODAY  = { date:'Today · 9 Aug', cal:0, protein:0, fat:0, carbs:0 };
 
     /* === WEEKLY CALORIE BUDGET — the real accounting layer. Week runs Fri -> Thu, never rolls over. === */
