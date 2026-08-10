@@ -659,7 +659,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 10 Aug 2026, 02:32 (Bangkok)
+    Updated 10 Aug 2026, 14:38 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -675,14 +675,14 @@
        MODEL (adopted 9 Aug 2026): calories are a WEEKLY budget; protein + fat are DAILY floors;
        carbs are not tracked. TARGET.cal below is just the weekly budget / 7 — a guide, not a limit. */
     var TARGET = { cal:1937, protein:222, fat:60, carbs:127 };
-    var TODAY  = { date:'Today · 9 Aug', cal:1365, protein:147, fat:32, carbs:143 };
+    var TODAY  = { date:'Today · 10 Aug', cal:0, protein:0, fat:0, carbs:0 };
 
     /* === WEEKLY CALORIE BUDGET — the real accounting layer. Week runs Fri -> Thu, never rolls over. === */
     var WEEK = {
       label: 'Fri 7 → Thu 13 Aug',
       budget: 13559,          /* 1,937 x 7 */
-      used: 6711,             /* 7 Aug 2,511 + 8 Aug 2,835 + 9 Aug so far 1,365 */
-      daysElapsed: 3.1        /* fractional: today counts as a part-day */
+      used: 6711,             /* 7 Aug 2,511 + 8 Aug 2,835 + 9 Aug 1,365 + 10 Aug so far 0 */
+      daysElapsed: 3.5        /* fractional: today counts as a part-day */
     };
 
     /* === WEIGHT LOG — Coach appends one entry per weigh-in === */
