@@ -171,6 +171,55 @@
   .dc-item.done .dc-s{color:var(--lime)}
   @media (max-width:420px){ .dc-grid{grid-template-columns:1fr} }
 
+
+  /* ===== MEDS / SUPPLEMENT TIMETABLE ===== */
+  .md-now{display:flex; flex-direction:column; gap:8px}
+  .md-row{display:flex; align-items:center; gap:10px; background:var(--surface-2); border:1px solid var(--line);
+          border-radius:13px; padding:11px 13px}
+  .md-row.due{border-color:rgba(198,242,78,.35)}
+  .md-row.wait{opacity:.62}
+  .md-e{font-size:1.05rem; flex:none; width:22px; text-align:center}
+  .md-t{flex:1; min-width:0}
+  .md-t, .md-n, .md-s{display:block}
+  .md-n{font-size:.85rem; font-weight:600; color:var(--text); line-height:1.35}
+  .md-s{font-size:.7rem; color:var(--faint); margin-top:2px}
+  .md-pill{flex:none; font-family:var(--display); font-size:.66rem; font-weight:700; letter-spacing:.04em;
+           padding:5px 9px; border-radius:999px; border:1px solid var(--line-strong); color:var(--dim); white-space:nowrap}
+  .md-pill.due{background:rgba(198,242,78,.13); border-color:rgba(198,242,78,.4); color:var(--lime)}
+  .md-pill.over{background:rgba(255,120,73,.13); border-color:rgba(255,120,73,.4); color:var(--orange)}
+  .md-pill.off{background:rgba(255,255,255,.04)}
+
+  /* 24-hour strip */
+  .tt{margin-top:4px}
+  .tt-hd{display:flex; justify-content:space-between; font-size:.62rem; color:var(--faint);
+         font-variant-numeric:tabular-nums; margin:0 0 6px 92px}
+  .tt-r{display:flex; align-items:center; gap:8px; margin-bottom:7px}
+  .tt-l{width:84px; flex:none; font-size:.7rem; color:var(--dim); text-align:right; overflow:hidden;
+        white-space:nowrap; text-overflow:ellipsis}
+  .tt-b{position:relative; flex:1; height:16px; background:var(--surface-2); border:1px solid var(--line);
+        border-radius:8px; overflow:hidden}
+  .tt-b i{position:absolute; top:50%; width:9px; height:9px; margin:-4.5px 0 0 -4.5px; border-radius:50%;
+          background:var(--lime)}
+  .tt-b i.plan{background:transparent; border:1.5px solid var(--dim)}
+  .tt-b i.plan.ready{border-color:var(--lime); box-shadow:0 0 0 3px rgba(198,242,78,.15)}
+  .tt-b u{position:absolute; top:0; bottom:0; width:1.5px; background:var(--orange); text-decoration:none}
+  .tt-key{display:flex; gap:14px; flex-wrap:wrap; font-size:.66rem; color:var(--faint); margin-top:10px;
+          padding-top:10px; border-top:1px solid var(--line)}
+  .tt-key span{display:flex; align-items:center; gap:5px}
+  .tt-key b{width:9px; height:9px; border-radius:50%; display:inline-block}
+
+  /* reference table */
+  .mt-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch}
+  .mt{width:100%; border-collapse:collapse; font-size:.76rem; min-width:430px}
+  .mt th{text-align:left; font-family:var(--display); font-size:.68rem; font-weight:700; color:var(--faint);
+         letter-spacing:.05em; text-transform:uppercase; padding:0 10px 8px 0; border-bottom:1px solid var(--line-strong)}
+  .mt td{padding:9px 10px 9px 0; border-bottom:1px solid var(--line); color:var(--dim); vertical-align:top}
+  .mt tr:last-child td{border-bottom:none}
+  .mt td.k{color:var(--text); font-weight:600; white-space:nowrap}
+  .mt td.f{font-variant-numeric:tabular-nums; white-space:nowrap}
+  .mt tr.off td{opacity:.45; text-decoration:line-through}
+  .mt tr.off td.why{text-decoration:none}
+
   /* Body composition grid */
   .bc-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
   .bc{background:var(--surface-2); border:1px solid var(--line); border-radius:13px; padding:13px 15px}
@@ -359,24 +408,24 @@
         </div>
         <div class="now">
           <div class="now-k">🦠 COVID-19</div>
-          <div class="now-v">Day 2</div>
-          <div class="now-s">both positive · no fever · ⛔ training paused</div>
+          <div class="now-v">Day 4</div>
+          <div class="now-s">past the peak · 🌊 saline fixed the nose · ⛔ training paused</div>
         </div>
       </div>
-      <div class="now-treat">🍲 Weekly treat AVAILABLE · buffet planned — <b>Suki Teenoi</b> recommended over a 2,700-cal mala</div>
+      <div class="now-treat">⚖️ <b>WEIGH IN — the TDEE recalc is tomorrow and only 3 of the last 7 mornings have a reading</b></div>
     </section>
 
     <section class="reveal" style="animation-delay:.15s">
-      <div class="sec-title">🦠 COVID-19 — Day 2 <span class="note">Poom + Reaw both positive · ATK 11 Aug · onset ~13:00, 10 Aug</span></div>
+      <div class="sec-title">🦠 COVID-19 — Day 4 <span class="note">onset ~13:00 on 10 Aug · day 3 was the peak · expect the turn ~day 5-7</span></div>
       <div class="card">
         <div class="dc-grid">
           <div>
-            <div class="dc-col-h">💊 Take</div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>Levocetirizine 5mg <span style="color:var(--faint)">1×/day — nose</span></span></div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>Vitamin C 1000mg <span style="color:var(--faint)">1×/day · stop ~day 7</span></span></div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>🌿 Tavipec <span style="color:var(--faint)">dose 1 of 3 — phlegm</span></span></div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>🌿 Tavipec <b>dose 2</b> · <b>dose 3</b></span></div>
-            <div class="dc-item"><span class="dc-s">💨</span><span>Difflam spray <span style="color:var(--faint)">as needed — throat</span></span></div>
+            <div class="dc-col-h">💊 What changed</div>
+            <div class="dc-item done"><span class="dc-s">🌊</span><span><b>Saline nasal spray</b> <span style="color:var(--faint)">the nostril burning that broke his sleep — gone on first use</span></span></div>
+            <div class="dc-item done"><span class="dc-s">💊</span><span><b>Ibuprofen added</b> <span style="color:var(--faint)">alternates with paracetamol · treats inflammation, not just pain</span></span></div>
+            <div class="dc-item done"><span class="dc-s">🌿</span><span><b>NAC replaced Tavipec</b> <span style="color:var(--faint)">1×/day beats a 3×/day schedule that kept slipping</span></span></div>
+            <div class="dc-item"><span class="dc-s">⏸️</span><span><b>Levocetirizine dropped</b> <span style="color:var(--faint)">it was drying the nose it was meant to help</span></span></div>
+            <div class="dc-item"><span class="dc-s">💊</span><span>See the <b>Meds</b> tab for the live timetable</span></div>
           </div>
           <div>
             <div class="dc-col-h">🚫 Do NOT take</div>
@@ -393,25 +442,25 @@
     </section>
 
     <section class="reveal" style="animation-delay:.16s">
-      <div class="sec-title">🎯 Daily Consistency <span class="note">Tue 11 Aug · slept 19:00 → woke 01:45 · 6h45m</span></div>
+      <div class="sec-title">🎯 Daily Consistency <span class="note">Thu 13 Aug · fresh cycle from 03:45 · 🦠 COVID day 4</span></div>
       <div class="card">
         <div class="dc-grid">
           <div>
             <div class="dc-col-h">🌅 Morning</div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>Weigh-in · <b>97.1</b> <span style="color:var(--faint)">(−0.3)</span></span></div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>Creatine · 🔥 <b>46</b></span></div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>💊 Centrum + fish oil <span style="color:var(--faint)">(🐟 Vistra line CLOSED)</span></span></div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>🍱 Meals <span style="color:var(--faint)">(241P · 2,038 cal)</span></span></div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>🚰 Water 🎯 1.5 bottles <span style="color:var(--faint)">— matters more while sick</span></span></div>
+            <div class="dc-item"><span class="dc-s">🔴</span><span><b>Weigh-in</b> <span style="color:var(--faint)">— 4 of the last 7 mornings missed. The recalc is TOMORROW.</span></span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>💪 Creatine <span style="color:var(--faint)">streak 48 due</span></span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>💊 Centrum + 🐟 fish oil <span style="color:var(--faint)">— needs a meal with fat</span></span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>🍱 Meals <span style="color:var(--faint)">— fresh day, 0 logged</span></span></div>
+            <div class="dc-item"><span class="dc-s">🔴</span><span>🚰 Water 🎯 1.5 bottles <span style="color:var(--faint)">— nothing logged in 4 days, and ibuprofen makes this a safety item</span></span></div>
           </div>
           <div>
             <div class="dc-col-h">🌙 Evening</div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>L-arg + Zinc <span style="color:var(--faint)">(05:35)</span></span></div>
-            <div class="dc-item"><span class="dc-s">⏸️</span><span>🔥 L-carnitine <span style="color:var(--faint)">held for the session</span></span></div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>🌾 Psyllium <span style="color:var(--faint)">gate OPEN — 6 caps + full glass, 30min pre-meal 2</span></span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>🍆 L-arg + Zinc <span style="color:var(--faint)">3h clear of Centrum</span></span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>🌿 NAC <span style="color:var(--faint)">1×/day from 16:43</span></span></div>
+            <div class="dc-item"><span class="dc-s">⏸️</span><span>🔥 L-carnitine <span style="color:var(--faint)">held — no training while positive</span></span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>PM skincare</span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>Mood + reflection</span></div>
-            <div class="dc-item"><span class="dc-s">🦷</span><span><b>9 days</b> till next Invisalign</span></div>
+            <div class="dc-item"><span class="dc-s">🦷</span><span><b>6 days</b> till next Invisalign <span style="color:var(--faint)">(tray 37 → 38, ~19 Aug)</span></span></div>
           </div>
         </div>
       </div>
@@ -542,6 +591,81 @@
   </div>
 
   <!-- ==================== TAB: PLAN ==================== -->
+  <!-- ==================== TAB: MEDS ==================== -->
+  <div class="tab" id="tab-meds">
+
+    <section class="reveal" style="animation-delay:.05s">
+      <div class="sec-title">💊 Right Now <span class="note" id="md-clock">—</span></div>
+      <div class="card">
+        <div class="md-now" id="md-now"></div>
+        <div class="wk-note" id="md-para" style="margin-top:12px"></div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.09s">
+      <div class="sec-title">🕐 Today's Timetable <span class="note">Bangkok · midnight to midnight</span></div>
+      <div class="card">
+        <div class="tt">
+          <div class="tt-hd"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+          <div id="tt-rows"></div>
+        </div>
+        <div class="tt-key">
+          <span><b style="background:var(--lime)"></b> taken</span>
+          <span><b style="border:1.5px solid var(--dim)"></b> next due</span>
+          <span><b style="border:1.5px solid var(--lime)"></b> due now</span>
+          <span><b style="background:var(--orange);width:2px;border-radius:0;height:11px"></b> now</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.12s">
+      <div class="sec-title">📋 The Full Stack <span class="note">what each thing is actually for</span></div>
+      <div class="card">
+        <div class="mt-wrap">
+          <table class="mt">
+            <thead><tr><th>Item</th><th>Dose</th><th>How often</th><th>What it's for</th></tr></thead>
+            <tbody id="mt-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.15s">
+      <div class="sec-title">🚫 Never Together <span class="note">hard rules — the checker enforces these</span></div>
+      <div class="card">
+        <div class="dc-item"><span class="dc-s">🚨</span><span><b>Two antihistamines</b> — Levocetirizine / Chlorphen-Y / PHeNZ all act the same way. <span style="color:var(--faint)">The pharmacy handed over all three; that's a standard bundle, not a prescription.</span></span></div>
+        <div class="dc-item"><span class="dc-s">🚨</span><span><b>Two NSAIDs</b> — ibuprofen / aspirin / diclofenac / naproxen. <span style="color:var(--faint)">Paracetamol is not an NSAID — it's the correct thing to alternate with.</span></span></div>
+        <div class="dc-item"><span class="dc-s">⛔</span><span><b>NAC + Tavipec</b> — same job (mucolytic), not additive. <span style="color:var(--faint)">NAC superseded Tavipec on 12 Aug.</span></span></div>
+        <div class="dc-item"><span class="dc-s">⚠️</span><span><b>Centrum + L-arg&nbsp;Zinc within 3h</b> — zinc competes with calcium and iron.</span></div>
+        <div class="dc-item"><span class="dc-s">⚠️</span><span><b>Psyllium within 2h of anything mineral</b> — it binds them.</span></div>
+        <div class="wk-note" style="margin-top:12px">🚨 <b>Two hard ceilings.</b> Paracetamol <b>4,000mg / 24h</b> (8 × 500mg) — a liver limit, not a guideline. Ibuprofen <b>1,200mg / 24h</b> (3 × 400mg), always with food.<br><br>📏 <b>This page is generated from the same ledger the dose checker reads</b> (<code>logs/dose-ledger.tsv</code>). Coach never answers "do I take X?" from memory — the script runs first, every time. <span style="color:var(--faint)">Built 11 Aug after Coach told Poom to take a second multivitamin ~13h after the first. He caught it; Coach hadn't checked.</span></div>
+      </div>
+    </section>
+
+    <section class="reveal" style="animation-delay:.18s">
+      <div class="sec-title">💙 Reaw <span class="note">same infection · separate ledger</span></div>
+      <div class="card">
+        <div class="dc-grid">
+          <div>
+            <div class="dc-col-h">✅ Takes</div>
+            <div class="dc-item"><span class="dc-s">💊</span><span>Levocetirizine 5mg <span style="color:var(--faint)">1×/day</span></span></div>
+            <div class="dc-item"><span class="dc-s">🌿</span><span>Tavipec <span style="color:var(--faint)">3×/day — or switch to NAC 1×/day</span></span></div>
+            <div class="dc-item"><span class="dc-s">🍊</span><span>Vitamin C 1000mg <span style="color:var(--faint)">1×/day, ~5-7 days</span></span></div>
+            <div class="dc-item"><span class="dc-s">💨</span><span>Difflam <span style="color:var(--faint)">as needed</span></span></div>
+          </div>
+          <div>
+            <div class="dc-col-h">🚫 Never</div>
+            <div class="dc-item"><span class="dc-s">❌</span><span>Chlorphen-Y</span></div>
+            <div class="dc-item"><span class="dc-s">❌</span><span>PHeNZ</span></div>
+            <div class="dc-col-h" style="margin-top:14px">⚠️ Note</div>
+            <div class="dc-item"><span class="dc-s">📋</span><span>Reaw's doses arrive <b>second-hand through Poom</b> — times are approximate and gaps are invisible.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
   <div class="tab" id="tab-plan">
 
     <section class="reveal">
@@ -685,13 +809,14 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 11 Aug 2026, 19:47 (Bangkok)
+    Updated 13 Aug 2026, 04:21 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
   <nav class="dock">
     <button data-tab="today" class="active"><span class="di">🏠</span><span class="dl">Today</span></button>
     <button data-tab="progress"><span class="di">📈</span><span class="dl">Progress</span></button>
+    <button data-tab="meds"><span class="di">💊</span><span class="dl">Meds</span></button>
     <button data-tab="plan"><span class="di">🍽️</span><span class="dl">Plan</span></button>
     <button data-tab="cookbook"><span class="di">📖</span><span class="dl">Cookbook</span></button>
   </nav>
@@ -701,14 +826,14 @@
        MODEL (adopted 9 Aug 2026): calories are a WEEKLY budget; protein + fat are DAILY floors;
        carbs are not tracked. TARGET.cal below is just the weekly budget / 7 — a guide, not a limit. */
     var TARGET = { cal:1937, protein:222, fat:60, carbs:127 };
-    var TODAY  = { date:'Today · 11 Aug', cal:1420, protein:125, fat:52, carbs:116 };
+    var TODAY  = { date:'Today · 13 Aug', cal:0, protein:0, fat:0, carbs:0 };
 
     /* === WEEKLY CALORIE BUDGET — the real accounting layer. Week runs Fri -> Thu, never rolls over. === */
     var WEEK = {
-      label: 'Fri 7 → Thu 13 Aug',
+      label: 'Fri 7 → Thu 13 Aug · FINAL DAY',
       budget: 13559,          /* 1,937 x 7 */
-      used: 10365,            /* 7 Aug 2,511 + 8 Aug 2,835 + 9 Aug 1,365 + 10 Aug 2,038 + 11 Aug so far 1,420 */
-      daysElapsed: 4.74       /* Fri 7 00:00 -> Tue 11 17:49 */
+      used: 13484,            /* 2,511 + 2,835 + 1,916 + 2,038 + 2,173 + 2,011 + 0 */
+      daysElapsed: 6.2        /* Fri 7 00:00 -> Thu 13 04:10 */
     };
 
     /* === WEIGHT LOG — Coach appends one entry per weigh-in === */
@@ -1491,6 +1616,105 @@
         });
         render();
       })();
+
+
+    /* ================= MEDS / SUPPLEMENT TIMETABLE =================
+       Mirrors logs/dose-ledger.tsv + logs/dose-check.py. `last` is the real Bangkok
+       clock time of the most recent dose; `every` is the minimum gap in hours.
+       Everything on this tab is computed live in the browser from these two fields —
+       no stored "wait N hours" strings, which is the bug that made the old prose
+       logs unsafe (an agent could read a stale gap and defer a dose indefinitely). */
+    var MEDS = [
+      { k:'💪', n:'Creatine',        d:'5g',            every:20,  last:'2026-08-12 01:58', why:'Daily saturation — streak 48', grp:'supp' },
+      { k:'💊', n:'Centrum',         d:'1 tab',         every:20,  last:'2026-08-12 01:58', why:'Multivitamin — needs dietary fat', grp:'supp' },
+      { k:'🐟', n:'Fish oil',        d:'1 cap 900mg',   every:20,  last:'2026-08-12 01:58', why:'Omega-3 — Blackmores, needs fat', grp:'supp' },
+      { k:'🍆', n:'L-arg + Zinc',    d:'2 caps',        every:20,  last:'2026-08-12 05:04', why:'Pre-bed · keep 3h clear of Centrum', grp:'supp' },
+      { k:'🌡️', n:'Paracetamol',     d:'1-2 × 500mg',   every:4,   last:'2026-08-12 17:41', why:'Fever + pain · max 8 tabs/24h', grp:'med', prn:true, count:6, cap:8 },
+      { k:'💊', n:'Ibuprofen',       d:'1 × 400mg',     every:8,   last:'2026-08-12 20:52', why:'Pain + INFLAMMATION · with food · max 3/24h', grp:'med', prn:true },
+      { k:'🌿', n:'NAC',             d:'1 × 600mg',     every:20,  last:'2026-08-12 20:43', why:'Mucolytic — thins phlegm', grp:'med' },
+      { k:'🍊', n:'Vitamin C',       d:'1000mg',        every:20,  last:'2026-08-12 01:58', why:'Illness course — stop ~day 7', grp:'med' },
+      { k:'🌊', n:'Saline spray',    d:'2 sprays',      every:2,   last:'2026-08-12 23:25', why:'THE fix for the dry burning nose', grp:'med', prn:true },
+      { k:'💨', n:'Difflam',         d:'2-3 sprays',    every:1.5, last:'2026-08-12 20:57', why:'Throat — numbs and de-inflames', grp:'med', prn:true }
+    ];
+    /* Deliberately NOT being taken — shown struck through so the reason survives */
+    var MEDS_OFF = [
+      { k:'💊', n:'Levocetirizine', d:'5mg', f:'1×/day', why:'⏸️ DROPPED 12 Aug — it was the main thing drying the nose. Restart only if the blockage beats the burning.' },
+      { k:'🌿', n:'Tavipec',        d:'1-2 caps', f:'3×/day', why:'⛔ RETIRED 12 Aug — superseded by NAC. 3×/day never fit a 20-hour waking cycle.' },
+      { k:'🔥', n:'L-carnitine',    d:'1 dose', f:'training days', why:'⏸️ HELD — no training while COVID-positive.' },
+      { k:'🌾', n:'Psyllium',       d:'6 caps', f:'gate: protein ≥150g', why:'⏸️ Gate opens mid-day; never before a weigh-in, never when behind on protein.' },
+      { k:'❌', n:'Chlorphen-Y',    d:'—', f:'never', why:'🚫 Antihistamine — same class as levocetirizine.' },
+      { k:'❌', n:'PHeNZ',          d:'—', f:'never', why:'🚫 Antihistamine + REM-suppressing. Reserved for a night congestion physically stops sleep.' }
+    ];
+
+    (function meds(){
+      function bkkNow(){ var d=new Date(); return new Date(d.getTime() + d.getTimezoneOffset()*60000 + 7*3600000); }
+      function parseBkk(s){ var a=s.split(/[- :]/); return new Date(+a[0], a[1]-1, +a[2], +a[3], +a[4]); }
+      function hhmm(d){ return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }
+      function dayName(d){ return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()]; }
+      function freq(h){ return h>=20 ? '1× / day' : ('every '+(h%1?h:h|0)+'h'); }
+
+      var now = bkkNow();
+      var clk = document.getElementById('md-clock');
+      if(clk) clk.textContent = dayName(now)+' '+now.getDate()+' Aug · '+hhmm(now)+' Bangkok';
+
+      var rows = MEDS.map(function(m){
+        var last = parseBkk(m.last);
+        var due  = new Date(last.getTime() + m.every*3600000);
+        var hrs  = (now - last)/3600000;
+        return { m:m, last:last, due:due, hrs:hrs, ready: now >= due };
+      });
+      /* due first, then soonest-due — never alphabetical: the question is always "what now?" */
+      rows.sort(function(a,b){ return (b.ready-a.ready) || (a.due-b.due); });
+
+      var host = document.getElementById('md-now');
+      if(host) host.innerHTML = rows.map(function(r){
+        /* an as-needed item is never "overdue" — saying so would push a painkiller dose
+           he doesn't need. Scheduled items are the only ones that can fall behind. */
+        var over = r.ready && !r.m.prn && r.hrs > r.m.every*1.8;
+        var pill = !r.ready ? '<span class="md-pill">'+hhmm(r.due)+'</span>'
+                 : over     ? '<span class="md-pill over">OVERDUE</span>'
+                 : r.m.prn  ? '<span class="md-pill off">IF NEEDED</span>'
+                            : '<span class="md-pill due">TAKE NOW</span>';
+        return '<div class="md-row '+(r.ready?'due':'wait')+'">'
+             + '<span class="md-e">'+r.m.k+'</span>'
+             + '<span class="md-t"><span class="md-n">'+r.m.n+' <span style="color:var(--faint);font-weight:400">'+r.m.d+'</span></span>'
+             + '<span class="md-s">'+r.m.why+' · last '+hhmm(r.last)+'</span></span>'
+             + pill + '</div>';
+      }).join('');
+
+      var para = MEDS.filter(function(m){ return m.cap; })[0];
+      var pe = document.getElementById('md-para');
+      if(pe && para){
+        var pct = Math.round(para.count/para.cap*100);
+        pe.innerHTML = '🌡️ <b>Paracetamol: '+para.count+' / '+para.cap+' tablets in the last 24h</b> — '
+          + (para.count*500)+'mg of the 4,000mg liver ceiling ('+pct+'%). '
+          + '<span style="color:var(--faint)">Rolling 24 hours, not calendar day: a midnight rollover must never reset this count.</span>';
+      }
+
+      /* 24h strip */
+      var midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0);
+      function pctOf(d){ return Math.max(0, Math.min(100, (d-midnight)/86400000*100)); }
+      var tt = document.getElementById('tt-rows');
+      if(tt) tt.innerHTML = rows.map(function(r){
+        var dots = '';
+        if(r.last >= midnight) dots += '<i style="left:'+pctOf(r.last)+'%" title="taken '+hhmm(r.last)+'"></i>';
+        /* Always place the next-due marker, including when it fell before midnight —
+           otherwise everything already due renders as an empty row, which reads as
+           "nothing to do here" when it means the exact opposite. */
+        if(r.due - midnight < 86400000) dots += '<i class="plan'+(r.ready?' ready':'')+'" style="left:'+pctOf(r.due)+'%" title="'+(r.ready?'due now':'due '+hhmm(r.due))+'"></i>';
+        return '<div class="tt-r"><span class="tt-l">'+r.m.k+' '+r.m.n+'</span>'
+             + '<span class="tt-b">'+dots+'<u style="left:'+pctOf(now)+'%"></u></span></div>';
+      }).join('');
+
+      var tb = document.getElementById('mt-body');
+      if(tb) tb.innerHTML =
+        rows.map(function(r){
+          return '<tr><td class="k">'+r.m.k+' '+r.m.n+'</td><td class="f">'+r.m.d+'</td><td class="f">'+freq(r.m.every)+'</td><td class="why">'+r.m.why+'</td></tr>';
+        }).join('') +
+        MEDS_OFF.map(function(m){
+          return '<tr class="off"><td class="k">'+m.k+' '+m.n+'</td><td class="f">'+m.d+'</td><td class="f">'+m.f+'</td><td class="why">'+m.why+'</td></tr>';
+        }).join('');
+    })();
 
       /* === TAB NAVIGATION === */
       var tabs = document.querySelectorAll('.tab');
