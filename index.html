@@ -360,7 +360,7 @@
 
       <div class="track"><i></i></div>
       <div class="track-ends"><span>100 kg · start</span><span>73 kg · goal</span></div>
-      <div class="togo"><b>24.1 kg</b><span>to go — 2.9 down · band moved <b>97.0-97.6 → 96.5-97.4</b> · 🤒 illness week, expect scale noise</span></div>
+      <div class="togo"><b>23.6 kg</b><span>to go — 3.4 down · 🎉 <b>96.6 ties the all-time low</b>, and it landed at the END of an illness week</span></div>
       <div class="eta">📅 <b>~30 weeks</b> at this pace · target ≈ early 2027</div>
     </div>
 
@@ -408,11 +408,11 @@
         </div>
         <div class="now">
           <div class="now-k">🦠 COVID-19</div>
-          <div class="now-v">Day 4</div>
-          <div class="now-s">past the peak · 🌊 saline fixed the nose · ⛔ training paused</div>
+          <div class="now-v">Day 5</div>
+          <div class="now-s">🦷 + mouth ulcer since 13 Aug · ⛔ training paused</div>
         </div>
       </div>
-      <div class="now-treat">⚖️ <b>WEIGH IN — the TDEE recalc is tomorrow and only 3 of the last 7 mornings have a reading</b></div>
+      <div class="now-treat">🗓️ <b>14 Aug recalc: TARGET HELD at 1,937</b> — the trend maths returned 1,918 (below BMR) off a 3-point week. Broken input, not a metabolism change. Next recalc 21 Aug — <b>needs 5 clean mornings</b>.</div>
     </section>
 
     <section class="reveal" style="animation-delay:.15s">
@@ -809,7 +809,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 13 Aug 2026, 15:18 (Bangkok)
+    Updated 14 Aug 2026, 05:58 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -826,14 +826,14 @@
        MODEL (adopted 9 Aug 2026): calories are a WEEKLY budget; protein + fat are DAILY floors;
        carbs are not tracked. TARGET.cal below is just the weekly budget / 7 — a guide, not a limit. */
     var TARGET = { cal:1937, protein:222, fat:60, carbs:127 };
-    var TODAY  = { date:'Today · 13 Aug', cal:470, protein:44, fat:10, carbs:69 };
+    var TODAY  = { date:'Today · 14 Aug', cal:0, protein:0, fat:0, carbs:0 };
 
     /* === WEEKLY CALORIE BUDGET — the real accounting layer. Week runs Fri -> Thu, never rolls over. === */
     var WEEK = {
-      label: 'Fri 7 → Thu 13 Aug · FINAL DAY',
+      label: 'Fri 14 → Thu 20 Aug · FRESH',
       budget: 13559,          /* 1,937 x 7 */
-      used: 13954,            /* 2,511 + 2,835 + 1,916 + 2,038 + 2,173 + 2,011 + 470 */
-      daysElapsed: 6.64       /* Fri 7 00:00 -> Thu 13 15:17 */
+      used: 0,                /* new week */
+      daysElapsed: 0.19       /* Fri 14 00:00 -> 04:34 */
     };
 
     /* === WEIGHT LOG — Coach appends one entry per weigh-in === */
