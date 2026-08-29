@@ -393,13 +393,13 @@
       <div class="now-grid">
         <div class="now">
           <div class="now-k">⚖️ Weight</div>
-          <div class="now-v">96.9 <span class="u">kg</span></div>
-          <div class="now-s go">−0.2 (28 Aug) the morning after a 3,010-cal buffet — carbs landed on target, so no water spike</div>
+          <div class="now-v">97.1 <span class="u">kg</span></div>
+          <div class="now-s">+0.2 (29 Aug) — small water, KFC ran over on carbs/fat. Floor pocket 96.5-97.1 holding</div>
         </div>
         <div class="now">
           <div class="now-k">😴 Last sleep</div>
-          <div class="now-v">7h 00m</div>
-          <div class="now-s">06:00 → 13:00 (28 Aug) · +2h, and the bedtime held instead of drifting later</div>
+          <div class="now-v">7h 35m</div>
+          <div class="now-s go">06:10 → 13:45 (29 Aug) · bedtime held flat 2nd night running</div>
         </div>
         <div class="now">
           <div class="now-k">🏋️ Next up</div>
@@ -769,7 +769,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 29 Aug 2026, 04:28 (Bangkok)
+    Updated 29 Aug 2026, 15:17 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -786,7 +786,7 @@
        MODEL (adopted 9 Aug 2026): calories are a WEEKLY budget; protein + fat are DAILY floors;
        carbs are not tracked. TARGET.cal below is just the weekly budget / 7 — a guide, not a limit. */
     var TARGET = { cal:1837, protein:222, fat:60, carbs:102 };
-    var TODAY  = { date:'Today · 28 Aug', cal:1295, protein:129, fat:34, carbs:115 };
+    var TODAY  = { date:'Today · 29 Aug', cal:0, protein:0, fat:0, carbs:0 };
 
     /* === WEEKLY CALORIE BUDGET — the real accounting layer. Week runs Fri -> Thu, never rolls over. === */
     var WEEK = {
@@ -852,7 +852,8 @@
       { d:'25 Aug', kg:96.9 },
       { d:'26 Aug', kg:96.5 },
       { d:'27 Aug', kg:97.1 },
-      { d:'28 Aug', kg:96.9 }
+      { d:'28 Aug', kg:96.9 },
+      { d:'29 Aug', kg:97.1 }
     ];
 
     /* === RECENT INTAKE AVG (last logged days) vs target === */
