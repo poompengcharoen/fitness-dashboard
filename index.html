@@ -423,25 +423,25 @@
     </section>
 
     <section class="reveal" style="animation-delay:.16s">
-      <div class="sec-title">🎯 Daily Consistency <span class="note">Fri 21 Aug · WFH · cycle from 07:00</span></div>
+      <div class="sec-title">🎯 Daily Consistency <span class="note">Fri 11 Sep · cycle from 05:10</span></div>
       <div class="card">
         <div class="dc-grid">
           <div>
             <div class="dc-col-h">🌅 Morning</div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span><b>Weigh-in · 96.7</b> <span style="color:var(--faint)">flat · floor pocket</span></span></div>
-            <div class="dc-item done"><span class="dc-s">🔥</span><span>💪 Creatine <span style="color:var(--faint)">streak 64</span></span></div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>💊 Centrum + 🐟 fish oil + 🍊 vit C + ☀️ vit D3</span></div>
-            <div class="dc-item done"><span class="dc-s">⭐</span><span>🍱 Meal 1 <span style="color:var(--faint)">111P so far — protein-led</span></span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>Weigh-in</span></div>
+            <div class="dc-item done"><span class="dc-s">🔥</span><span>💪 Creatine <span style="color:var(--faint)">streak 76</span></span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>💊 Centrum + 🐟 fish oil + 🍊 vit C + ☀️ vit D3</span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>🌾 Psyllium</span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>🍱 Meal 1</span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>🚰 Water <span style="color:var(--faint)">floor 2L / ~1.5 big bottles</span></span></div>
           </div>
           <div>
             <div class="dc-col-h">🌙 Evening</div>
-            <div class="dc-item done"><span class="dc-s">🔥</span><span>🔥 L-carnitine <span style="color:var(--faint)">pre-gym (training day)</span></span></div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>🍆 L-citrulline <span style="color:var(--faint)">evening dose</span></span></div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>🌿 NAC <span style="color:var(--faint)">2nd daily dose</span></span></div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>🧴 PM skincare <span style="color:var(--faint)">Fri = Some By Mi night</span></span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>🔥 L-carnitine <span style="color:var(--faint)">pre-gym (training day only)</span></span></div>
+            <div class="dc-item done"><span class="dc-s">✅</span><span>🍆 L-citrulline <span style="color:var(--faint)">taken 19:12 (10 Sep, prior evening)</span></span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>🧴 PM skincare</span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>🧠 Mood + reflection</span></div>
-            <div class="dc-item done"><span class="dc-s">🦷</span><span>Tray <b>39/43</b> swapped 28 Aug — next ~6 Sep</span></div>
+            <div class="dc-item done"><span class="dc-s">🦷</span><span>Tray <b>40/43</b> swapped 6 Sep — next ~15 Sep</span></div>
           </div>
         </div>
       </div>
@@ -769,7 +769,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 10 Sep 2026, 17:06 (Bangkok)
+    Updated 11 Sep 2026, 05:16 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -786,14 +786,14 @@
        MODEL (adopted 9 Aug 2026): calories are a WEEKLY budget; protein + fat are DAILY floors;
        carbs are not tracked. TARGET.cal below is just the weekly budget / 7 — a guide, not a limit. */
     var TARGET = { cal:1737, protein:222, fat:60, carbs:77 };
-    var TODAY  = { date:'Today · 10 Sep', cal:2084, protein:236, fat:70, carbs:146 };
+    var TODAY  = { date:'Today · 11 Sep', cal:0, protein:0, fat:0, carbs:0 };
 
     /* === WEEKLY CALORIE BUDGET — the real accounting layer. Week runs Fri -> Thu, never rolls over. === */
     var WEEK = {
-      label: 'Fri 4 → Thu 10 Sep',
+      label: 'Fri 11 → Thu 17 Sep',
       budget: 12159,
-      used: 14489,
-      daysElapsed: 0.55       /* Fri 4 Sep 00:00 -> ~13:16 */
+      used: 0,
+      daysElapsed: 0.22       /* Fri 11 Sep 00:00 -> ~05:10 */
     };
 
     /* === WEIGHT LOG — Coach appends one entry per weigh-in === */
