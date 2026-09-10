@@ -87,7 +87,7 @@
   .track{height:10px; background:#0c0d10; border:1px solid var(--line); border-radius:8px; margin-top:20px; position:relative; overflow:hidden}
   .track > i{display:block; height:100%; width:0; border-radius:8px;
     background:linear-gradient(90deg,var(--orange),var(--lime)); animation:fill 1.2s .3s cubic-bezier(.2,.7,.3,1) forwards}
-  @keyframes fill{to{width:10%}}
+  @keyframes fill{to{width:8%}}
   .track-ends{display:flex; justify-content:space-between; margin-top:8px; font-size:.74rem; color:var(--faint)}
   .togo{margin-top:14px; display:flex; align-items:baseline; gap:7px}
   .togo b{font-family:var(--display); font-size:1.45rem; color:var(--lime); font-weight:700}
@@ -110,6 +110,7 @@
   .now-v .u{font-size:.72rem; color:var(--dim); font-weight:500}
   .now-s{font-size:.67rem; color:var(--faint); margin-top:5px; line-height:1.4}
   .now-s.go{color:var(--lime)}
+  .now-s.warn{color:var(--orange)}
   .now-treat{margin-top:10px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:.78rem; font-weight:600;
     background:rgba(198,242,78,.1); border:1px solid rgba(198,242,78,.32); border-radius:12px; padding:10px; color:var(--lime)}
   .now-treat.used{background:rgba(255,120,73,.1); border-color:rgba(255,120,73,.3); color:var(--orange)}
@@ -360,7 +361,7 @@
 
       <div class="track"><i></i></div>
       <div class="track-ends"><span>100 kg · start</span><span>73 kg · goal</span></div>
-      <div class="togo"><b>23.7 kg</b><span>to go — 3.3 down · 🎯 <b>flat 3 days in the 96.6–96.8 floor pocket</b> — lowest sustained band yet</span></div>
+      <div class="togo"><b>24.9 kg</b><span>to go — 2.1 down · 97.9 today, +1.0 water bump off yesterday's carb/fat overshoot — trend still pointed down</span></div>
       <div class="eta">📅 <b>~30 weeks</b> at this pace · target ≈ early 2027</div>
     </div>
 
@@ -393,23 +394,23 @@
       <div class="now-grid">
         <div class="now">
           <div class="now-k">⚖️ Weight</div>
-          <div class="now-v">96.9 <span class="u">kg</span></div>
-          <div class="now-s go">−0.2 (2 Sep) — the water flushing, back in the floor pocket</div>
+          <div class="now-v">97.9 <span class="u">kg</span></div>
+          <div class="now-s warn">+1.0 (11 Sep) — likely water off yesterday's carb/fat overshoot, not fat</div>
         </div>
         <div class="now">
           <div class="now-k">😴 Last sleep</div>
-          <div class="now-v">7h 30m</div>
-          <div class="now-s go">18:00 → 01:30 (31 Aug) · the planned clock reset landed — earliest bedtime in the log</div>
+          <div class="now-v">~8h 10m</div>
+          <div class="now-s go">~20:30-21:30 → 05:10 (11 Sep) · solid early bed + early wake</div>
         </div>
         <div class="now">
           <div class="now-k">🏋️ Next up</div>
-          <div class="now-v">Posterior A</div>
-          <div class="now-s go">Anterior A ✅ 29 Aug — every lift beat 21 Aug's numbers, bench 80×8, 🆕 pushdown baselined 20.3kg 🅰️</div>
+          <div class="now-v">Rest → Anterior B</div>
+          <div class="now-s go">Posterior A ✅ 10 Sep — Seated Leg Curl finally ran clean at 70kg. Smith Squat test owed next Anterior B.</div>
         </div>
         <div class="now">
-          <div class="now-k">🗓️ Recalc (27 Aug)</div>
-          <div class="now-v">CUT → 1,837</div>
-          <div class="now-s">3 windows measured TDEE 2,103-2,237 vs a model saying 3,206 — first cut in the log</div>
+          <div class="now-k">🗓️ Recalc (4 Sep)</div>
+          <div class="now-v">CUT → 1,737</div>
+          <div class="now-s">2nd consecutive cut, TDEE ~2,479 but cap held it down · next recalc due today (Fri 11 Sep)</div>
         </div>
       </div>
       <div class="now-treat">🗓️ <b>27 Aug recalc: TARGET CUT 1,937 → 1,837</b> (222P / 102C / 60F · weekly 12,859). <b>Weight was 96.5 on 3 Aug and 96.5 on 26 Aug</b> — flat across 23 days, so TDEE simply equals average intake: <b>2,103</b>. Two other windows agreed (2,130 · 2,237). The old 3,206 model came from an equation, not the scale. ⚠️ Part of the gap is likely under-logged intake + genuinely low NEAT — <b>so the bigger lever is steps: 8k/day buys ~300 cal vs the 100 this cut buys.</b> Next recalc 4 Sep.</div>
@@ -769,7 +770,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 11 Sep 2026, 05:16 (Bangkok)
+    Updated 11 Sep 2026, 06:23 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -861,7 +862,8 @@
       { d:'4 Sep', kg:97.5 },
       { d:'6 Sep', kg:97.0 },
       { d:'9 Sep', kg:96.4 },
-      { d:'10 Sep', kg:96.9 }
+      { d:'10 Sep', kg:96.9 },
+      { d:'11 Sep', kg:97.9 }
     ];
 
     /* === RECENT INTAKE AVG (last logged days) vs target === */
