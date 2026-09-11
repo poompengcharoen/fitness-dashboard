@@ -87,7 +87,7 @@
   .track{height:10px; background:#0c0d10; border:1px solid var(--line); border-radius:8px; margin-top:20px; position:relative; overflow:hidden}
   .track > i{display:block; height:100%; width:0; border-radius:8px;
     background:linear-gradient(90deg,var(--orange),var(--lime)); animation:fill 1.2s .3s cubic-bezier(.2,.7,.3,1) forwards}
-  @keyframes fill{to{width:8%}}
+  @keyframes fill{to{width:5%}}
   .track-ends{display:flex; justify-content:space-between; margin-top:8px; font-size:.74rem; color:var(--faint)}
   .togo{margin-top:14px; display:flex; align-items:baseline; gap:7px}
   .togo b{font-family:var(--display); font-size:1.45rem; color:var(--lime); font-weight:700}
@@ -361,7 +361,7 @@
 
       <div class="track"><i></i></div>
       <div class="track-ends"><span>100 kg · start</span><span>73 kg · goal</span></div>
-      <div class="togo"><b>24.9 kg</b><span>to go — 2.1 down · 97.9 today, +1.0 water bump off yesterday's carb/fat overshoot — trend still pointed down</span></div>
+      <div class="togo"><b>25.6 kg</b><span>to go — 1.4 down · 98.6 today, 2nd water-bump day running off carb/fat-heavy eating — watch the next reading, not fat</span></div>
       <div class="eta">📅 <b>~30 weeks</b> at this pace · target ≈ early 2027</div>
     </div>
 
@@ -394,8 +394,8 @@
       <div class="now-grid">
         <div class="now">
           <div class="now-k">⚖️ Weight</div>
-          <div class="now-v">97.9 <span class="u">kg</span></div>
-          <div class="now-s warn">+1.0 (11 Sep) — likely water off yesterday's carb/fat overshoot, not fat</div>
+          <div class="now-v">98.6 <span class="u">kg</span></div>
+          <div class="now-s warn">+0.7 (12 Sep) — 2nd rise in a row, both after carb/fat-heavy days · not fat (arithmetic rules it out)</div>
         </div>
         <div class="now">
           <div class="now-k">😴 Last sleep</div>
@@ -429,7 +429,7 @@
         <div class="dc-grid">
           <div>
             <div class="dc-col-h">🌅 Morning</div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>Weigh-in</span></div>
+            <div class="dc-item done"><span class="dc-s">✅</span><span><b>Weigh-in · 98.6</b> <span style="color:var(--faint)">+0.7, water</span></span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>💪 Creatine <span style="color:var(--faint)">streak 77</span></span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>💊 Centrum + 🐟 fish oil + 🍊 vit C + ☀️ vit D3</span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>🌾 Psyllium <span style="color:var(--faint)">overdue from 11 Sep</span></span></div>
@@ -770,7 +770,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 12 Sep 2026, 05:40 (Bangkok)
+    Updated 12 Sep 2026, 06:32 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -863,7 +863,8 @@
       { d:'6 Sep', kg:97.0 },
       { d:'9 Sep', kg:96.4 },
       { d:'10 Sep', kg:96.9 },
-      { d:'11 Sep', kg:97.9 }
+      { d:'11 Sep', kg:97.9 },
+      { d:'12 Sep', kg:98.6 }
     ];
 
     /* === RECENT INTAKE AVG (last logged days) vs target === */
