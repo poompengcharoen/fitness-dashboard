@@ -399,8 +399,8 @@
         </div>
         <div class="now">
           <div class="now-k">😴 Last sleep</div>
-          <div class="now-v">~8h 10m</div>
-          <div class="now-s go">~20:30-21:30 → 05:10 (11 Sep) · solid early bed + early wake</div>
+          <div class="now-v">8h 00m ✅</div>
+          <div class="now-s go">21:00 → 05:00 (12 Sep) · clean full night, held even earlier than the night before</div>
         </div>
         <div class="now">
           <div class="now-k">🏋️ Next up</div>
@@ -410,7 +410,7 @@
         <div class="now">
           <div class="now-k">🗓️ Recalc (4 Sep)</div>
           <div class="now-v">CUT → 1,737</div>
-          <div class="now-s">2nd consecutive cut, TDEE ~2,479 but cap held it down · next recalc due today (Fri 11 Sep)</div>
+          <div class="now-s warn">⚠️ OVERDUE — Fri 11 Sep recalc never ran (weight came in, calc didn't)</div>
         </div>
       </div>
       <div class="now-treat">🗓️ <b>27 Aug recalc: TARGET CUT 1,937 → 1,837</b> (222P / 102C / 60F · weekly 12,859). <b>Weight was 96.5 on 3 Aug and 96.5 on 26 Aug</b> — flat across 23 days, so TDEE simply equals average intake: <b>2,103</b>. Two other windows agreed (2,130 · 2,237). The old 3,206 model came from an equation, not the scale. ⚠️ Part of the gap is likely under-logged intake + genuinely low NEAT — <b>so the bigger lever is steps: 8k/day buys ~300 cal vs the 100 this cut buys.</b> Next recalc 4 Sep.</div>
@@ -424,22 +424,22 @@
     </section>
 
     <section class="reveal" style="animation-delay:.16s">
-      <div class="sec-title">🎯 Daily Consistency <span class="note">Fri 11 Sep · cycle from 05:10</span></div>
+      <div class="sec-title">🎯 Daily Consistency <span class="note">Sat 12 Sep · cycle from 05:00</span></div>
       <div class="card">
         <div class="dc-grid">
           <div>
             <div class="dc-col-h">🌅 Morning</div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>Weigh-in</span></div>
-            <div class="dc-item done"><span class="dc-s">🔥</span><span>💪 Creatine <span style="color:var(--faint)">streak 76</span></span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>💪 Creatine <span style="color:var(--faint)">streak 77</span></span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>💊 Centrum + 🐟 fish oil + 🍊 vit C + ☀️ vit D3</span></div>
-            <div class="dc-item"><span class="dc-s">⬜</span><span>🌾 Psyllium</span></div>
+            <div class="dc-item"><span class="dc-s">⬜</span><span>🌾 Psyllium <span style="color:var(--faint)">overdue from 11 Sep</span></span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>🍱 Meal 1</span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>🚰 Water <span style="color:var(--faint)">floor 2L / ~1.5 big bottles</span></span></div>
           </div>
           <div>
             <div class="dc-col-h">🌙 Evening</div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>🔥 L-carnitine <span style="color:var(--faint)">pre-gym (training day only)</span></span></div>
-            <div class="dc-item done"><span class="dc-s">✅</span><span>🍆 L-citrulline <span style="color:var(--faint)">taken 19:12 (10 Sep, prior evening)</span></span></div>
+            <div class="dc-item done"><span class="dc-s">✅</span><span>🍆 L-citrulline <span style="color:var(--faint)">taken 05:38 (meant for 11 Sep night, forgot)</span></span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>🧴 PM skincare</span></div>
             <div class="dc-item"><span class="dc-s">⬜</span><span>🧠 Mood + reflection</span></div>
             <div class="dc-item done"><span class="dc-s">🦷</span><span>Tray <b>40/43</b> swapped 6 Sep — next ~15 Sep</span></div>
@@ -770,7 +770,7 @@
 
   <footer class="reveal">
     <div class="sync">🔄 Auto-synced from Coach · private logs stay private</div><br>
-    Updated 11 Sep 2026, 18:49 (Bangkok)
+    Updated 12 Sep 2026, 05:40 (Bangkok)
   </footer>
 
   <!-- Floating bottom dock -->
@@ -787,14 +787,14 @@
        MODEL (adopted 9 Aug 2026): calories are a WEEKLY budget; protein + fat are DAILY floors;
        carbs are not tracked. TARGET.cal below is just the weekly budget / 7 — a guide, not a limit. */
     var TARGET = { cal:1737, protein:222, fat:60, carbs:77 };
-    var TODAY  = { date:'Today · 11 Sep', cal:2672, protein:228, fat:102, carbs:229 };
+    var TODAY  = { date:'Today · 12 Sep', cal:0, protein:0, fat:0, carbs:0 };
 
     /* === WEEKLY CALORIE BUDGET — the real accounting layer. Week runs Fri -> Thu, never rolls over. === */
     var WEEK = {
       label: 'Fri 11 → Thu 17 Sep',
       budget: 12159,
       used: 2672,
-      daysElapsed: 0.22       /* Fri 11 Sep 00:00 -> ~05:10 */
+      daysElapsed: 1.23       /* Fri 11 Sep 00:00 -> Sat 12 Sep ~05:38 */
     };
 
     /* === WEIGHT LOG — Coach appends one entry per weigh-in === */
